@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>网迈OA - 财务管理系统</title>
+<title> 财务管理系统</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="pragma" content="no-cache"/> 
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/> 

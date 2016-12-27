@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>网迈OA - 用户登录</title>
+<title> 用户登录</title>
 <meta charset="utf-8"/>
 <meta http-equiv="pragma" content="no-cache"/> 
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/> 

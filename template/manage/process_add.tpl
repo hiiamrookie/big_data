@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>网迈OA - 模块流程设定</title>
+<title> 模块流程设定</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="pragma" content="no-cache"/> 
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/> 
