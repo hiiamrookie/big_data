@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>付款日期</td><td><input type="text"></td><td><input type="button" value="搜索" id="search"></td></tr>
+</table>
+<br>
+<table id="payment" border="1">
+<tr><td>媒体名称</td><td>付款金额&nbsp;<input type="button" value="展开" id="open"></td></tr>
+<tr><td><input type="radio" name="media" checked="checked">媒体1</td><td>10000</td></tr>
+<tr><td><input type="radio" name="media">媒体2</td><td>20000</td></tr>
+<tr><td><input type="radio" name="media">媒体3</td><td>30000</td></tr>
+</table>
+<br>
+<table id="pid" border="1">
+<tr><td>执行单号</td><td>金额</td><td>客户名称</td><td>已支付情况</td><td>发票号码</td></tr>
+<tr><td>13SH001</td><td>2000</td><td>客户1</td><td>2000</td><td><input type="text">&nbsp;<input type="button" value="提交"></td></tr>
+<tr><td>13SH002</td><td>3000</td><td>客户2</td><td>2000</td><td><input type="text">&nbsp;<input type="button" value="提交"></td></tr>
+<tr><td>13SH003</td><td>4000</td><td>客户3</td><td>3000</td><td><input type="text">&nbsp;<input type="button" value="提交"></td></tr>
+<tr><td>13SH004</td><td>1000</td><td>客户4</td><td>1000</td><td><input type="text">&nbsp;<input type="button" value="提交"></td></tr>
+</table>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#payment").hide();
+	$("#pid").hide();
+	
+	$("#search").click(function(){
+		$("#payment").show();
+	});
+	
+	$("#open").click(function(){
+		$("#pid").show();
+	});
+});
+</script>
+</body>
+</html>

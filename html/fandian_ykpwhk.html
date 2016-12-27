@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1" id="t1">
+<tr><td>媒体名称</td><td>未未回款金额</td><td></td></tr>
+<tr><td>媒体1</td><td>400000</td><td><input type="button" value="展开" id="s1"></td></tr>
+<tr id="tr1"><td></td><td colspn="4"><table>
+<tr><td>开票金额</td><td>开票时间</td><td>申请人</td><td>发票号码</td><td>未回款金额</td></tr>
+<tr><td>400000</td><td>2014-01-01</td><td>申请人1</td><td>123456</td><td>300000</td></tr>
+<tr><td>200000</td><td>2014-02-01</td><td>申请人2</td><td>654321</td><td>100000</td></tr>
+</table></td></tr>
+<tr><td>媒体2</td><td>300000</td><td><input type="button" value="展开"></td></tr>
+<tr><td>媒体3</td><td>200000</td><td><input type="button" value="展开"></td></tr>
+<tr><td>媒体4</td><td>100000</td><td><input type="button" value="展开"></td></tr>
+<tr><td colspan="3">合计：1000000</td></tr>
+</table>
+<br>
+<font color="red">按照开票日期越早的排在越前面</font>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function() {
+	$("#tr1").hide();
+	$("#s1").click(function(){
+		$("#tr1").show();
+	});
+});
+</script>
+</body>
+</html>

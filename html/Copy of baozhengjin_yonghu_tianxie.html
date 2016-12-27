@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+<tr><td>媒体名称</td><td>百度</td><td>应付保证金金额</td><td>11700（不包含返点金额）</td></tr>
+<tr><td>付款时间</td><td>2013-11-11</td><td>最后申请提交时间</td><td>2013-10-20</td></tr>
+</table>
+<br>
+<table border="1" id="ggz1">
+<tr><td>广告主</td><td>客户1</td><td>合同付款日期</td><td>2013-10-01</td><td>申请保证金金额</td><td  colspan="3">￥5000</td></tr>
+<tr><td>合同号</td><td><input type="text"></td><td>客户名称</td><td><input type="text"></td><td colspan="4"><input type="button" value="搜索" id="search1"></td></tr>
+</table>
+<br>
+<table id="pids" border="1">
+<tr><td><input type="checkbox" >&nbsp;全选</td><td>合同号</td><td>客户名称</td><td>项目名称</td><td>媒体名称</td><td>已收客户保证金金额</td><td>已付媒体保证金金额</td><td>上次付媒体保证金时间</td></tr>
+<tr><td><input type="checkbox" ></td><td>13SH001</td><td>客户1</td><td>项目名称1</td><td>媒体名称1</td><td>10000</td><td>1000</td><td>2013-01-01</td></tr>
+<tr><td><input type="checkbox" ></td><td>13SH002</td><td>客户2</td><td>项目名称1</td><td>媒体名称1,2,3（可以点击进入查看详细情况）</td><td>20000</td><td>1000</td><td><a href="#">2013-01-01</a></td></tr>
+<tr><td><input type="checkbox" ></td><td>13SH003</td><td>客户3</td><td>项目名称1</td><td>媒体名称1</td><td>30000</td><td>1000</td><td>2013-01-01</td></tr>
+<tr><td colspan="8">1 / 20 页 下一页 <input type="button" value="选择" id="selectpid"></td></tr>
+</table>
+<br>
+<table id="pidresult" border="1">
+<tr><td>合同号</td><td>客户名称</td><td>已收客户保证金金额</td><td>已付媒体保证金金额</td><td>本次申请媒体保证金应付金额</td><td>返点抵扣（分配者看不到）</td><td>个人借款抵扣</td><td>实付金额</td><td>是否垫付</td></tr>
+<tr><td>13SH001</td><td>客户1</td><td>5000</td><td>5000</td><td><input type="text"></td><td><input type="text"></td><td>还款人<input type="text" size="10">&nbsp;金额<input type="text" size="10"></td><td>xxx</td><td><input type="checkbox">是 <input type="text" size="10">&nbsp;<input type="file"></td></tr>
+<tr><td>13SH002</td><td>客户2</td><td>0</td><td>5000</td><td><input type="text"></td><td><input type="text"></td><td>还款人<input type="text" size="10">&nbsp;金额<input type="text" size="10"></td><td>xxx</td><td><input type="checkbox">是 <input type="text" size="10">&nbsp;<input type="file"></td></tr>
+<tr><td>13SH003</td><td>客户3</td><td>0</td><td>5000</td><td><input type="text"></td><td><input type="text"></td><td>还款人<input type="text" size="10">&nbsp;金额<input type="text" size="10"></td><td>xxx</td><td><input type="checkbox">是 <input type="text" size="10">&nbsp;<input type="file"></td></tr>
+<tr><td colspan="8"></td><td>小计：￥5000</td></tr>
+</table>
+<br>
+<table border="1" id="ggz2">
+<tr><td>广告主</td><td>客户2</td><td>合同付款日期</td><td>2013-10-09</td><td>申请保证金金额</td><td  colspan="3">￥6700</td></tr>
+<tr><td>合同号</td><td><input type="text"></td><td>客户名称</td><td><input type="text"></td><td colspan="4"><input type="button" value="搜索"></td></tr>
+</table>
+<br>
+<table>
+<tr><td>备注</td><td><textarea></textarea></td></tr>
+</table>
+<table id="ssu">
+<tr><td><input type="button" value="保存">&nbsp;<input type="button" value="提交" id="sub"></td></tr>
+</table>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#pids").hide();
+	$("#pidresult").hide();
+	
+	$("#search1").click(function(){
+		$("#pids").show();
+	});
+	
+	$("#selectpid").click(function(){
+		$("#pidresult").show();
+	});
+	
+	$("#sub").click(function(){
+		location.href= "baozhengjin_fukuan_liebiao.html";
+	});
+});
+</script>
+</body>
+</html>

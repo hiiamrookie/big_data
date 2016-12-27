@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>媒体名称</td><td><input type="text"><font color="red">（自动保存，可以维护）</font></td></tr>
+<tr><td>开户行</td><td><input type="text"></td></tr>
+<tr><td>银行帐号</td><td><input type="text"></td></tr>
+<tr><td>应付金额</td><td><input type="text"></td></tr>
+<tr><td>付款时间</td><td><input type="text"></td></tr>
+<tr><td>是否垫付</td><td><input type="checkbox">是&nbsp;<!--input type="text" size="13"--></td></tr>
+<tr><td>返点抵扣</td><td><input type="checkbox">是&nbsp;<input type="text" size="13">&nbsp;返点比例<input type="text" size="13">%（非必输）</td></tr>
+<tr><td>保证金抵扣</td><td><input type="checkbox" id="xx">是&nbsp;<input type="button"  value="选择" id="xxx"></td></tr>
+<tr><td>个人借款抵扣</td><td><input type="checkbox">是&nbsp;<input type="text" size="13"></td></tr>
+<tr><td>实付金额</td><td>XXX<font color="red">（实付金额 = 应付金额 - 返点抵扣 - 保证金抵扣 - 个人借款抵扣）</font></td></tr>
+<tr><td>备注</td><td><textarea></textarea></td></tr>
+<tr><td>执行单</td><td><input type="text">&nbsp;客户名<input type="text">&nbsp;项目名称<input type="text">&nbsp;媒体名称<input type="text">&nbsp;<input type="button" value="搜索" id="search"></td></tr>
+</table>
+<br>
+<table id="pids" border="1">
+<tr><td><input type="checkbox" >&nbsp;全选</td><td>执行单号</td><td>客户名称</td><td>项目名称</td><td>客户到款情况</td><td>执行成本</td><td>已支付情况</td><td>已执行未付款金额</td></tr>
+<tr><td><input type="checkbox" ></td><td>13SH001</td><td>客户1</td><td>项目名称1</td><td>10000</td><td><a href="#">5000</a><font color="red">(可以展开并【选择】查看每个媒体成本情况)</font></td><td><a href="#">0</a><font color="red">(可以展开查看每个媒体支付情况)</font></td><td><a href="#">0</a><font color="red">(可以展开查看每个媒体未付款情况)</font></td></tr>
+<tr><td><input type="checkbox" ></td><td>13SH002</td><td>客户2</td><td>项目名称2</td><td>20000</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td><input type="checkbox" ></td><td>13SH003</td><td>客户3</td><td>项目名称3</td><td>30000</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td colspan="8">1 / 20 页 下一页 <input type="button" value="选择" id="selectpid"></td></tr>
+</table>
+<br>
+
+<table id="pidresult" border="1">
+<tr><td colspan="22"><font color="red">（已选择的媒体数据，非所有媒体数据）</font></td></tr>
+<tr><td rowspan="2">执行单号</td><td rowspan="2">客户名称</td><td rowspan="2">项目名称</td><td rowspan="2">客户执行收入</td><td rowspan="2">已收客户款合计金额</td><td rowspan="2">已开票合计金额</td><td rowspan="2">已执行未到客户款金额</td><td rowspan="2">供应商</td><td rowspan="2">媒体执行成本</td><td rowspan="2">已执行未付成本金额</td><td rowspan="2">本次申请金额</td><td rowspan="2">已付成本合计金额（银行支付+个人借款+收付对冲）</td><td rowspan="2">返点抵扣	</td><td colspan="3">返点</td><!--td>实际付款日期</td--><td rowspan="2">虚拟发票合计金额</td><td rowspan="2">真实发票到票合计金额</td><td rowspan="2">已付款未到票金额</td><td rowspan="2">个人借款抵扣</td><td rowspan="2">实付金额</td><td rowspan="2">是否垫付</td></tr>
+<tr><td>待开票返点</td><td>已开票返点</td><td>无需开票返点</td></tr>
+<tr><td>13SH001-001</td><td>客户1</td><td>	项目名称1</td><td>10000</td><td>5000</td><td>5000</td><td>5000</td><td>供应商1</td><td>5000</td><td>5000</td><td><input type="radio" name="radio1" checked>全付<input type="radio" name="radio1">支付部分<input type="text"></td><td>5000</td><td><input type="text" value="支付金额×返点比例"><input type="file"></td><td>0</td><td>0</td><td>0</td><td>0</td><!--td>实际付款日期</td--><td>0</td><td>0</td><td>还款人<input type="text">&nbsp;金额<input type="text"></td><td>xxx</td><td><input type="checkbox">是 <input type="file">&nbsp;<input type="text" value="如果勾选垫付，默认金额=执行金额"></td></tr>
+<tr><td>13SH001-002</td><td>客户2</td><td>	项目名称2</td><td>10000</td><td>5000</td><td>5000</td><td>5000</td><td>供应商1</td><td>5000</td><td>5000</td><td><input type="radio" name="radio2" checked>全付<input type="radio" name="radio2">支付部分<input type="text"></td><td>5000</td><td><input type="text" value="支付金额×返点比例"><input type="file"></td><td>0</td><td>0</td><td>0</td><td>0</td><!--td>实际付款日期</td--><td>0</td><td>0</td><td>还款人<input type="text">&nbsp;金额<input type="text"></td><td>xxx</td><td><input type="checkbox">是 <input type="file">&nbsp;<input type="text" value="如果勾选垫付，默认金额=执行金额"></td></tr>
+<tr><td>13SH001-003</td><td>客户3</td><td>	项目名称3</td><td>10000</td><td>5000</td><td>5000</td><td>5000</td><td>供应商1</td><td>5000</td><td>5000</td><td><input type="radio" name="radio3" checked>全付<input type="radio" name="radio3">支付部分<input type="text"></td><td>5000</td><td><input type="text" value="支付金额×返点比例"><input type="file"></td><td>0</td><td>0</td><td>0</td><td>0</td><!--td>实际付款日期</td--><td>0</td><td>0</td><td>还款人<input type="text">&nbsp;金额<input type="text"></td><td>xxx</td><td><input type="checkbox">是 <input type="file">&nbsp;<input type="text" value="如果勾选垫付，默认金额=执行金额"></td></tr>
+<tr><td colspan="22" align="right">实付小计：10000</td></tr>
+</table>
+<!--table id="pidresult" border="1">
+<tr><td colspan="13"><font color="red">（已选择的媒体数据，非所有媒体数据）</font></td></tr>
+<tr><td>执行单号</td><td>客户名称</td><td>项目名称</td><td>执行金额</td><td>客户到款情况</td><td>上次已支付媒体合计数</td><td>执行成本(所选媒体)</td><td>已支付情况(所选媒体)</td><td>支付方式</td><td>返点抵扣</td><td>个人借款抵扣</td><td>实付金额</td><td>是否垫付</td></tr>
+<tr><td>13SH001</td><td>客户1</td><td>项目名称1</td><td>0</td><td>10000</td><td>10000<font color="red">(可以展开查看每个媒体已支付情况)</font></td><td>0</td><td>5000<font color="red">(可以展开查看该媒体每次已支付情况)</font></td><td><input type="radio" name="radio1" checked>全付<input type="radio" name="radio1">支付部分<input type="text"></td><td><input type="text" value="支付金额×返点比例"><input type="file"></td><td>还款人<input type="text">&nbsp;金额<input type="text"></td><td>xxx</td><td><input type="checkbox">是 <input type="file">&nbsp;<input type="text" value="如果勾选垫付，默认金额=执行金额"></td></tr>
+<tr><td>13SH002</td><td>客户2</td><td>项目名称1</td><td>0</td><td>10000</td><td>20000</td><td>0</td><td>0</td><td><input type="radio" name="radio2" checked>全付<input type="radio" name="radio2">支付部分<input type="text"></td><td><input type="text"><input type="file"></td><td>还款人<input type="text">&nbsp;金额<input type="text"></td><td>xxx</td><td><input type="checkbox">是 <input type="file">&nbsp;<input type="text"></td></tr>
+<tr><td>13SH003</td><td>客户3</td><td>项目名称1</td><td>0</td><td>10000</td><td>30000</td><td>0</td><td>0</td><td><input type="radio" name="radio3" checked>全付<input type="radio" name="radio3">支付部分<input type="text"></td><td><input type="text"><input type="file"></td><td>还款人<input type="text">&nbsp;金额<input type="text"></td><td>xxx</td><td><input type="checkbox">是 <input type="file">&nbsp;<input type="text"></td></tr>
+<tr><td colspan="13" align="right">实付小计：10000</td></tr>
+</table-->
+<br>
+<table border="1" id="tt">
+<tr><td>合同号</td><td>客户名</td><td>媒体名称</td><td>已付媒体保证金额</td><td>使用保证金金额</td></tr>
+<tr><td>14SH001</td><td>客户名1</td><td>媒体名称1<font color="red">(选中带回的媒体)</font></td><td>5000</td><td><input type="text" value="-5000"></td></tr>
+<tr><td>14SH002</td><td>客户名2</td><td>媒体名称2</td><td>10000</td><td><input type="text" value="-1000"></td></tr>
+<tr><td>14SH003</td><td>客户名3</td><td>媒体名称3</td><td>1500</td><td><input type="text" value="-1500"></td></tr>
+<tr><td>14SH003</td><td>客户名3</td><td>媒体名称3</td><td>1500</td><td><input type="text" value="-1000"></td></tr>
+<tr><td colspan="5" align="right">小计：-5000</td></tr>
+</table>
+<table id="ssu">
+<tr><td><input type="button" value="保存" id="opass">&nbsp;<input type="button" value="提交" id="sub"></td></tr>
+</table>
+<br>
+<font color="red">可以看见审核流程中的状态，类似执行单</font>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#pids").hide();
+	$("#xxx").hide();
+	$("#pidresult").hide();
+	$("#ssu").hide();
+	$("#tt").hide();
+	
+	$("#xx").click(function(){
+		if($(this).attr("checked") == "checked"){
+			$("#xxx").show();
+		}else{
+			$("#xxx").hide();
+		}
+		
+	});
+	$("#search").click(function(){
+		$("#pids").show();
+	});
+	
+	$("#selectpid").click(function(){
+		$("#pidresult").show();
+		$("#ssu").show();
+	});
+	
+	$("#sub").click(function(){
+		location.href= "geren_fukuan_liebiao.html";
+	});
+	
+	$("#xxx").click(function(){
+		window.open("xuanze_baozhengjin.html");
+	});
+});
+
+function aa(){
+	$("#tt").show();
+}
+</script>
+</body>
+</html>

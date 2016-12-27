@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td><input type="radio" name="test" value="1" checked>收&nbsp;<input type="radio" name="test" value="2">付</td>
+			<td>媒体</td>
+			<td><input type="text">
+			</td>
+			<td>客户</td>
+			<td><input type="text">
+			</td>
+			<td>执行单号</td>
+			<td><input type="text">
+			</td>
+			<td>项目名称</td>
+			<td><input type="text">&nbsp;<input type="button" value="搜索" id="s1">
+			</td>
+		</tr>
+	</table>
+	<br>
+	<table width="100%">
+		<tr>
+			<td><table border="1" id="t1">
+					<tr>
+						<td>&nbsp;</td>
+						<td>执行单号</td>
+						<td>客户名</td>
+						<td>项目名称</td>
+						<td>执行金额</td>
+						<td>到款金额</td>
+						<td>开票金额</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox">
+						</td>
+						<td>14SH001</td>
+						<td>客户名1</td>
+						<td>项目名称1</td>
+						<td>5000</td>
+						<td>5000<font color="red">可展开查看每次的详情</font>
+						</td>
+						<td>5000<font color="red">可展开查看每次的详情</font>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox">
+						</td>
+						<td>14SH002</td>
+						<td>客户名2</td>
+						<td>项目名称2</td>
+						<td>10000</td>
+						<td>10000</td>
+						<td>10000</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox">
+						</td>
+						<td>14SH003</td>
+						<td>客户名3</td>
+						<td>项目名称3</td>
+						<td>1500</td>
+						<td>1500</td>
+						<td>1500</td>
+					</tr>
+					<tr>
+						<td colspan="7"><input type="button" value="添加" id="s2">
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td><table border="1" id="t3">
+					<tr>
+						<td>&nbsp;</td>
+						<td>执行单号</td>
+						<td>客户名</td>
+						<td>项目名称</td>
+						<td>媒体名称</td>
+						<td>执行金额</td>
+						<td>付款金额</td>
+						<td>到票金额</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox">
+						</td>
+						<td>14SH001</td>
+						<td>客户名1</td>
+						<td>项目名称1</td>
+						<td>媒体名称1</td>
+						<td>5000</td>
+						<td>5000<font color="red">可展开查看每次的详情</font>
+						</td>
+						<td>5000<font color="red">可展开查看每次的详情</font>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox">
+						</td>
+						<td>14SH002</td>
+						<td>客户名2</td>
+						<td>项目名称2</td>
+						<td>媒体名称2</td>
+						<td>10000</td>
+						<td>10000</td>
+						<td>10000</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox">
+						</td>
+						<td>14SH003</td>
+						<td>客户名3</td>
+						<td>项目名称3</td>
+						<td>媒体名称3</td>
+						<td>1500</td>
+						<td>1500</td>
+						<td>1500</td>
+					</tr>
+					<tr>
+						<td colspan="8"><input type="button" value="添加" id="s4">
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<table width="100%">
+		<tr>
+			<td><table border="1" id="t2">
+					<tr>
+						<td>执行单号</td>
+						<td>客户名</td>
+						<td>项目名称</td>
+						<td>执行金额</td>
+						<td>到款金额</td>
+						<td>开票金额</td>
+						<td>【收】金额</td>
+					</tr>
+					<tr>
+						<td>14SH001</td>
+						<td>客户名1</td>
+						<td>项目名称1</td>
+						<td>5000</td>
+						<td>5000</td>
+						<td>5000</td>
+						<td><input type="text" value="1000">
+						</td>
+					</tr>
+					<tr>
+						<td>14SH002</td>
+						<td>客户名2</td>
+						<td>项目名称2</td>
+						<td>10000</td>
+						<td>10000</td>
+						<td>10000</td>
+						<td><input type="text" value="2000">
+						</td>
+					</tr>
+					<tr>
+						<td>14SH003</td>
+						<td>客户名3</td>
+						<td>项目名称3</td>
+						<td>1500</td>
+						<td>1500</td>
+						<td>1500</td>
+						<td><input type="text" value="500">
+						</td>
+					</tr>
+				</table></td>
+			<td><table border="1" id="t4">
+					<tr>
+						<td>执行单号</td>
+						<td>客户名</td>
+						<td>项目名称</td>
+						<td>媒体名称</td>
+						<td>执行金额</td>
+						<td>付款金额</td>
+						<td>到票金额</td>
+						<td>【付】金额</td>
+						<td>已执行未付款金额</td>
+						<td>已付款未到票</td>
+					</tr>
+					<tr>
+						<td>14SH002</td>
+						<td>客户名2</td>
+						<td>项目名称2</td>
+						<td>媒体名称2</td>
+						<td>10000</td>
+						<td>10000</td>
+						<td>10000</td>
+						<td><input type="text" value="2000">
+						<td>10000</td>
+						<td>10000</td>
+						</td>
+					</tr>
+					<tr>
+						<td>14SH003</td>
+						<td>客户名3</td>
+						<td>项目名称3</td>
+						<td>媒体名称3</td>
+						<td>1500</td>
+						<td>1500</td>
+						<td>1500</td>
+						<td><input type="text" value="500">
+						<td>10000</td>
+						<td>10000</td>
+						</td>
+					</tr>
+				</table></td>
+		</tr>
+	</table>
+	<br>
+	<table id="tt">
+		<tr>
+			<td><input type="button" value="对冲">
+			</td>
+		</tr>
+		<tr>
+			<td><font color="red">说明：对冲金额一样才可以提交<br> linda发起，alex确认，就修改确认，不需要驳回</font>
+			</td>
+		</tr>
+	</table>
+	<br>
+	
+	<script src="jquery-1.8.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#t1").hide();
+			$("#t2").hide();
+			$("#t3").hide();
+			$("#t4").hide();
+			$("#tt").hide();
+			$("#s1").click(function() {
+				if ($('input[name="test"]:checked').val() == "1") {
+					$("#t1").show();
+				} else {
+					$("#t3").show();
+				}
+
+			});
+			$("#s2").click(function() {
+				$("#t2").show();
+			});
+
+			$("#s4").click(function() {
+				$("#t4").show();
+				$("#tt").show();
+			});
+
+			$("#tt").click(function() {
+				location.href = "shoufuduichong_shenhe.html";
+			});
+		});
+	</script>
+</body>
+</html>

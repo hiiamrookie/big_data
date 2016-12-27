@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td><font color="red">按照付款申请中的垫付信息列出</font></td></tr>
+</table>
+<table border="1">
+<tr><td><input type="radio" name="xx" value="1" checked>付合同款&nbsp;<input type="radio" name="xx" value="2">付保证金&nbsp;&nbsp;</td><td>媒体名</td><td><input type="text"></td><td>付款时间</td><td><input type="text"></td><td>付款金额</td><td><input type="text"></td><td><input type="button" value="搜索" id="s1"></td></tr>
+</table>
+<br>
+<table border="1" id="t1">
+<tr><td>申请付款时间</td><td>约定付款时间</td><td>媒体名称</td><td>合同付款金额</td><td>垫付金额</td><td></td></tr>
+<tr><td>2013-11-11</td><td>2013-12-22</td><td>媒体1</td><td>10000</td><td>10000</td><td><input type="button" value="展开" id="s2"></td></tr>
+<tr><td>2013-11-12</td><td>2013-12-23</td><td>媒体2</td><td>20000</td><td>10000</td><td><input type="button" value="展开"></td></tr>
+</table>
+<table border="1" id="tt1">
+<tr><td>申请付款时间</td><td>约定付款时间</td><td>媒体名称</td><td>保证金付款金额</td><td>垫付金额</td><td></td></tr>
+<tr><td>2013-11-11</td><td>2013-12-22</td><td>媒体1</td><td>10000</td><td>10000</td><td><input type="button" value="展开" id="ss2"></td></tr>
+<tr><td>2013-11-12</td><td>2013-12-23</td><td>媒体2</td><td>20000</td><td>10000</td><td><input type="button" value="展开"></td></tr>
+</table>
+<br>
+<table border="1" id="t2">
+<tr><td colspan="16"><font color="red">说明：按部门，按客户排列</font></td></tr>
+<tr><td><input type="checkbox">全选</td><td>执行单号</td><td>客户名称</td><td>部门</td><td>项目负责人</td><td>项目名称</td><td>客户执行收入</td><td>已收客户款合计金额</td><td>已开票合计金额</td><td>已执行未到客户款金额</td><td>媒体已付款总金额<font color="red">（点进去查看该单所有媒体的所有付款记录：金额+时间）</font>	</td><td>该媒体本次申请付款金额</td><td>该媒体本次申请垫付金额</td><td>系统计算的垫款金额<font color="red">(默认是已执行未到客户款金额)</font></td><td>未回款金额</td><td>操作</td></tr>
+<tr><td><input type="checkbox"></td><td>13SH001-001</td><td>客户名1</td><td>部门1</td><td>项目负责人1</td><td>项目名称1</td><td>10000</td><td>5000</td><td>5000</td><td>5000</td><td><a href="#">5000</a></td><td>5000</td><td>5000</td><td>5000</td><td><font color="red">5000</font></td><td><a href="#" id="s3">更新</a> &nbsp;|&nbsp; 删除       （已执行未到款与垫付金额取小的数值）</td></tr>
+<tr><td><input type="checkbox"></td><td>13SH002-001</td><td>客户名2</td><td>部门2</td><td>项目负责人2</td><td>项目名称2</td><td>20000</td><td>10000</td><td>10000</td><td>10000</td><td>10000</td><td>10000</td><td>10000</td><td>8000</td><td><font color="red">2000</font></td><td><a href="#">更新</a></td></tr>
+<tr><td>TO:邮件地址</td><td><input type="text"></td><td>CC：邮件地址</td><td><input type="text"></td><td colspan="12"><input type="button" value="发邮件"></td></tr>
+</table>
+<table border="1" id="tt2">
+<tr><td colspan="15"><font color="red">说明：按照未回款的金额大小排序</font></td></tr>
+<tr><td>合同号</td><td>客户名称</td><td>保证金合计金额</td><td>已收客户保证金合计金额</td><td>媒体已付保证金合计<font color="red">（点进去查看该合同所有媒体的所有保证金付款记录：金额+时间）</font>	</td><td>该媒体本次保证金申请付款金额</td><td>该媒体本次保证金申请垫付金额</td><td>系统计算的垫款金额<font color="red">(默认是已执行未到客户保证金金额)</font></td><td>未回款金额</td><td>操作</td></tr>
+<tr><td>13SH001</td><td>客户名1</td><td>15000</td><td>5000</td><td><a href="#">5000</a></td><td>5000</td><td>5000</td><td>5000</td><td><font color="red">5000</font></td><td><a href="#" id="ss3">更新</a></td></tr>
+<tr><td>13SH002</td><td>客户名2</td><td>110000</td><td>10000</td><td>10000</td><td>10000</td><td>10000</td><td>8000</td><td><font color="red">2000</font></td><td><a href="#">更新</a></td></tr>
+<tr><td>TO:邮件地址</td><td><input type="text"></td><td>CC：邮件地址</td><td><input type="text"></td><td colspan="11"><input type="button" value="发邮件"></td></tr>
+</table>
+<br>
+<br>
+<table>
+<tr><td><font color="red">垫款总金额->按客户显示</font></td></tr>
+</table>
+<table border="1" >
+<tr><td>目前垫款总金额</td><td colspan="5">1000000000</td></tr>
+<tr><td>未回款总金额</td><td colspan="5">5000000&nbsp;&nbsp;<input type="button" value="垫付的清单" id="s8"></td></tr>
+<tr><td>客户名称</td><td><input type="text"></td><td>开始时间</td><td><input type="text"></td><td>结束时间</td><td><input type="text">&nbsp;&nbsp;<input type="button" value="搜索，按部门拆分显示" id="s4"></td></tr>
+</table>
+<br>
+<table border="1" id="t3">
+<tr><td>客户名称</td><td>已垫款总额</td><td>已回款总额</td><td>未回款金额</td><td></td></tr>
+<tr><td>客户1</td><td>100000</td><td>50000</td><td>50000</td><td><input type="button" value="展开" id="s5">&nbsp;<input type="button" value="打印" id="s7"></td></tr>
+<tr><td>客户2</td><td>200000</td><td>180000</td><td>20000</td><td><input type="button" value="展开">&nbsp;<input type="button" value="打印"></td></tr>
+</table>
+<br>
+<table border="1" id="t4">
+<tr><td colspan="13">客户合同款垫付记录</td></tr>
+<tr><td>执行单号</td><td>项目名称</td><td>客户执行收入</td><td>已收客户款合计金额</td><td>已开票合计金额</td><td>已执行未到客户款金额</td><td>媒体已付款总金额<font color="red">（点进去查看该单所有媒体的所有付款记录：金额+时间）</font>	</td><td>申请垫付对象</td><td>申请垫付时间</td><td>申请垫付金额</td><td>系统计算的垫款金额<font color="red">(默认是已执行未到客户款金额)</font></td><td>未回款金额</td><td>操作</td></tr>
+<tr><td>13SH001-001</td><td>项目名称1</td><td>10000</td><td>5000</td><td>5000</td><td>5000</td><td><a href="#">5000</a></td><td>媒体1</td><td>2014-01-01</td><td>5000</td><td>5000</td><td><font color="red">5000</font></td><td><a href="#" id="s6">更新</a></td></tr>
+<tr><td>13SH002-001</td><td>项目名称2</td><td>20000</td><td>10000</td><td>10000</td><td>10000</td><td>10000</td><td>媒体2</td><td>2014-02-01</td><td>10000</td><td>8000</td><td><font color="red">2000</font></td><td><a href="#">更新</a></td></tr>
+<tr><td colspan="13">客户保证金垫付记录</td></tr>
+<tr><td>合同号</td><td>客户名称</td><td>保证金合计金额</td><td>已收客户保证金合计金额</td><td>媒体已付保证金合计<font color="red">（点进去查看该合同所有媒体的所有保证金付款记录：金额+时间）</font>	</td><td>该媒体本次保证金申请付款金额</td><td>该媒体本次保证金申请垫付金额</td><td>系统计算的垫款金额<font color="red">(默认是已执行未到客户保证金金额)</font></td><td>未回款金额</td><td colspan="4">操作</td></tr>
+<tr><td>13SH001</td><td>客户名1</td><td>15000</td><td>5000</td><td><a href="#">5000</a></td><td>5000</td><td>5000</td><td>5000</td><td><font color="red">5000</font></td><td colspan="4"><a href="#" id="sss3">更新</a></td></tr>
+<tr><td>13SH002</td><td>客户名2</td><td>110000</td><td>10000</td><td>10000</td><td>10000</td><td>10000</td><td>8000</td><td><font color="red">2000</font></td><td colspan="4"><a href="#">更新</a></td></tr>
+</table>
+<br><br>
+<font color="red">1：按照付款申请中的垫付信息列出；2：垫款总金额->按客户显示<br>到款金额>=执行金额的话不显示<br>更新是更新垫付金额，回款信息=客户收款信息<br>打印出显示客户名，部门（客户名+部门的合计）、负责人、总计垫付金额</font>
+<br>
+付款申请中的垫付
+（显示 合同号	客户名称	项目名称	 客户执行收入 	已收客户款合计金额	已开票合计金额	已执行未到客户款金额 媒体总的已付款金额（点进去）	这个媒体这次申请金额	这个媒体这次申请垫付金额 	系统更新后的垫款金额(默认是已执行未到客户款金额)）
+
+
+
+
+
+
+垫付的清单（只关心没到款的）
+
+
+
+保证金垫付（媒体保证金金额》客户的保证金金额，垫付，不然就是不显示）
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#t1").hide();
+	$("#tt1").hide();
+	$("#tt2").hide();
+	$("#t2").hide();
+	$("#t3").hide();
+	$("#t4").hide();
+	$("#s1").click(function(){
+		if($('input[name="xx"]:checked').val() == "1"){
+			$("#t1").show();
+			$("#t2").hide();
+			$("#tt1").hide();
+			$("#tt2").hide();
+		}else{
+			$("#t1").hide();
+			$("#t2").hide();
+			$("#tt1").show();
+			$("#tt2").hide();
+		}
+	});
+	$("#s2").click(function(){
+		$("#t2").show();
+		$("#tt2").hide();
+	});
+	$("#ss2").click(function(){
+		$("#t2").hide();
+		$("#tt2").show();
+	});
+	$("#ss3").click(function(){
+		window.open("dianfu22.html");
+	});
+	$("#s3").click(function(){
+		window.open("dianfu2.html");
+	});
+	$("#s6").click(function(){
+		window.open("dianfu2.html");
+	});
+	$("#s4").click(function(){
+		$("#t3").show();
+	});
+	$("#s5").click(function(){
+		$("#t4").show();
+	});
+	$("#s7").click(function(){
+		window.open("dianfu_print.html");
+	});
+	$("#s8").click(function(){
+		window.open("dianfu_qingdan.html");
+	});
+	$("#sss3").click(function(){
+		window.open("dianfu22.html");
+	});
+});
+</script>
+</body>
+</html>

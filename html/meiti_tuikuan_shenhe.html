@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+<tr><td>客户名称</td><td>客户1</td></tr>
+<tr><td>开户行</td><td>AAAA</td></tr>
+<tr><td>银行帐号</td><td>BBBB</td></tr>
+<tr><td>退款金额</td><td>10000</td></tr>
+<tr><td>退款时间</td><td>2013-11-11</td></tr>
+<tr><td>退款类型</td><td>合同款</td></tr>
+<tr><td>退款原因</td><td>XXX</td></tr>
+</table>
+<br>
+<table id="pidresult" border="1">
+<tr><td>广告主</td><td>合同号</td><td>到款情况</td><td>开票情况</td><td>退款金额</td><td>客户名称</td><td>操作</td></tr>
+<tr><td>广告主1</td><td><a href="pid.html" target="_blank">13SH001</a>(执行单号->执行单款票情况；合同号->保证金款票情况)</td><td>AAAA</td><td>BBBB</td><td>10000</td><td><a href="customer.html" target="_blank">客户1</a></td><td><input type="radio" name="radio1">通过&nbsp;<input type="radio" name="radio1">驳回&nbsp;<input type="text">&nbsp;<input type="button" value="提交"></td></tr>
+<tr><td>广告主1</td><td>13SH002</td><td>AAAA</td><td>BBBB</td><td>20000</td><td>客户2</td><td><input type="radio" name="radio2">通过&nbsp;<input type="radio" name="radio2">驳回&nbsp;<input type="text">&nbsp;<input type="button" value="提交"></td></tr>
+<tr><td>广告主2</td><td>13SH003</td><td>AAAA</td><td>BBBB</td><td>30000</td><td>客户3</td><td><input type="radio" name="radio3">通过&nbsp;<input type="radio" name="radio3">驳回&nbsp;<input type="text">&nbsp;<input type="button" value="提交"></td></tr>
+</table>
+<table>
+<tr><td><input type="button" value="保存">&nbsp;<input type="button" value="提交"></td></tr>
+</table>
+<br>
+<font color="red">linda和alex均要审核，先linda后 alex<br>
+linda全通过后到alex<br>
+alex审核完以后打印<br>
+alex归档金额+日期；excel导出<br>
+显示到款情况和开票情况</font>
+</body>
+</html>

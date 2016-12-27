@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>约定付款时间</td><td><input type="text"></td><td>媒体</td><td><input type="text"></td><td>金额</td><td><input type="text"><input type="button" value="搜索" id="s1"></td></tr>
+</table>
+<br>
+<table id="t1" border="1">
+<tr><td>约定付款时间</td><td>媒体</td><td>应付金额</td><td>实付金额</td><td>操作</td></tr>
+<tr><td>2014-01-01</td><td>媒体1</td><td>12000</td><td>10200</td><td><a href="#" id="s2">展开</a></td></tr>
+<tr><td>2014-01-02</td><td>媒体2</td><td>13000</td><td>10100</td><td><a href="#">展开</a></td></tr>
+<tr><td>2014-02-01</td><td>媒体3</td><td>10300</td><td>1000</td><td><a href="#">展开</a></td></tr>
+</table>
+<br>
+<table id="t2" border="1">
+<tr><td>媒体名称</td><td>媒体1</td></tr>
+<tr><td>开户行</td><td>XXX</td></tr>
+<tr><td>帐号</td><td>SSS</td></tr>
+<tr><td>应付金额</td><td>10000</tr>
+<tr><td>付款时间</td><td>2013-11-11</tr>
+<tr><td>是否垫付</td><td>否</td></tr>
+<tr><td>返点抵扣</td><td>使用￥1000</td></tr>
+<tr><td>保证金抵扣</td><td>否</td></tr>
+<tr><td>个人借款抵扣</td><td>使用￥1000</td></tr>
+<tr><td>实付金额</td><td>XXXX</td></tr>
+<tr><td>备注</td><td>XXXX</td></tr>
+</table>
+<br>
+<table border="1" id="pidresult">
+<tr><td><input type="checkbox">全选</td><td>广告主</td><td>合同号</td><td>合同付款额</td><td>合同付款日期</td><td>品牌</td><td>原合同总额</td><td>产品</td><td>上线日期</td><td>下线日期</td><td>执行单号</td><td>客户名称</td><td>项目名称</td><td>执行金额</td><td>客户到款情况</td><td>上次已支付媒体合计数</td><td>到票情况<font color="red">(所选媒体)</font></td><td>已付款未到票情况<font color="red">(所选媒体)</font></td><td>执行成本<font color="red">(所选媒体)</font></td><td>已支付情况<font color="red">(所选媒体)</font></td><td>已执行未付款情况<font color="red">(所选媒体)</font></td><td>申请付款金额</td><td>返点抵扣</td><td>个人借款抵扣</td><td>实付金额</td><td>是否垫付</td><td>垫付金额</td></tr>
+<tr><td><input type="checkbox"></td><td>广州要玩娱乐网络技术有限公司_AD_4704</td><td>8131227</td><td>55000</td><td>2014/2/25</td><td>屠龙传说1</td><td>55000</td><td>专区1</td><td>2013/10/2</td><td>2013/11/1</td><td>13SH002</td><td>客户2</td><td>项目名称2</td><td>0</td><td>0</td><td>20000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2000</td><td>0</td><td>0</td><td>0</td><td>否</td><td>0</td></tr>
+<tr><td><input type="checkbox"></td><td>广州要玩娱乐网络技术有限公司_AD_4702</td><td>8131327</td><td>12000</td><td>2014/2/25</td><td>屠龙传说2</td><td>12000</td><td>专区2</td><td>2013/10/2</td><td>2013/11/1</td><td>13SH001</td><td>客户1</td><td>项目名称1</td><td>0</td><td>0</td><td>10000<font color="red">可展开</font></td><td>0<font color="red">可展开，包含实际到票和虚拟发票</font></td><td>0</td><td>0</td><td>5000<font color="red">可展开,并且是各种支付的方式（保证金、返点等）</font></td><td>0</td><td>1000</td><td>0</td><td>0</td><td>0</td><td>否</td><td>0</td></tr>
+<tr><td><input type="checkbox"></td><td>广州要玩娱乐网络技术有限公司_AD_4703</td><td>8341224</td><td>56000</td><td>2014/2/25</td><td>屠龙传说3</td><td>56000</td><td>专区3</td><td>2013/10/2</td><td>2013/11/1</td><td>13SH003</td><td>客户3</td><td>项目名称3</td><td>0</td><td>0</td><td>30000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3000</td><td>0</td><td>0</td><td>0</td><td>是 123456.eml</td><td>0</td></tr>
+<tr><td colspan="27">返点小计：1000&nbsp;<input type="button" value="选择" id="s3"></td></tr>
+</table>
+<br>
+<table border="1" id="t3">
+<tr><td>归档金额</td><td>广告主</td><td>合同号</td><td>合同付款额</td><td>合同付款日期</td><td>品牌</td><td>原合同总额</td><td>产品</td><td>上线日期</td><td>下线日期</td><td>执行单号</td><td>客户名称</td><td>项目名称</td><td>执行金额</td><td>客户到款情况</td><td>上次已支付媒体合计数</td><td>到票情况<font color="red">(所选媒体)</font></td><td>已付款未到票情况<font color="red">(所选媒体)</font></td><td>执行成本<font color="red">(所选媒体)</font></td><td>已支付情况<font color="red">(所选媒体)</font></td><td>已执行未付款情况<font color="red">(所选媒体)</font></td><td>申请付款金额</td><td>返点抵扣</td><td>个人借款抵扣</td><td>实付金额</td><td>是否垫付</td><td>垫付金额</td></tr>
+<tr><td><input type="text" value="默认是申请付款金额"></td><td>广州要玩娱乐网络技术有限公司_AD_4704</td><td>8131227</td><td>55000</td><td>2014/2/25</td><td>屠龙传说1</td><td>55000</td><td>专区1</td><td>2013/10/2</td><td>2013/11/1</td><td>13SH002</td><td>客户2</td><td>项目名称2</td><td>0</td><td>0</td><td>20000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2000</td><td>0</td><td>0</td><td>0</td><td>否</td><td>0</td></tr>
+<tr><td><input type="text" value="默认是申请付款金额"></td><td>广州要玩娱乐网络技术有限公司_AD_4702</td><td>8131327</td><td>12000</td><td>2014/2/25</td><td>屠龙传说2</td><td>12000</td><td>专区2</td><td>2013/10/2</td><td>2013/11/1</td><td>13SH001</td><td>客户1</td><td>项目名称1</td><td>0</td><td>0</td><td>10000<font color="red">可展开</font></td><td>0<font color="red">可展开，包含实际到票和虚拟发票</font></td><td>0</td><td>0</td><td>5000<font color="red">可展开,并且是各种支付的方式（保证金、返点等）</font></td><td>0</td><td>1000</td><td>0</td><td>0</td><td>0</td><td>否</td><td>0</td></tr>
+<tr><td><input type="text" value="默认是申请付款金额"></td><td>广州要玩娱乐网络技术有限公司_AD_4703</td><td>8341224</td><td>56000</td><td>2014/2/25</td><td>屠龙传说3</td><td>56000</td><td>专区3</td><td>2013/10/2</td><td>2013/11/1</td><td>13SH003</td><td>客户3</td><td>项目名称3</td><td>0</td><td>0</td><td>30000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3000</td><td>0</td><td>0</td><td>0</td><td>是 123456.eml</td><td>0</td></tr>
+<tr><td colspan="27">返点小计：1000</td></tr>
+</table>
+<br>
+<table border="1">
+<tr><td colspan="4">已付款记录</td></tr>
+<tr><td>付款时间</td><td>实付金额</td><td>付款方式</td><td>付款行</td></tr>
+<tr><td>2014-01-01</td><td>10000</td><td>现金</td><td></td></tr>
+<tr><td>2014-02-01</td><td>20000</td><td>银行转账</td><td>中国银行</td></tr>
+</table>
+<br>
+<table>
+<tr><td>付款时间</td><td><input type="text"></td><td>付款金额</td><td><input type="text"></td><td>付款方式</td><td><input type="radio" name="tt" checked>现金支付&nbsp;<input type="radio" name="tt">银行转账&nbsp;<select><option value="中国银行">中国银行</option></select></td></tr>
+<tr><td><input type="button" value="提交" id="pass"></td></tr>
+</table>
+<br>
+<font color="red">可同时提交几次的付款信息<br>银行信息需要维护<br>可分银行支付和现金支付选择</font>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#t1").hide();
+	$("#t2").hide();
+	$("#t3").hide();
+	$("#pidresult").hide();
+	$("#s1").click(function(){
+		$("#t1").show();
+	});
+	$("#s2").click(function(){
+		$("#t2").show();
+		$("#pidresult").show();
+	});
+	$("#s3").click(function(){
+		$("#t3").show();
+	});
+});
+</script>
+</body>
+</html>

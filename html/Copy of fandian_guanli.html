@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--table border="1">
+<tr><td colspan="4">待分配返点</td></tr>
+<tr><td>媒体</td><td>返点金额</td><td>返点时间</td><td>操作</td></tr>
+<tr><td>媒体1</td><td>1000</td><td>2014-01-01</td><td><a href="#">无需开票</a></td></tr>
+<tr><td>媒体2</td><td>2000</td><td>2014-02-01</td><td><a href="#">无需开票</a></td></tr>
+<tr><td>媒体3</td><td>3000</td><td>2014-03-01</td><td><a href="#">无需开票</a></td></tr>
+<tr><td>媒体4</td><td>4000</td><td>2014-04-01</td><td><a href="#">无需开票</a></td></tr>
+</table>
+媒体+执行单/客户/付款申请
+
+显示
+
+执行单号：13SH001  客户名：客户1  项目名称：项目1  媒体执行成本：1000  银行已付款金额：1000  返点抵扣：：：： 媒体已到真实票金额：1000  ；；；虚拟发票；；；待分配返点金额：1000  本次开返点发票金额：100-->
+<table>
+<tr><td>媒体名称</td><td><input type="text"></td><td>执行单号</td><td><input type="text"></td><td>客户名称</td><td><input type="text"></td><td>申请付款时间</td><td><input type="text"><input type="button" value="搜索" id="s1"></td></tr>
+</table>
+<br>
+<table border="1" id="t1">
+<tr><td><input type="checkbox">全选</td><td>媒体</td><td>申请付款时间</td><td>实际付款金额</td></tr>
+<tr><td><input type="checkbox"></td><td>媒体1</td><td>2014-01-01</td><td>1000</td></tr>
+<tr><td><input type="checkbox"></td><td>媒体2</td><td>2014-01-01</td><td>1000</td></tr>
+<tr><td><input type="checkbox"></td><td>媒体3</td><td>2014-01-01</td><td>1000</td></tr>
+<tr><td colspan="4"><input type="button" value="选择" id="s2"></td></tr>
+</table>
+<br>
+<table border="1" id="t2">
+<tr><td><input type="checkbox" checked>全选</td><td>执行单号</td><td>客户名称</td><td>项目名称</td><td>项目执行成本</td><td>银行已付款金额</td><td>返点抵扣金额</td><td>媒体真实到票金额</td><td>虚拟发票金额</td><td>待分配返点金额</td><td>已分配返点</td><!--td>无需开票金额</td><td>操作</td--></tr>
+<tr><td><input type="checkbox" checked></td><td>14SH001</td><td>客户1</td><td>项目1</td><td>10000</td><td>10000</td><td>10000</td><td>10000</td><td>10000</td><td>10000</td><td>10000</td><!--td>10000<input type="text"><input type="button" value="还原成待分配"></td><td><input type="text"><a href="#">无需开票</a></td--></tr>
+<tr><td><input type="checkbox" checked></td><td>14SH002</td><td>客户2</td><td>项目2</td><td>20000</td><td>20000</td><td>20000</td><td>20000</td><td>20000</td><td>20000</td><td>10000</td><!--td>10000</td><td><a href="#">无需开票</a></td--></tr>
+<tr><td><input type="checkbox" checked></td><td>14SH003</td><td>客户3</td><td>项目3</td><td>30000</td><td>30000</td><td>30000</td><td>30000</td><td>30000</td><td>30000</td><td>10000</td><!--td>10000</td><td><a href="#">无需开票</a></td--></tr>
+</table>
+<br>
+<table border="1" id="t3">
+<tr><td>金额</td><td><input type="text"></td><td><input type="button" value="还原成待分配">&nbsp;<input type="button" value="无需开票" id="ss">&nbsp;返点分配与执行单是否一致:<input type="checkbox" checked>是&nbsp;</td></tr>
+</table>
+<br>
+首先是筛选媒体的付款申请列表，付款申请下有返点抵扣的记录，默认全选，可手工取消勾选，然后点无需开票的话，要再跳出“返点分配与执行单是否一致，是或否，如果否则需要重新分配，再选择关联执行单/客户/付款申请/文件导入”
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#t1").hide();
+		$("#t2").hide();
+		$("#t3").hide();
+		$("#s1").click(function(){
+			$("#t1").show();
+		});
+		$("#s2").click(function(){
+			$("#t2").show();
+			$("#t3").show();
+		});
+		$("#ss").click(function(){
+			
+		});
+	});
+</script>
+</body>
+</html>

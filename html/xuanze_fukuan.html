@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>约定付款时间</td><td><input type="text"></td><td>媒体名称</td><td><input type="text">&nbsp;<input type="button" value="搜索" id="s1"></td></tr>
+</table>
+<br>
+<table border="1" id="t1">
+<tr><td>申请付款时间</td><td>约定付款时间</td><td>媒体名称</td><td>合同付款额</td><td>申请人</td><td>操作</td></tr>
+<tr><td>2013-11-11</td><td>2013-12-22</td><td>媒体1</td><td>10000</td><td>申请人1</td><td><a href="#" id="s2">详情</a></td></tr>
+<tr><td>2013-11-12</td><td>2013-12-23</td><td>媒体2</td><td>20000</td><td>申请人2</td><td><a href="#" id="s2">详情</a></td></tr>
+<tr><td colspan="6"><input type="button" value="添加" id="s3"></td></tr>
+</table>
+<br>
+<table id="t2" border="1">
+<tr><td></td><td>执行单号</td><td>客户名称</td><td>项目名称</td><td>执行金额</td><td>客户到款情况</td><td>上次已支付媒体合计数</td><td>到票情况</td><td>已付款未到票情况</td><td>执行成本</td><td>已支付情况</td><td>已执行未付款情况</td><td>支付方式</td><td>返点抵扣</td><td>个人借款抵扣</td><td>实付金额</td><td>是否垫付</td><td>垫付金额</td></tr>
+<tr><td><input type="checkbox"></td><td>13SH001</td><td>客户1</td><td>项目名称1</td><td>0</td><td>0</td><td>10000</td><td>0</td><td>0</td><td>0</td><td>5000</td><td>0</td><td>全付</td><td>0</td><td>0</td><td>0</td><td>否</td><td>0</td></tr>
+<tr><td><input type="checkbox"></td><td>13SH002</td><td>客户2</td><td>项目名称2</td><td>0</td><td>0</td><td>20000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>支付部分&nbsp;2000</td><td>0</td><td>0</td><td>0</td><td>否</td><td>0</td></tr>
+<tr><td><input type="checkbox"></td><td>13SH003</td><td>客户3</td><td>项目名称3</td><td>0</td><td>0</td><td>30000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>支付部分&nbsp;3000</td><td>0</td><td>0</td><td>0</td><td>是 123456.eml</td><td>0</td></tr>
+</table>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#t1").hide();
+	$("#t2").hide();
+	$("#s1").click(function(){
+		$("#t1").show();
+	});
+	$("#s2").click(function(){
+		$("#t2").show();
+	});
+	$("#s3").click(function(){
+		window.opener.aa();
+		window.close();
+	});
+});
+</script>
+</body>
+</html>

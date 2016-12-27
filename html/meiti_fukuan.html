@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>媒体名称</td><td><input type="text"></td></tr>
+<tr><td>开户行</td><td><input type="text"></td></tr>
+<tr><td>银行帐号</td><td><input type="text"></td></tr>
+<tr><td>应付金额</td><td><input type="text"></td></tr>
+<tr><td>付款时间</td><td><input type="text"></td></tr>
+<tr><td>是否垫付</td><td><input type="checkbox">是&nbsp;<!--input type="text" size="13"--></td></tr>
+<tr><td>返点抵扣</td><td><input type="checkbox">是&nbsp;<input type="text" size="13">&nbsp;<input type="file">&nbsp;<font color="red">非必须上传，指定的分配者看不见，就evon和linda才可以看,只用于查看，无需规定模板</font></td></tr>
+
+<tr><td>保证金抵扣</td><td><input type="checkbox">是&nbsp;<!--input type="text" size="13"-->&nbsp;<input type="file">&nbsp;<font color="red">如勾选则必须上传文件</font></td></tr>
+<tr><td>个人借款抵扣</td><td><input type="checkbox">是&nbsp;<input type="text" size="13"></td></tr>
+<tr><td>实付金额</td><td>XXX</td></tr>
+<tr><td>备注</td><td><textarea></textarea></td></tr>
+
+<tr><td>最后申请提交时间</td><td><input type="text"></td></tr>
+<tr><td>对账单</td><td><input type="file">&nbsp;用户<input type="text">&nbsp;<input type="button" value="添加" id="search"></td></tr>
+</table>
+<br>
+<table id="pids1" border="0">
+<tr><td style="width:10px;">&nbsp;</td><td>betty (xxx)</td></tr>
+</table>
+<table id="pids2" border="0">
+<tr><td style="width:10px;">&nbsp;</td><td>lily (ooo)</td></tr>
+</table>
+<table id="pids3" border="0">
+<tr><td style="width:10px;">&nbsp;</td><td>may (ggg)</td></tr>
+</table>
+<table id="pids4" border="0">
+<tr><td style="width:10px;">&nbsp;</td><td>cici (hhh)</td></tr>
+</table>
+<br>
+<table>
+<tr><td><input type="button" value="提交" id="subt"></td></tr>
+</table>
+<br>
+<font color="red">什么时候才可以发起付款申请??<br>执行单发起付款申请后不允许变更？？<br>上传的对账单只可linda下载看见<br>目前只媒介部发起<br>提交后先到Linda后审核必要的数据是否有，linda可以修改上传再给别人分配<br>模板需再确定（对账单+保证金（如果勾选））<br>可以随时上传新文件或者手动更新金额等，需要重新分配，evon或linda都可以删掉某些付款条目，垫付等都要可更新<br>分表，有模块去管理</font>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+var x = 1;
+$(document).ready(function(){
+	$("#pids1").hide();
+	$("#pids2").hide();
+	$("#pids3").hide();
+	$("#pids4").hide();
+	
+	$("#search").click(function(){
+		if(x>4){
+			x = 1;
+		}
+		for(var i=1;i<=x;i++){
+			var id = "pids" + i;
+			$("#" + id).show();	
+		}
+		for(var z=x+1;z<5;z++){
+			var ids = "pids" + z;
+			$("#" + ids).hide();		
+		}
+		x++;
+	});
+	
+	$("#subt").click(function(){
+		location.href="meiti_fukuan_yonghu_tianxie.html";
+	});
+});
+</script>
+</body>
+</html>

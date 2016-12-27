@@ -1,0 +1,68 @@
+﻿@charset "utf-8";
+#exposeMask {
+	position:fixed;
+	left:0;
+	top:0;
+	height:100%;
+	width:100%;
+	z-index:221;
+	background:#fff;
+	filter:alpha(opacity=50);
+	opacity:.5;
+}
+.overlay {
+	display:none;
+	width:1000px;
+	height:500px;
+	margin-top:-250px;
+	margin-left:-500px;
+	background:#fff;
+	position:fixed;
+	left:50%;
+	top:50%;
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.85);
+	z-index:222
+}
+.overlay .close {
+	background-color: transparent;
+	background-image: url(../images/controls.png);
+	background-position: 147px 0;
+	cursor: pointer;
+	border: 0;
+	height: 24px;
+	position: absolute;
+	right: -4px;
+	top: -22px;
+	width: 24px;
+}
+.overlay .close:hover {
+	background-position: 147px 25px;
+}
+.overlay .tab_box {
+	width:auto;
+	height:auto;
+	background:#e2ebc6;
+	position:relative
+}
+.overlay .sbd1 {
+	width:100%;
+}
+.overlay .sbd1 td {
+	padding: 6px 5px;
+}
+.overlay .sbd1 td img, .overlay .sbd1 td input {
+	vertical-align:middle;
+}
+.overlay .scbox {
+	height:100%;
+	overflow:auto;
+}
+.overlay .sbd2 {
+	width:100%;
+}
+.overlay .sbd2 td {
+	padding: 6px 5px;
+}
+.overlay .sbd2td img, .overlay .sbd2 td input {
+	vertical-align:middle;
+}

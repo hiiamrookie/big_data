@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+<tr><td>垫付未回款金额总计</td><td  colspan="3">100000</td></tr>
+<tr><td>部门</td><td>负责人</td><td>已垫付未回款金额</td><td></td></tr>
+<tr><td>部门1</td><td>负责人1</td><td>20000</td><td><input type="button" value="展开"></td></tr>
+<tr><td>部门2</td><td>负责人2</td><td>80000</td><td><input type="button" value="展开" id="s1"></td></tr>
+<tr id="t1"><td colspan="4">
+<table border="1">
+<tr><td>执行单号</td><td>客户名称</td><td>项目负责人</td><td>项目名称</td><td>客户执行收入</td><td>已收客户款合计金额</td><td>已开票合计金额</td><td>	已执行未到客户款金额</td><td>媒体已付款总金额（点进去查看该单所有媒体的所有付款记录：金额+时间）</td><td>该媒体本次申请付款金额</td><td>该媒体本次申请垫付金额</td><td>系统计算的垫款金额(默认是已执行未到客户款金额)</td><td>未回款金额</td><td>操作</td></tr>
+<tr><td>14SH001-001</td><td>客户1</td><td>项目负责人1</td><td>项目名称1</td><td>10000</td><td>10000</td><td>10000</td><td>	10000</td><td><a href="#">10000</a></td><td>10000</td><td>10000</td><td>10000</td><td id="td1">10000</td><td><a href="#">删除</a>|<a href="#" id="s2">修改</a></td></tr>
+<tr><td>14SH001-002</td><td>客户2</td><td>项目负责人2</td><td>项目名称2</td><td>10000</td><td>10000</td><td>10000</td><td>	10000</td><td><a href="#">10000</a></td><td>10000</td><td>10000</td><td>10000</td><td>10000</td><td><a href="#">删除</a>|<a href="#">修改</a></td></tr>
+<tr><td>14SH001-003</td><td>客户3</td><td>项目负责人3</td><td>项目名称3</td><td>10000</td><td>10000</td><td>10000</td><td>	10000</td><td><a href="#">10000</a></td><td>10000</td><td>10000</td><td>10000</td><td>10000</td><td><a href="#">删除</a>|<a href="#">修改</a></td></tr>
+</table>
+</td></tr>
+<tr><td colspan="4"><input type="button" value="打印"></td></tr>
+</table>
+
+<br>
+先按部门再按客户<br>
+可点击查看详情,可做删除和修改
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function() {
+	$("#t1").hide();
+	$("#s1").click(function(){
+		$("#t1").show();
+	});
+	$("#s2").click(function(){
+		$("#td1").html("<input type=\"text\" value=\"1000\">&nbsp;<input type=\"button\" value=\"提交\">");
+	});
+});
+</script>
+</body>
+</html>

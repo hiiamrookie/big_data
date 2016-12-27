@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+<tr><td>媒体</td><td colspan="5"><input type="text"></td></tr>
+<tr><td>媒体支付方式</td><td  colspan="5"><input type="radio" name="bb" checked value="1">付现&nbsp;<input type="radio" name="bb" value="2">抵应付账款</td></tr>
+<tr><td>媒体返点比例</td><td  colspan="5"><input type="text">%</td></tr>
+<tr><td>关联方式</td><td><input type="radio" name="dcf" checked value="type1">关联执行单</td><td><input type="radio" name="dcf" value="type2">关联客户</td><td><input type="radio" name="dcf" value="type3">关联付款申请</td><td id="td1"><input type="radio" name="dcf" value="type4">关联媒体+执行时间段</td><td id="td2"><input type="radio" name="dcf" value="type5">上传文件</td></tr>
+<tr><td></td><td colspan="5" id="ttd1">执行单号：<input type="text">&nbsp;&nbsp;<input type="button" value="搜索" onclick="javascript:xxx();"></td></tr>
+<tr><td>搜索结果</td><td colspan="5" id="res"></td></tr>
+<tr id="yizhitr"><td>和执行单是否一致</td><td colspan="5"><input type="radio" name="yizhi" checked value="1">一致&nbsp;<input type="radio" name="yizhi"  value="2">不一致</td></tr>
+<tr id="yizhitr2"><td>关联方式</td><td><input type="radio" name="dcfe" checked value="ty1">关联执行单</td><td><input type="radio" name="dcfe" value="ty2">关联客户</td><td colspan="2"><input type="radio" name="dcfe" value="ty3">关联媒体+执行时间段</td><td><input type="radio" name="dcfe" value="ty4">上传文件</td></tr>
+<tr id="yizhitr3"><td></td><td colspan="5" id="ttdd1">执行单号：<input type="text">&nbsp;&nbsp;<input type="button" value="搜索" onclick="javascript:xxxx();"></td></tr>
+<tr id="yizhitr4"><td>搜索结果</td><td colspan="5" id="res1"></td></tr>
+
+<tr><td>开票总金额</td><td id="vv"  colspan="5" >0.0</td></tr>
+<tr><td>开票类型</td><td colspan="5" ><input type="radio" name="aa" checked value="1">普票&nbsp;<input type="radio" name="aa" value="2">增票</td></tr>
+<tr id="tr2"><td></td><td  colspan="5" >纳税人识别号：<input type="text"><br>地址、电话：<input type="text"><br>开户行及账号：<input type="text"></td></tr>
+<tr><td>开票抬头</td><td  colspan="5" ><input type="text"></td></tr>
+<tr><td>开票内容</td><td colspan="5" ><input type="text"></td></tr>
+<tr><td>备注</td><td colspan="5" ><textarea></textarea></td></tr>
+<tr><td></td><td colspan="5" ><input type="button" value="提交" id="s2"></td></tr>
+</table>
+<br><br>
+关联付款申请跳出后可展开看详细分配情况<br>
+*******应收和应付会发生转移(原记录申请负数，再新增一条相对应同金额记录)<br>
+关联付款申请<br>
+<!-- 媒体支付方式：付现、抵应付账款（关联付款申请）<br>
+媒体返点比例：可输可不输<br>
+
+显示执行单号、客户名、项目名称、这个媒体的执行成本、这个媒体已付款金额、这个媒体已到票金额、这个执行单号这个媒体已申请的返点发票金额--><br>
+所有到票信息都要显示OA中媒体名称及到票记录时的名称（导入文件中的“媒体名称”）<br>
+<br>
+<!--返点管理
+返点待分配状态->不需要开票的状态-->
+<br>
+付现/抵应付账款->搜索付款申请->待分配状态下的返点记录关联起来
+<br>
+<!--关联执行单、关联客户、关联付款申请、上传文件（模板确认下） 4选1-->
+付现的话是5选1	：按媒体+执行时间段
+抵应付的是先3选1：关联执行单、关联客户、关联付款申请；分开票的分配和真实返点的分配
+选择“和执行单是否一致”，不一致的话：要么选执行单、查客户、查媒体+执行时间段、（结果显示某执行单+客户+媒体+返点金额（输入））上传文件（只关联客户）（客户+媒体+返点金额）<br>
+最终选择的执行单小计执行成本、付款金额
+<br>
+关联付款申请，付款申请中待分配返点金额占坑××只是linda还没有开票记录<br>
+当应付，需要查看现付金额、待分配返点、已开票返点、收到真实发票、虚拟发票<br>
+都加上已付款未到票<br>
+先列出待选搜索结果
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+	var pid_res = '执行单号：13SH001&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;媒体已付款金额：1000&nbsp;&nbsp;媒体已到票金额：1000&nbsp;&nbsp;已开返点发票金额：1000&nbsp;&nbsp;本次开返点发票金额：<input type="text" value="100">&nbsp;<a href="#">删除</a>';
+	//var pid_res_pay = '执行单号：13SH001&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;媒体已付款金额：1000&nbsp;&nbsp;媒体已到票金额：1000&nbsp;&nbsp;已开返点发票金额：1000&nbsp;&nbsp;现付金额：1000&nbsp;&nbsp;待分配返点：1000&nbsp;&nbsp;已开票返点：1000&nbsp;&nbsp;收到真实发票：1000&nbsp;&nbsp;虚拟发票：1000&nbsp;&nbsp;本次开返点发票金额：<input type="text" value="100">&nbsp;<a href="#">删除</a>';
+	var pid_res_pay = '执行单号：13SH001&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;OA供应商：供应商1&nbsp;&nbsp;发票媒体名称：AAA&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;已执行未付成本金额：1000&nbsp;&nbsp;已付成本合计金额（银行支付+个人借款+收付对冲）：1000&nbsp;&nbsp;待开票返点：1000&nbsp;&nbsp;已开票返点：1000&nbsp;&nbsp;无需开票返点：1000&nbsp;&nbsp;虚拟发票合计金额：1000&nbsp;&nbsp;真实发票到票合计金额：1000&nbsp;&nbsp;已付款未到票金额：1000&nbsp;&nbsp;本次开返点发票金额：<input type="text" value="100（不可以大于待开发票金额）">&nbsp;<a href="#">删除</a>';
+	var pid_res_pay_fp = '执行单号：13SH001&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;OA供应商：供应商1&nbsp;&nbsp;发票媒体名称：AAA&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;已执行未付成本金额：1000&nbsp;&nbsp;已付成本合计金额（银行支付+个人借款+收付对冲）：1000&nbsp;&nbsp;待开票返点：1000&nbsp;&nbsp;已开票返点：1000&nbsp;&nbsp;无需开票返点：1000&nbsp;&nbsp;虚拟发票合计金额：1000&nbsp;&nbsp;真实发票到票合计金额：1000&nbsp;&nbsp;已付款未到票金额：1000&nbsp;&nbsp;本次分配返点金额：<input type="text" value="100（不可以大于待开发票金额）">&nbsp;<a href="#">删除</a>';
+	
+	var cus_res = '付款申请时间：2014-03-01&nbsp;&nbsp;媒体：媒体1&nbsp;&nbsp;付款申请返点抵扣：1000&nbsp;&nbsp;<a href="#" id="s5">展开</a><br>付款申请时间：2014-02-01&nbsp;&nbsp;媒体：媒体2&nbsp;&nbsp;付款申请返点抵扣：2000&nbsp;&nbsp;<a href="#">展开</a>';
+	var cus_pid_res = '执行单号：13SH001&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;媒体已付款金额：1000&nbsp;&nbsp;媒体已到票金额：1000&nbsp;&nbsp;已开返点发票金额：1000&nbsp;&nbsp;待开票返点：500&nbsp;&nbsp;已开票返点金额：500&nbsp;&nbsp;本次开返点发票金额：<input type="text" value="100">&nbsp;<a href="#">删除</a>';
+	var cus_pid_res_pay = '执行单号：13SH001&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;媒体已付款金额：1000&nbsp;&nbsp;媒体已到票金额：1000&nbsp;&nbsp;已开返点发票金额：1000&nbsp;&nbsp;待开票返点：500&nbsp;&nbsp;已开票返点金额：500&nbsp;&nbsp;现付金额：1000&nbsp;&nbsp;待分配返点：1000&nbsp;&nbsp;已开票返点：1000&nbsp;&nbsp;收到真实发票：1000&nbsp;&nbsp;虚拟发票：1000&nbsp;&nbsp;本次开返点发票金额：<input type="text" value="100">&nbsp;<a href="#">删除</a>';
+	
+	var yizhi_3 = '执行单号：13SH001&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;媒体名：媒体1&nbsp;&nbsp;本次申请返点开票金额：<input type="text" value="100">&nbsp;<a href="#">删除</a>';
+	var yizhi_3_pay = '执行单号：13SH001&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;媒体名：媒体1&nbsp;&nbsp;现付金额：1000&nbsp;&nbsp;待分配返点：1000&nbsp;&nbsp;已开票返点：1000&nbsp;&nbsp;收到真实发票：1000&nbsp;&nbsp;虚拟发票：1000&nbsp;&nbsp;本次返点分配金额：<input type="text" value="100">&nbsp;<a href="#">删除</a>'
+	
+	var xiaoji = '小计：10000';
+	$(document).ready(function() {
+		$("#yizhitr").hide();
+		$("#yizhitr2").hide();
+		$("#yizhitr3").hide();
+		$("#yizhitr4").hide();
+		$('input:radio[name="bb"]').click(function(){
+			if ($('input:radio[name="bb"]:checked').val() == "1") {
+				$("#td1").show();
+				$("#td2").show();
+			}else{
+				$("#td1").hide();
+				$("#td2").hide();
+				$('input:radio[name="dcf"]').eq(0).attr("checked","true");
+				$("#ttd1").html('执行单号：<input type="text">&nbsp;&nbsp;<input type="button" value="搜索" onclick="javascript:xxx();">');
+			}
+		});
+		
+		$('input:radio[name="dcf"]').click(function(){
+			if ($('input:radio[name="dcf"]:checked').val() == "type1") {
+				$("#ttd1").html('执行单号：<input type="text">&nbsp;&nbsp;<input type="button" value="搜索" onclick="javascript:xxx();">');
+			}else if ($('input:radio[name="dcf"]:checked').val() == "type2") {
+				$("#ttd1").html('客户名称：<input type="text">&nbsp;&nbsp;<input type="button" value="搜索" onclick="javascript:xxx();">');
+			}else if ($('input:radio[name="dcf"]:checked').val() == "type3") {
+				$("#ttd1").html('媒体名称：<input type="text">&nbsp;&nbsp;<input type="button" value="搜索" onclick="javascript:xxx();">');
+			}else if ($('input:radio[name="dcf"]:checked').val() == "type4") {
+				$("#ttd1").html('媒体名称：<input type="text">&nbsp;执行开始时间：<input type="text">&nbsp;执行结束时间：<input type="text">&nbsp;<input type="button" value="搜索" onclick="javascript:xxx();">');
+			}else if($('input:radio[name="dcf"]:checked').val() == "type5"){
+				$("#ttd1").html('文件：<input type="file">&nbsp;返点时间段<input type="text">&nbsp;<input type="button" value="上传">');
+			}
+		});
+		
+		$('input:radio[name="dcfe"]').click(function(){
+			if ($('input:radio[name="dcfe"]:checked').val() == "ty1") {
+				$("#ttdd1").html('执行单号：<input type="text">&nbsp;&nbsp;<input type="button" value="搜索" onclick="javascript:xxxx();">');
+			}else if ($('input:radio[name="dcfe"]:checked').val() == "ty2") {
+				$("#ttdd1").html('客户名称：<input type="text">&nbsp;&nbsp;<input type="button" value="搜索" onclick="javascript:xxxx();">');
+			}else if ($('input:radio[name="dcfe"]:checked').val() == "ty3") {
+				$("#ttdd1").html('媒体名称：<input type="text">&nbsp;执行开始时间：<input type="text">&nbsp;执行结束时间：<input type="text">&nbsp;<input type="button" value="搜索" onclick="javascript:xxxx();">');
+			}else if($('input:radio[name="dcfe"]:checked').val() == "ty4"){
+				$("#ttdd1").html('文件：<input type="file">&nbsp;返点时间段<input type="text">&nbsp;<input type="button" value="上传">');
+			}
+		});
+		
+		$('input:radio[name="yizhi"]').click(function(){
+			if($('input:radio[name="yizhi"]:checked').val() == "2"){
+				$("#yizhitr2").show();
+				$("#yizhitr3").show();
+				$("#yizhitr4").show();
+			}else{
+				$("#yizhitr2").hide();
+				$("#yizhitr3").hide();
+				$("#yizhitr4").hide();
+			}
+		});
+		
+		
+		
+		
+		$("#tr1").hide();
+		$("#tr2").hide();
+		$("#tr3").hide();
+		$("#tr4").hide();
+		$("#tr5").hide();
+		$("#s1").click(function(){
+			$("#tr1").show();
+			$("#tr3").hide();
+			$("#tr4").hide();
+			$("#tr5").hide();
+			$("#vv").html("300");
+		});
+		$("#s3").click(function(){
+			$("#tr1").hide();
+			$("#tr3").show();
+			$("#tr4").hide();
+			$("#tr5").hide();
+			$("#vv").html("300");
+		});
+		$("#s4").click(function(){
+			$("#tr1").hide();
+			$("#tr3").hide();
+			$("#tr4").show();	
+			$("#tr5").hide();
+			$("#vv").html("300");
+		});
+		$("#s5").click(function(){
+			$("#tr1").hide();
+			$("#tr3").hide();
+			$("#tr4").show();	
+			$("#tr5").show();
+			$("#vv").html("300");
+		});
+		$('input:radio[name="aa"]').click(function(){
+		if ($('input:radio[name="aa"]:checked').val() == "1") {
+			$("#tr2").hide();
+		} else {
+			$("#tr2").show();
+		}
+		});
+		
+		$("#s2").click(function(){
+			location.href="fandian.html";
+		});
+	});
+	
+	function xxx(){
+		if ($('input:radio[name="dcf"]:checked').val() == "type1" || $('input:radio[name="dcf"]:checked').val() == "type2" || $('input:radio[name="dcf"]:checked').val() == "type4"){
+			if($('input:radio[name="bb"]:checked').val() == "1"){
+				$("#res").html(pid_res + "<br>" + pid_res);	
+			}else{
+				$("#res").html(pid_res_pay + "<br>" + pid_res_pay);	
+			}
+				
+		}else if($('input:radio[name="dcf"]:checked').val() == "type3"){
+			$("#res").html(cus_res);
+			$("#s5").click(function(){
+				if($('input:radio[name="bb"]:checked').val() == "1"){
+					$("#res").append("<br>" + cus_pid_res + "<br>" + cus_pid_res);
+				}else{
+					$("#res").append("<br>" + cus_pid_res_pay + "<br>" + cus_pid_res_pay);
+				}
+			});
+		}
+		
+		if($('input:radio[name="dcf"]:checked').val() != "type4"  && $('input:radio[name="dcf"]:checked').val() != "type5" && $('input:radio[name="bb"]:checked').val() == "2"){
+			$("#yizhitr").show();
+		}else{
+			$("#yizhitr").hide();
+		}
+	}
+	
+	function xxxx(){
+		if ($('input:radio[name="dcfe"]:checked').val() == "ty1" || $('input:radio[name="dcfe"]:checked').val() == "ty2"){
+			if($('input:radio[name="bb"]:checked').val() == "1"){
+				$("#res1").html(pid_res + "<br>" + pid_res);	
+			}else{
+				$("#res1").html(pid_res_pay_fp + "<br>" + pid_res_pay_fp);	
+			}
+				
+		}else if($('input:radio[name="dcfe"]:checked').val() == "ty3"){
+			if($('input:radio[name="bb"]:checked').val() == "1"){
+				$("#res1").html(yizhi_3 + "<br>" + yizhi_3);	
+			}else{
+				$("#res1").html(yizhi_3_pay + "<br>" + yizhi_3_pay);	
+			}
+		}
+		
+	}
+</script>
+<br>
+不一致的话上面是开票金额输入，下面是分配金额输入
+</body>
+</html>

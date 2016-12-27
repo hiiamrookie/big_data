@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>媒体名称</td><td><input type="text"></td></tr>
+<tr><td>收款方式</td><td><input type="radio" name="a1" checked>现金&nbsp;<input type="radio" name="a1">银行转账&nbsp;<select><option>中国银行</option></select></td></tr>
+<tr><td>退款金额</td><td><input type="text"></td></tr>
+<tr><td>退款类型</td><td><input type="radio" name="x" checked value="1">合同款&nbsp;<input type="radio" name="x"  value="2">保证金</td></tr>
+<tr><td>退款时间</td><td><input type="text"></td></tr>
+<tr><td>备注</td><td><textarea></textarea></td></tr>
+<tr><td id="sss">合同号</td><td><input type="text">&nbsp;客户名&nbsp;<input type="text">&nbsp;<input type="button" value="搜索" id="search"></td></tr>
+</table>
+<br>
+<table id="p1" border="1">
+<tr><td><input type="checkbox">全选</td><td id="sss1">执行单号</td><td>客户名称</td><td></td></tr>
+<tr><td><input type="checkbox"></td><td>SH001</td><td>客户名称1</td><td><input type="button" value="展开详细" id="df"></td></tr>
+<tr><td><input type="checkbox"></td><td>SH001</td><td>客户名称1</td><td><input type="button" value="展开详细"></td></tr>
+<tr><td colspan="4"><input type="button" value="添加" id="add"></td></tr>
+</table>
+<br>
+<table id="dc" border="1">
+<tr><td>付款时间</td><td>付款金额</td></tr>
+<tr><td>2014-01-01</td><td>5000</td></tr>
+<tr><td>2014-02-01</td><td>6000</td></tr>
+</table>
+<br>
+<table id="pidresult" border="1">
+<tr><td id="sss2">执行单号</td><td>客户名称</td><td>已付款金额</td><td>退款金额</td></tr>
+<tr><td>SH001</td><td>客户名称1</td><td><a href="#">10000</a></td><td><input type="text" value="-10000"></td></tr>
+<tr><td>SH001</td><td>客户名称1</td><td><a href="#">10000</a></td><td><input type="text" value="-10000"></td></tr>
+<tr><td colspan="5"><input type="button" value="提交" id="bt1"></td></tr>
+</table>
+<br>
+加搜索“客户名”<br>
+<!-- 选择保证金的话，直接列出该媒体保证金记录（已付款的），再可以搜索客户名--><br>
+保证金的话，列出该媒体保证金已付款金额及付款时间（可点开详细），默认全部退，可手工修改，退款做负数
+优先显示时间最晚的记录
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#p1").hide();
+	$("#pidresult").hide();
+	$("#dc").hide();
+	$("#search").click(function(){
+		$("#p1").show();
+	});
+	$("#df").click(function(){
+		$("#dc").show();
+	});
+	$("#add").click(function(){
+		$("#pidresult").show();
+	});
+	
+	$("#sub").click(function(){
+		//location.href= "geren_fukuan_liebiao.html";
+	});
+	
+	$("#bt1").click(function(){
+		//location.href="meiti_tuikuan_shenhe.html";
+	});
+	
+	$('input:radio[name="x"]').click(function(){
+		if($('input:radio[name="x"]:checked').val()=="1"){
+			$("#sss").html("执行单号");
+			$("#sss1").html("执行单号");
+			$("#sss2").html("执行单号");
+		}else{
+			$("#sss").html("合同号");
+			$("#sss1").html("合同号");
+			$("#sss2").html("合同号");
+		}
+	});
+});
+</script>
+</body>
+</html>

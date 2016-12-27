@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+<tr><td>对冲时间</td><td>对冲金额</td><td>对冲状态</td><td>操作</td></tr>
+<tr><td>2014-01-01</td><td>10000</td><td>确认中</td><td><a href="#" id="s1">确认</a></td></tr>
+<tr><td>2014-01-02</td><td>20000</td><td>确认中</td><td><a href="#">确认</a></td></tr>
+<tr><td>2014-01-03</td><td>30000</td><td>完成</td><td><a href="#">查看</a></td></tr>
+</table>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#s1").click(function(){
+		location.href="shoufuduichong1.html";
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>媒体</td><td><input type="text"></td></tr>
+<tr><td>保证金付款日期</td><td><input type="text"></td></tr>
+<tr><td>保证金额</td><td><input type="text"></td></tr>
+<tr><td>客户</td><td><input type="text"></td></tr>
+<tr><td>使用返点</td><td><input type="checkbox">是&nbsp;<input type="text" size="13"></td></tr>
+<tr><td>垫付</td><td><input type="checkbox">是&nbsp;<input type="text" size="13"></td></tr>
+<tr><td>合同号</td><td><input type="text"><input type="button" id="search" value="搜索"></td></tr>
+</table>
+<br>
+<table id="list" border="1">
+<tr><td><input type="checkbox">全选</td><td>合同号&nbsp;<input type="button" value="添加" id="add"></td></tr>
+<tr><td><input type="checkbox"></td><td>13SH0001</td></tr>
+<tr><td><input type="checkbox"></td><td>13SH0002</td></tr>
+<tr><td><input type="checkbox"></td><td>13SH0003</td></tr>
+</table>
+<br>
+<table id="result" border="1">
+<tr><td>合同号</td><td>保证金额</td></tr>
+<tr><td>13SH0001</td><td><input type="text"></td></tr>
+<tr><td>13SH0002</td><td><input type="text"></td></tr>
+<tr><td>13SH0003</td><td><input type="text"></td></tr>
+</table>
+<br>
+<input type="button" value="提交">
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#list").hide();
+	$("#result").hide();
+	
+	$("#search").click(function(){
+		$("#list").show();
+	});
+	
+	$("#add").click(function(){
+		$("#result").show();
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>媒体</td><td><input type="text"></td></tr>
+<tr><td>媒体支付方式</td><td><input type="radio" name="bb" checked>付现&nbsp;<input type="radio" name="bb">抵应付账款</td></tr>
+<tr><td>媒体返点比例</td><td><input type="text">%</td></tr>
+<tr><td><input type="radio" name="dcf" checked>关联执行单</td><td><input type="text"><input type="button" value="搜索" id="s1"><!--&nbsp;或者&nbsp;<input type="file"--></td></tr>
+<tr id="tr1"><td></td><td>执行单号：13SH001&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;媒体已付款金额：1000&nbsp;&nbsp;媒体已到票金额：1000&nbsp;&nbsp;已开返点发票金额：1000&nbsp;&nbsp;本次开返点发票金额：<input type="text" value="100">&nbsp;<a href="#">删除</a><br>执行单号：13SH002&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;媒体已付款金额：1000&nbsp;&nbsp;媒体已到票金额：1000&nbsp;&nbsp;已开返点发票金额：1000&nbsp;&nbsp;本次开返点发票金额：<input type="text" value="200">&nbsp;<a href="#">删除</a></td></tr>
+<tr><td><input type="radio" name="dcf">关联客户</td><td><input type="text"><input type="button" value="搜索" id="s3"></td></tr>
+<tr id="tr3"><td></td><td>执行单号：13SH001&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;媒体已付款金额：1000&nbsp;&nbsp;媒体已到票金额：1000&nbsp;&nbsp;已开返点发票金额：1000&nbsp;&nbsp;本次开返点发票金额：<input type="text" value="100">&nbsp;<a href="#">删除</a><br>执行单号：13SH002&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;媒体已付款金额：1000&nbsp;&nbsp;媒体已到票金额：1000&nbsp;&nbsp;已开返点发票金额：1000&nbsp;&nbsp;本次开返点发票金额：<input type="text" value="200">&nbsp;<a href="#">删除</a></td></tr>
+<tr><td><input type="radio" name="dcf">关联付款申请</td><td><input type="text"><input type="button" value="搜索" id="s4">根据媒体搜索，按时间先后排序</td></tr>
+<tr id="tr4"><td></td><td>付款申请时间：2014-01-01&nbsp;&nbsp;媒体：媒体1&nbsp;&nbsp;付款申请返点抵扣：1000&nbsp;&nbsp;<a href="#" id="s5">展开</a><br>付款申请时间：2014-02-01&nbsp;&nbsp;媒体：媒体2&nbsp;&nbsp;付款申请返点抵扣：2000&nbsp;&nbsp;<a href="#">展开</a></td></tr>
+<tr id="tr5"><td></td><td>执行单号：13SH001&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;媒体已付款金额：1000&nbsp;&nbsp;媒体已到票金额：1000&nbsp;&nbsp;已开返点发票金额：1000&nbsp;&nbsp;待开票返点：500&nbsp;&nbsp;已开票返点金额：500&nbsp;&nbsp;本次开返点发票金额：<input type="text" value="100">&nbsp;<a href="#">删除</a><br>执行单号：13SH002&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;媒体已付款金额：1000&nbsp;&nbsp;媒体已到票金额：1000&nbsp;&nbsp;已开返点发票金额：1000&nbsp;&nbsp;待开票返点：500&nbsp;&nbsp;已开票返点金额：500&nbsp;&nbsp;本次开返点发票金额：<input type="text" value="200">&nbsp;<a href="#">删除</a></td></tr>
+<tr><td><input type="radio" name="dcf">上传文件</td><td><input type="file">&nbsp;返点时间段<input type="text"></td></tr>
+<tr><td>开票总金额</td><td id="vv">0.0</td></tr>
+<tr><td>开票类型</td><td><input type="radio" name="aa" checked value="1">普票&nbsp;<input type="radio" name="aa" value="2">增票</td></tr>
+<tr id="tr2"><td></td><td>纳税人识别号：<input type="text"><br>地址、电话：<input type="text"><br>开户行及账号：<input type="text"></td></tr>
+<tr><td>开票抬头</td><td><input type="text"></td></tr>
+<tr><td>开票内容</td><td><input type="text"></td></tr>
+<tr><td>备注</td><td><textarea></textarea></td></tr>
+<tr><td></td><td><input type="button" value="提交" id="s2"></td></tr>
+</table>
+关联付款申请跳出后可展开看详细分配情况<br>
+*******应收和应付会发生转移(原记录申请负数，再新增一条相对应同金额记录)<br>
+关联付款申请<br>
+<!-- 媒体支付方式：付现、抵应付账款（关联付款申请）<br>
+媒体返点比例：可输可不输<br>
+
+显示执行单号、客户名、项目名称、这个媒体的执行成本、这个媒体已付款金额、这个媒体已到票金额、这个执行单号这个媒体已申请的返点发票金额--><br>
+所有到票信息都要显示OA中媒体名称及到票记录时的名称（导入文件中的“媒体名称”）<br>
+<br>
+<!--返点管理
+返点待分配状态->不需要开票的状态-->
+<br>
+付现/抵应付账款->搜索付款申请->待分配状态下的返点记录关联起来
+<br>
+<!--关联执行单、关联客户、关联付款申请、上传文件（模板确认下） 4选1-->
+付现的话是5选1	：按媒体+执行时间段
+抵应付的是先3选1：关联执行单、关联客户、关联付款申请；分开票的分配和真实返点的分配
+选择“和执行单是否一致”，不一致的话：要么选执行单、查客户、查媒体+执行时间段、（结果显示某执行单+客户+媒体+返点金额（输入））上传文件（只关联客户）（客户+媒体+返点金额）<br>
+最终选择的执行单小计执行成本、付款金额
+<br>
+关联付款申请，付款申请中待分配返点金额占坑××只是linda还没有开票记录<br>
+当应付，需要查看现付金额、待分配返点、已开票返点、收到真实发票、虚拟发票
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#tr1").hide();
+		$("#tr2").hide();
+		$("#tr3").hide();
+		$("#tr4").hide();
+		$("#tr5").hide();
+		$("#s1").click(function(){
+			$("#tr1").show();
+			$("#tr3").hide();
+			$("#tr4").hide();
+			$("#tr5").hide();
+			$("#vv").html("300");
+		});
+		$("#s3").click(function(){
+			$("#tr1").hide();
+			$("#tr3").show();
+			$("#tr4").hide();
+			$("#tr5").hide();
+			$("#vv").html("300");
+		});
+		$("#s4").click(function(){
+			$("#tr1").hide();
+			$("#tr3").hide();
+			$("#tr4").show();	
+			$("#tr5").hide();
+			$("#vv").html("300");
+		});
+		$("#s5").click(function(){
+			$("#tr1").hide();
+			$("#tr3").hide();
+			$("#tr4").show();	
+			$("#tr5").show();
+			$("#vv").html("300");
+		});
+		$('input:radio[name="aa"]').click(function(){
+		if ($('input:radio[name="aa"]:checked').val() == "1") {
+			$("#tr2").hide();
+		} else {
+			$("#tr2").show();
+		}
+		});
+		
+		$("#s2").click(function(){
+			location.href="fandian.html";
+		});
+	});
+</script>
+</body>
+</html>

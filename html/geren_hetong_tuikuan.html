@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>客户</td><td><input type="text"></td></tr>
+<tr><td>开户行</td><td><input type="text"></td></tr>
+<tr><td>银行帐号</td><td><input type="text"></td></tr>
+<tr><td>退款金额</td><td><input type="text"></td></tr>
+<tr><td>退款时间</td><td><input type="text"></td></tr>
+<tr><td>退款类型</td><td><input type="radio" name="s1" checked value="1">合同款&nbsp;<input type="radio" name="s1" value="2">保证金</td></tr>
+<tr><td>退款原因</td><td><textarea>退款必须输入退款原因</textarea></td></tr>
+<tr><td>终止协议上传</td><td><input type="file">（不是必要）</td></tr>
+<tr><td id="sss">执行单号</td><td><input type="text">&nbsp;客户名称&nbsp;&nbsp;<input type="text">&nbsp;<input type="button" value="搜索" id="search"></td></tr>
+</table>
+<br>
+<table id="p1" border="1">
+<tr><td><input type="checkbox">全选</td><td id="sss1">执行单号</td><td>客户名称</td><td>已收款金额</td><td>开票情况</td></tr>
+<tr><td><input type="checkbox"></td><td>SH001</td><td>客户名称1</td><td>10000</td><td>XXX</td></tr>
+<tr><td><input type="checkbox"></td><td>SH001</td><td>客户名称1</td><td>10000</td><td>XXX</td></tr>
+<tr><td colspan="5"><input type="button" value="添加" id="add"></td></tr>
+</table>
+<br>
+<table id="pidresult" border="1">
+<tr><td id="sss2">执行单号</td><td>客户名称</td><td>已收款金额</td><td>开票情况</td><td>退款金额</td></tr>
+<tr><td>SH001</td><td>客户名称1</td><td>10000</td><td>XXX</td><td><input type="text" value="-10000"></td></tr>
+<tr><td>SH001</td><td>客户名称1</td><td>10000</td><td>XXX</td><td><input type="text" value="-10000"></td></tr>
+<tr><td colspan="5"><input type="button" value="提交" id="bt1"></td></tr>
+</table>
+<br>
+<font color="red">退款填写负数<br>
+显示已收款金额（收款金额-退款金额》=0	），开票情况（详细列）</font>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#p1").hide();
+	$("#pidresult").hide();
+	
+	$("#search").click(function(){
+		$("#p1").show();
+	});
+	
+	$("#add").click(function(){
+		$("#pidresult").show();
+	});
+	
+	$("#sub").click(function(){
+		location.href= "geren_fukuan_liebiao.html";
+	});
+	
+	$("#bt1").click(function(){
+		location.href="meiti_tuikuan_shenhe.html";
+	});
+	
+	$('input:radio[name="s1"]').click(function(){
+		if($('input:radio[name="s1"]:checked').val()=="1"){
+			$("#sss").html("执行单号");
+			$("#sss1").html("执行单号");
+			$("#sss2").html("执行单号");
+		}else{
+			$("#sss").html("合同号");
+			$("#sss1").html("合同号");
+			$("#sss2").html("合同号");
+		}
+	});
+});
+</script>
+</body>
+</html>

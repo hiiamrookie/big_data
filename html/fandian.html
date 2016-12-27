@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table id="t1" border="1">
+<tr><td>媒体</td><td>媒体支付方式</td><td>返点时间段</td><td>返点开票数</td><td>开票日期</td><td>发票号码</td><td>到款金额</td><td>到款时间</td><td>操作</td></tr>
+<tr><td>媒体1</td><td>付现</td><td></td><td>1000</td><td>2014-01-01</td><td>ABCD1234</td><td>1000</td><td>2014-01-01</td><td><a href="#" id="s1">查看</a>&nbsp;|&nbsp;<a href="#" id="s5">审核</a></td></tr>
+<tr><td>媒体2</td><td>付现</td><td>2014年Q1</td><td>2000</td><td>2014-02-01</td><td></td><td></td><td></td><td><a href="#">查看</a>&nbsp;|&nbsp;<a href="#" id="s2">分配</a></td></tr>
+<tr><td>媒体2</td><td>抵应付账款</td><td>2014年Q1</td><td>2000</td><td>2014-02-01</td><td></td><td></td><td></td><td><a href="#">查看</a>&nbsp;|&nbsp;<a href="#" id="s3">核销</a></td></tr>
+</table>
+<br>
+如果是抵应付账款，核销时，关联执行单/关联客户/关联付款申请->开票自动关联到该执行单待分配返点对应金额，状态变为已开票<BR>
+如果是抵应付账款，核销时，上传文件->关联付款申请
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#s1").click(function(){
+		window.open("fandian22.html");
+	});
+	$("#s2").click(function(){
+		window.open("fandian33.html");
+	});
+	$("#s3").click(function(){
+		window.open("fandian44.html");
+	});
+	$("#s5").click(function(){
+		window.open("fandian55.html");
+	});
+});
+</script>
+</body>
+</html>

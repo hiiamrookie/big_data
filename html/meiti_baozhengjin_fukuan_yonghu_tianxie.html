@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+<tr><td>媒体名称</td><td>百度</td><td>保证金付款时间</td><td>2013-11-11</td><td>最后申请提交时间</td><td>2013-10-20</td></tr>
+</table>
+<br>
+<table border="1" id="ggz1">
+<tr><td>广告主</td><td>客户1</td><td>下单时间</td><td>2013-10-01</td><td>保证金付款额</td><td  colspan="3">￥5000</td></tr>
+<tr><td>合同号</td><td><input type="text"></td><td>客户名称</td><td><input type="text"></td><td>投放时间段</td><td><input type="text" size="5">~<input type="text" size="5"></td><td>约定付款时间</td><td><input type="text">&nbsp;<input type="button" value="搜索" id="search1"></td></tr>
+</table>
+<br>
+<table id="pids" border="1">
+<tr><td><input type="checkbox" >&nbsp;全选</td><td>合同号</td><td>金额</td><td>客户名称</td></tr>
+<tr><td><input type="checkbox" ></td><td>13SH001</td><td>10000</td><td>客户1</td></tr>
+<tr><td><input type="checkbox" ></td><td>13SH002</td><td>20000</td><td>客户2</td></tr>
+<tr><td><input type="checkbox" ></td><td>13SH003</td><td>30000</td><td>客户3</td></tr>
+<tr><td colspan="5">1 / 20 页 下一页 <input type="button" value="选择" id="selectpid"></td></tr>
+</table>
+<br>
+<table id="pidresult" border="1">
+<tr><td>合同号</td><td>客户名称</td><td>保证金额</td><td>是否垫付</td><td>使用返点</td></tr>
+<tr><td>13SH001</td><td>客户1</td><td><input type="text"></td><td><input type="checkbox">是&nbsp;<input type="text" size="13"></td><td><input type="checkbox">是&nbsp;<input type="text" size="13"></td></tr>
+<tr><td>13SH002</td><td>客户2</td><td><input type="text"></td><td><input type="checkbox">是&nbsp;<input type="text" size="13"></td><td><input type="checkbox">是&nbsp;<input type="text" size="13"></td></tr>
+<tr><td>13SH003</td><td>客户3</td><td><input type="text"></td><td><input type="checkbox">是&nbsp;<input type="text" size="13"></td><td><input type="checkbox">是&nbsp;<input type="text" size="13"></td></tr>
+<tr><td colspan="4"></td><td>小计：￥5000</td></tr>
+</table>
+<br>
+<table border="1" id="ggz2">
+<tr><td>广告主</td><td>客户2</td><td>下单时间</td><td>2013-10-09</td><td>保证金付款额</td><td  colspan="3">￥6700</td></tr>
+<tr><td>合同号</td><td><input type="text"></td><td>客户名称</td><td><input type="text"></td><td>投放时间段</td><td><input type="text" size="5">~<input type="text" size="5"></td><td>约定付款时间</td><td><input type="text">&nbsp;<input type="button" value="搜索"></td></tr>
+</table>
+<br>
+<table id="ssu">
+<tr><td><input type="button" value="保存">&nbsp;<input type="button" value="提交" id="sub"></td></tr>
+</table>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#pids").hide();
+	$("#pidresult").hide();
+	
+	$("#search1").click(function(){
+		$("#pids").show();
+	});
+	
+	$("#selectpid").click(function(){
+		$("#pidresult").show();
+	});
+	
+	$("#sub").click(function(){
+		//location.href= "meiti_tuikuan_liebiao.html";
+	});
+});
+</script>
+</body>
+</html>

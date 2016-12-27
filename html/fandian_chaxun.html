@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>客户</td><td><input type="text"></td><td>媒体</td><td><input type="text"></td><td>部门</td><td><input type="text"></td><td>开始时间：<input type="text">&nbsp;&nbsp;结束时间：<input type="text">&nbsp;<input type="button" value="搜索" id="b1"></td></tr>
+</table>
+<br>
+<table border="1" id="t1">
+<tr><td>时间段</td><td>客户名</td><td>媒体</td><td>部门</td><td>待分配返点</td><td>已开票返点</td><td>无需开票返点</td></tr>
+<tr><td>2014-01-01～2014-03-01</td><td>客户1</td><td>媒体1</td><td>部门1</td><td>10000</td><td>10000</td><td>10000</td></tr>
+<tr><td>2014-03-02～2014-04-01</td><td>客户1</td><td>媒体1</td><td>部门1</td><td>20000</td><td>20000</td><td>20000</td></tr>
+<tr><td>2014-04-02～2014-05-01</td><td>客户2</td><td>媒体1</td><td>部门1</td><td>30000</td><td>30000</td><td>30000</td></tr>
+</table>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#t1").hide();
+	$("#b1").click(function(){
+		$("#t1").show();
+	});
+});
+</script>
+</body>
+</html>

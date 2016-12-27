@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>客户名</td><td><input type="text" value="客户1"></tr>
+<tr><td>保险额度</td><td><input type="text" value="1000000"></tr>
+<tr><td>已关联OA客户</td><td><input type="checkbox" checked="checked">客户1&nbsp;<input type="checkbox" checked="checked">客户2&nbsp;<input type="checkbox" checked="checked">客户3</td></tr>
+<tr><td>OA客户名搜索</td><td><input type="text">&nbsp;<input type="button" value="搜索" id="search"></td></tr>
+</table>
+<br>
+<table border="1" id="cus">
+<tr><td><input type="checkbox">全选</td><td>客户名称</td></tr>
+<tr><td><input type="checkbox"></td><td>客户12</td></tr>
+<tr><td><input type="checkbox"></td><td>客户112</td></tr>
+<tr><td><input type="checkbox"></td><td>客户1112</td></tr>
+<tr><td>&nbsp;</td><td><input type="button" value="提交"></td></tr>
+</table>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#cus").hide();
+	
+	$("#search").click(function(){
+		$("#cus").show();
+	});
+});
+</script>
+</body>
+</html>

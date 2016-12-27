@@ -1,0 +1,179 @@
+需要注意的是：
+由于涉及到每个部门的业绩问题，原则上转执行单，只可以转给同部门的人，不可跨部门转。
+除非类似以前SMC、创新营销这样部门解散的情况下，才可以给他们转，同时需要他们先向财务部门申请，财务部门同意后再操作，保留书面确认信息。
+同理，开账户、添加权限、导数据等敏感操作，都需要他们抄送leader或财务部，告知leader或财务部后操作
+不然一律不处理
+
+
+Lawrence	496
+张乐		534
+
+select * from executive where user=725;
+select * from executive where principal=262;
+select * from finance_invoice where user=262;
+select * from finance_invoice_list where user=262;
+select * from contract_cus  WHERE contactperson=699;
+
+
+update executive set user=534 WHERE user=496;
+update executive set principal=534 WHERE principal=496;
+update finance_invoice set user=534 WHERE user=496;
+update finance_invoice_list set user=534 WHERE user=496;
+update contract_cus set contactperson=636  WHERE contactperson=689;
+
+
+
+
+
+update executive set user=451 WHERE user=262;
+update executive set principal=451 WHERE principal=262;
+update finance_invoice set user=451 WHERE user=262;
+update finance_invoice_list set user=451 WHERE user=262;
+update contract_cus set contactperson=451  WHERE contactperson=262;
+
+
+
+
+select * from executive where user=325 AND cid in ("16SH030050","15SH020074","15SH020073","14SH010051","14SH030115") and name like "%雪花秀%"
+select * from executive where principal=325 AND cid in ("16SH030050","15SH020074","15SH020073","14SH010051","14SH030115") and name like "%雪花秀%"
+
+
+update executive set user=729 WHERE user=325 AND cid in ("16SH030050","15SH020074","15SH020073","14SH010051","14SH030115") and name like "%雪花秀%";
+
+update executive set user=707 WHERE user=69 AND cid in ("15SH010016","15SH040146","15SH010002","15SH040141","15SH010001")
+
+
+
+
+
+select * from executive where user=325 AND cid in ("16SH030050","15SH020074","14SH030115") and name like "%吕%"
+select * from executive where principal=325 AND cid in ("16SH030050","15SH020074","14SH030115") and name like "%吕%"
+
+
+update executive set user=627 WHERE user=325 AND cid in ("16SH030050","15SH020074","14SH030115") and name like "%吕%";
+
+
+
+select * from executive where user=325 AND cid in ("16SH030050","15SH020074","15SH020073","16SH020030","16SH020029") and name like "%悦诗风吟%"
+select * from executive where principal=325 AND cid in ("16SH030050","15SH020074","15SH020073","16SH020030","16SH020029") and name like "%悦诗风吟%"
+
+
+update executive set user=728 WHERE user=325 AND cid in ("16SH030050","15SH020074","15SH020073","16SH020030","16SH020029") and name like "%悦诗风吟%";
+
+
+
+
+
+update executive set user=537 WHERE user=679;
+update executive set principal=537 WHERE principal=679;
+update finance_invoice set user=537 WHERE user=679;
+update finance_invoice_list set user=537 WHERE user=679;
+update contract_cus set contactperson=537  WHERE contactperson=679;
+
+
+
+
+
+
+
+update finance_invoice set user=722 WHERE user=699;
+update finance_invoice_list set user=722 WHERE user=699;
+
+
+
+
+ivy.he 581
+horace.huang 736
+
+
+
+update executive set user=736 WHERE user=581;
+update executive set principal=736 WHERE principal=581;
+update finance_invoice set user=736 WHERE user=581;
+update finance_invoice_list set user=736 WHERE user=581;
+
+
+
+汤海涛 457
+wendy.wangw@nimdigital.com	706
+
+
+update executive set user=706 WHERE user=457;
+update executive set principal=706 WHERE principal=457;
+update finance_invoice set user=706 WHERE user=457;
+update finance_invoice_list set user=706 WHERE user=457;
+
+
+
+
+
+update executive set user=496 WHERE user=677;
+update executive set principal=496 WHERE principal=677;
+update finance_invoice set user=496 WHERE user=677;
+update finance_invoice_list set user=496 WHERE user=677;
+
+
+
+
+
+
+select * from executive where user=436;
+select * from executive where principal=436;
+select * from finance_invoice where user=436;
+select * from finance_invoice_list where user=436;
+select * from contract_cus  WHERE contactperson=436;
+
+
+
+
+update executive set user=726 WHERE user=495 and cid!=‘16BJ010011';
+update executive set principal=726 WHERE principal=495 and cid!=‘16BJ010011';
+#update finance_invoice set user=726 WHERE user=677;
+#update finance_invoice_list set user=726 WHERE user=677;
+
+
+
+
+update finance_invoice set user=726 WHERE user=495;
+update finance_invoice_list set user=726 WHERE user=495;
+
+
+
+update executive set user=738 WHERE user=682;
+update executive set principal=738 WHERE principal=682;
+update finance_invoice set user=738 WHERE user=682;
+update finance_invoice_list set user=738 WHERE user=682;
+
+
+
+
+
+
+
+
+update executive set user=630 WHERE user=676;
+update executive set principal=630 WHERE principal=676;
+update finance_invoice set user=630 WHERE user=676;
+update finance_invoice_list set user=630 WHERE user=676;
+
+
+update executive set user=722 WHERE user=725;
+update executive set principal=722 WHERE principal=725;
+update finance_invoice set user=722 WHERE user=725;
+update finance_invoice_list set user=722 WHERE user=725;
+update contract_cus set contactperson=722  WHERE contactperson=725;
+
+
+
+update executive set user=672 WHERE user=496;
+update executive set principal=672 WHERE principal=496;
+update finance_invoice set user=672 WHERE user=496;
+update finance_invoice_list set user=672 WHERE user=496;
+update contract_cus set contactperson=672  WHERE contactperson=496;
+
+
+update executive set user=718 WHERE user=722;
+update executive set principal=718 WHERE principal=722;
+update finance_invoice set user=718 WHERE user=722;
+update finance_invoice_list set user=718 WHERE user=722;
+update contract_cus set contactperson=718  WHERE contactperson=722;

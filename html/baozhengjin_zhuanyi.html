@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td><input type="radio" name="test" value="1" checked>转出&nbsp;<input type="radio" name="test" value="2">转入</td>
+			<td>媒体</td>
+			<td><input type="text"></td>
+			<td>客户</td>
+			<td><input type="text"></td>
+			<td>合同号</td>
+			<td><input type="text">&nbsp;<input type="button" value="搜索" id="s1"></td>
+		</tr>
+	</table>
+	<br>
+	<table width="100%">
+		<tr>
+			<td><table border="1" id="t1">
+					<tr>
+						<td>&nbsp;</td>
+						<td>合同号</td>
+						<td>客户名</td>
+						<td>媒体名称</td>
+						<td>已付媒体保证金额</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>14SH001</td>
+						<td>客户名1</td>
+						<td>媒体名称1</td>
+						<td>5000</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>14SH002</td>
+						<td>客户名2</td>
+						<td>媒体名称2</td>
+						<td>10000</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>14SH003</td>
+						<td>客户名3</td>
+						<td>媒体名称3</td>
+						<td>1500</td>
+					</tr>
+					<tr>
+						<td colspan="5"><input type="button" value="添加" id="s2"></td>
+					</tr>
+				</table></td>
+			<td><table border="1" id="t3">
+					<tr>
+						<td>&nbsp;</td>
+						<td>合同号</td>
+						<td>客户名</td>
+						<td>媒体名称</td>
+						<td>已付媒体保证金额</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>14SH001</td>
+						<td>客户名1</td>
+						<td>媒体名称1</td>
+						<td>5000</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>14SH002</td>
+						<td>客户名2</td>
+						<td>媒体名称2</td>
+						<td>10000</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>14SH003</td>
+						<td>客户名3</td>
+						<td>媒体名称3</td>
+						<td>1500</td>
+					</tr>
+					<tr>
+						<td colspan="5"><input type="button" value="添加" id="s4"></td>
+					</tr>
+				</table></td>
+		</tr>
+	</table>
+	<br>
+	<table width="100%">
+		<tr>
+			<td><table border="1" id="t2">
+					<tr>
+						<td>合同号</td>
+						<td>客户名</td>
+						<td>媒体名称</td>
+						<td>上次支付媒体保证金额</td>
+						<td>本次转移保证金金额</td>
+						<td>本次实际保证金金额</td>
+					</tr>
+					<tr>
+						<td>14SH001</td>
+						<td>客户名1</td>
+						<td>媒体名称1</td>
+						<td>5000</td>
+						<td><input type="text" value="1000"></td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<td>14SH002</td>
+						<td>客户名2</td>
+						<td>媒体名称2</td>
+						<td>10000</td>
+						<td><input type="text" value="2000"></td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<td>14SH003</td>
+						<td>客户名3</td>
+						<td>媒体名称3</td>
+						<td>1500</td>
+						<td><input type="text" value="500"></td>
+						<td>xxx</td>
+					</tr>
+				</table>
+			</td>
+			<td><table border="1" id="t4">
+					<tr>
+						<td>合同号</td>
+						<td>客户名</td>
+						<td>媒体名称</td>
+						<td>上次支付媒体保证金额</td>
+						<td>本次转移保证金金额</td>
+						<td>本次实际保证金金额</td>
+					</tr>
+					<tr>
+						<td>14SH002</td>
+						<td>客户名2</td>
+						<td>媒体名称2</td>
+						<td>10000</td>
+						<td><input type="text" value="2000"></td>
+						<td>xxx</td>
+					</tr>
+					<tr>
+						<td>14SH003</td>
+						<td>客户名3</td>
+						<td>媒体名称3</td>
+						<td>1500</td>
+						<td><input type="text" value="500"></td>
+						<td>xxx</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<input type="button" value="转移" id="tt">
+	<br>
+	转出负数，转入正数
+	保证金转执行单，搜索执行单后选择转入
+	<script src="jquery-1.8.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#t1").hide();
+			$("#t2").hide();
+			$("#t3").hide();
+			$("#t4").hide();
+			$("#tt").hide();
+			$("#s1").click(function() {
+				if ($('input[name="test"]:checked').val() == "1") {
+					$("#t1").show();
+				} else {
+					$("#t3").show();
+				}
+
+			});
+			$("#s2").click(function() {
+				$("#t2").show();
+			});
+
+			$("#s4").click(function() {
+				$("#t4").show();
+				$("#tt").show();
+			});
+		});
+	</script>
+</body>
+</html>

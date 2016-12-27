@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+<tr><td>媒体名称</td><td><input type="text"></td><td>客户名称</td><td><input type="text"></td><td>执行单号</td><td><input type="text"></td><td>项目名称</td><td><input type="text"></td><td><input type="button" value="搜索" id="s1"></td></tr>
+</table>
+<br>
+<table border="1" id="t1">
+<tr><td colspan="10"><font color="red">说明：如果搜索条件中输入媒体名称则搜索结果只显示该媒体相关的媒体数据，否则则显示执行单涉及的所有媒体数据</font></td></tr>
+<tr><td>客户名称</td><td colspan="9">客户名称1</td></tr>
+<tr><td>执行单号</td><td>项目名称</td><td>执行金额</td><td>执行成本</td><td>媒体</td><td>已收客户款</td><td>已开票</td><td>已付媒体款</td><td>已收媒体票</td></tr>
+<tr><td>13SH001</td><td>项目名称1</td><td>10000</td><td>9000</td><td><a href="#">媒体1</a><font color="red">(可以展开查看所有涉及的媒体列表)</font></td><td><a href="#">1000</a><font color="red">(可以展开查看具体收款详情)</font></td><td><a href="#">500</a><font color="red">(可以展开查看具体开票详情)</font></td><td><a href="#">1000</a><font color="red">(可以展开查看具体付款详情)</font></td><td><a href="#">500</a><font color="red">(可以展开查看具体收票详情)</font></td></tr>
+<tr><td>13SH002</td><td>项目名称2</td><td>10000</td><td>9000</td><td>媒体1</td><td>1000</td><td>500</td><td>1000</td><td>500</td></tr>
+<tr><td>13SH003</td><td>项目名称3</td><td>10000</td><td>9000</td><td>媒体1</td><td>1000</td><td>500</td><td>1000</td><td>500</td></tr>
+</table>
+<br>
+<!--合同号	客户名称	项目名称	 客户执行收入 	已收客户款合计金额	已开票合计金额	已执行未到客户款金额	供应商	媒体执行成本	已执行未付成本金额	14年3月付款	已付成本合计金额（银行支付+个人借款+收付对冲）	14年3月开票返点	14年3月不需开票返点	待开票返点合计	已开票返点合计	不需开票返点合计	实际付款日期	14年3月虚拟发票	虚拟发票合计金额	14年3月真实发票	真实发票到票合计金额	收到发票月份	发票类型	发票号	税率	已付款未到票金额
+加上付款申请人-->
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#t1").hide();
+	$("#s1").click(function(){
+		$("#t1").show();
+	});
+});
+</script>
+</body>
+</html>

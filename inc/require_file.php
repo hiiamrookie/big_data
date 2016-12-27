@@ -1,0 +1,28 @@
+<?php
+setlocale ( LC_MONETARY, 'zh_CN.UTF-8' );
+error_reporting ( E_ALL ^ E_NOTICE);
+require (dirname ( dirname ( __FILE__ ) ) . '/system_config/config/config.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/system_config/database/ezSQLcore.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/system_config/database/mysql/ezSQL_mysql.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/lib/class.phpmailer.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/lib/class.pop3.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/lib/class.smtp.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/lib/crumb.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/lib/file_cache.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/lib/file_validation.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/array_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/class_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/date_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/directory_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/file_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/js_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/security_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/server_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/session_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/sql_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/string_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/upload_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/validate_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/format_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/util/encoding_util.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/Classes/PHPExcel.php');

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td><input type="radio" name="aa" checked value="1">应收 &nbsp;<input type="radio" name="aa" value="2">应付</td></tr>
+</table>
+<table id="t1">
+<tr><td>媒体</td><td><input type="text"></td></tr>
+<tr><td>内容</td><td><input type="text"></td></tr>
+<tr><td>金额</td><td><input type="text"></td></tr>
+<tr><td>开票时间</td><td><input type="text"></td></tr>
+<tr><td>到款</td><td><input type="text"></td></tr>
+<tr><td>到款时间</td><td><input type="text"></td></tr>
+<tr><td>申请人</td><td><input type="text"></td></tr>
+<tr><td>备注</td><td><textarea></textarea></td></tr>
+<tr><td>&nbsp;</td><td><input type="button" value="提交" id="sub"></td></tr>
+</table>
+<table id="t2">
+<tr><td><input type="radio" name="tt" checked>不需开票</td><td>确认月份<input type="text"></td></tr>
+<tr><td><input type="radio" name="tt">未开票</td><td></td></tr>
+<tr><td><input type="radio" name="tt">已开票</td><td>开票月份<input type="text"></td></tr>
+<tr><td>&nbsp;</td><td><input type="button" value="提交" id="sub"></td></tr>
+</table>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#t2").hide();
+	$('input:radio[name="aa"]').click(function(){
+	var v = $('input:radio[name="aa"]:checked').val();
+	if(v == "1"){
+		$("#t1").show();
+		$("#t2").hide();	
+	}else{
+		$("#t1").hide();
+		$("#t2").show();	
+	
+	}
+	});
+});
+</script>
+</body>
+</html>

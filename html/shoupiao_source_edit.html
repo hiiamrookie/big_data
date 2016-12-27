@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+<tr><td>纳税人识别号</td><td><input type="text" value="11111111111"></td></tr>
+<tr><td>媒体名称</td><td><input type="text" value="网易"></td></tr>
+<tr><td>发票内容</td><td><select><option value="1">广告</option><option value="2">服务</option></select></td></tr>
+<tr><td>凭证号码</td><td><input type="text" value="222222222"></td></tr>
+<tr><td>税率</td><td><input type="text" value="6">%</td></tr>
+<tr><td>成本</td><td><input type="text" value="220125.78">元</td></tr>
+<tr><td>进项</td><td>13207.55 元</td></tr>
+<tr><td>价税合计金额</td><td>233333.33 元</td></tr>
+<tr><td>发票日期</td><td><input type="text" value="2013-11-26"></td></tr>
+<tr><td>所属月份</td><td><input type="text" value="2013-11"></td></tr>
+<tr><td colspan="2"><input type="button" value="提交" id="sub"></td></tr>
+</table>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#sub").click(function(){
+		location.href="shoupiao_list.html";
+	});
+});
+</script>
+</body>
+</html>

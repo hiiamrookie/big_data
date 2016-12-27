@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>安装移动OA版本</title>
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#ios").click(function(){
+		location.href="itms-services://?action=download-manifest&url=https://git.oschina.net/jesseshen/nimOA.plist/raw/master/nimOA.plist";
+	});
+
+	$("#apk").click(function(){
+		location.href="nimOA.apk";
+	});
+});
+</script>
+</head>
+<body>
+<table>
+	<tr><td><img src="../images/an-d.png" id="apk"></td></tr>
+	<tr><td><img src="../images/ap-d.png" id="ios"></td></tr>
+</table>
+</body>
+</html>

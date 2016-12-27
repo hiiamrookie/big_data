@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+<tr>
+<td>发起时间</td><td>2013-11-11</td><td>申请付款时间</td><td>2013-11-11</td></tr>
+<tr>
+<td>媒体名称</td><td>百度</td><td>最后申请提交时间</td><td>2013-11-01</td>
+</tr>
+<tr><td>应付款金额</td><td>10000</td><td>实付款金额</td><td>10000</td></tr>
+<tr><td>返点</td><td><a href="fandian_zk.html" target="_blank">10000</a><font color="red">（如果有返点就显示）</font></td><td></td><td></td></tr>
+</table>
+
+<br>
+<table border="1">
+<tr><td colspan="5">共1000条付款对账单记录需分配，已分配980条，剩余20条未分配</td></tr>
+<tr><td>部门</td><td>合同付款额</td><td>负责人</td><td>完成情况</td><td>详情</td></tr>
+<tr><td>部门1</td><td>10000</td><td>申请人1</td><td>完成80条&nbsp;&nbsp;<a href="meiti_fukuan_shenhe1.html" target="_blank">查看</a></td><td><a href="meiti_fukuan_shenhe.html" target="_blank">还有21条未审核</a></td></tr>
+<tr><td>部门2</td><td>20000</td><td>申请人2</td><td>完成0条</td><td></td></tr>
+<tr><td></td><td>30000</td><td></td><td>20条未分配&nbsp;&nbsp;<a href="#" id="ddd">查看</a></td><td></td></tr>
+<tr><td colspan="5"><input type="button" value="提交"></td></tr>
+</table>
+<br>
+
+<font color="red">所有完成后提交回到evon处和媒体最后确认完成后打印，3个sheet，第1个和付款申请一致，第2个是所有执行单列表，第3个是垫款的总数，按照部门、客户、总数、项目负责人<br>相关信息均可下载<br>打印前先显示该付款申请所有条目的信息，然后可以全选或者部分选取后打印单份或多份，单条的备注放在上方醒目处和每个分配条目处，2处一样，均要显示</font>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#ddd").click(function(){
+		window.open("fukuan_xiangqing.html");
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>媒体名称</td><td>媒体1</td></tr>
+<tr><td>开户行</td><td>XXX</td></tr>
+<tr><td>帐号</td><td>SSS</td></tr>
+<tr><td>应付金额</td><td>10000</tr>
+<tr><td>付款时间</td><td>2013-11-11</tr>
+<tr><td>是否垫付</td><td>否</td></tr>
+<tr><td>返点抵扣</td><td>使用￥1000</td></tr>
+<tr><td>保证金抵扣</td><td>否</td></tr>
+<tr><td>个人借款抵扣</td><td>使用￥1000</td></tr>
+<tr><td>实付金额</td><td>XXXX</td></tr>
+<tr><td>备注</td><td>XXXX</td></tr>
+</table>
+<br>
+<!--table id="pidresult" border="1">
+<tr><td>执行单号</td><td>客户名称</td><td>项目名称</td><td>执行金额</td><td>客户到款情况</td><td>上次已支付媒体合计数</td><td>到票情况<font color="red">(所选媒体)</font></td><td>已付款未到票情况<font color="red">(所选媒体)</font></td><td>执行成本<font color="red">(所选媒体)</font></td><td>已支付情况<font color="red">(所选媒体)</font></td><td>已执行未付款情况<font color="red">(所选媒体)</font></td><td>支付方式</td><td>返点抵扣</td><td>个人借款抵扣</td><td>实付金额</td><td>是否垫付</td><td>垫付金额</td><td>状态</td></tr>
+<tr><td>13SH001</td><td>客户1</td><td>项目名称1</td><td>0</td><td>0</td><td>10000<font color="red">可展开</font></td><td>0<font color="red">可展开，包含实际到票和虚拟发票</font></td><td>0</td><td>0</td><td>5000<font color="red">可展开,并且是各种支付的方式（保证金、返点等）</font></td><td>0</td><td>全付</td><td>0</td><td>0</td><td>0</td><td>否</td><td>0</td><td>正常</td></tr>
+<tr><td>13SH002</td><td>客户2</td><td>项目名称2</td><td>0</td><td>0</td><td>20000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>支付部分&nbsp;2000</td><td>0</td><td>0</td><td>0</td><td>否</td><td>0</td><td>正常</td></tr>
+<tr><td>13SH003</td><td>客户3</td><td>项目名称3</td><td>0</td><td>0</td><td>30000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>支付部分&nbsp;3000</td><td>0</td><td>0</td><td>0</td><td>是 123456.eml</td><td>0</td><td>正常</td></tr>
+</table-->
+<table id="pidresult" border="1">
+<tr><td>合同号</td><td>客户名称</td><td>项目名称</td><td>客户执行收入</td><td>已收客户款合计金额</td><td>已开票合计金额</td><td>已执行未到客户款金额</td><td>供应商</td><td>媒体执行成本</td><td>已执行未付成本金额</td><td>本次申请金额</td><td>已付成本合计金额（银行支付+个人借款+收付对冲）</td><td>返点抵扣</td><td>待开票返点合计</td><td>实际付款日期</td><td>虚拟发票合计金额</td><td>真实发票到票合计金额</td><td>已付款未到票金额</td><td>个人借款抵扣</td><td>实付金额</td><td>是否垫付</td></tr>
+<tr><td>13SH001</td><td>客户1</td><td>项目名称1</td><td>0</td><td>0</td><td>10000<font color="red">可展开</font></td><td>0</td><td>xxx</td><td>0</td><td>5000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2014-01-01</td><td>0</td><td>0</td><td>0</td><td>0</td><td>XXX</td><td>否</td></tr>
+<tr><td>13SH002</td><td>客户2</td><td>项目名称2</td><td>0</td><td>0</td><td>10000<font color="red">可展开</font></td><td>0</td><td>xxx</td><td>0</td><td>5000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2014-01-01</td><td>0</td><td>0</td><td>0</td><td>0</td><td>XXX</td><td>否</td></tr>
+<tr><td>13SH003</td><td>客户3</td><td>项目名称3</td><td>0</td><td>0</td><td>10000<font color="red">可展开</font></td><td>0</td><td>xxx</td><td>0</td><td>5000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2014-01-01</td><td>0</td><td>0</td><td>0</td><td>0</td><td>XXX</td><td>否</td></tr>
+</table>
+<br>
+<table>
+<tr><td>作废理由</td><td>xxxx</td></tr>
+<tr><td colspan="2"><input type="button" value="审核通过" id="pass">&nbsp;&nbsp;<input type="button" value="审核驳回" id="passs"></td><td></td></tr>
+</table>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#pidresult").show();
+	$("#pass").click(function(){
+		
+		//location.href="fukuan_shenhe.html";
+	});
+});
+</script>
+</body>
+</html>

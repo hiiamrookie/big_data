@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>执行单号</td><td><input type="text"></td><td>客户名称</td><td><input type="text"></td><td>媒体名称</td><td><input type="text"></td><td><input type="button" value="搜索" id="search"></td><td><input type="button" value="已付款未到票">&nbsp;<input type="button" value="根据付款申请记录分配发票" id="sub1"></td></tr>
+</table>
+<br>
+<table id="t1" border="1">
+<tr><td>&nbsp;</td><td>执行单号</td><td>客户名称</td><td>媒体名称</td><td>执行成本</td><td>收票情况</td><td>付款情况</td><td>已付款未到票</td><td>最后付款时间</td></tr>
+<tr><td><input type="checkbox"></td><td>14SH0001</td><td>客户1</td><td>媒体名称1</td><td>执行成本</td><td>0</td><td>0</td><td>0</td><td><a href="#">2014-01-01</a></td></tr>
+<tr><td><input type="checkbox"></td><td>14SH0002</td><td>客户2</td><td>媒体名称2</td><td>执行成本</td><td>0</td><td>0</td><td>0</td><td><a href="#">2014-01-02</a></td></tr>
+<tr><td><input type="checkbox"></td><td>14SH0003</td><td>客户3</td><td>媒体名称3</td><td>执行成本</td><td>0</td><td>0</td><td>0</td><td><a href="#">2014-01-01</a></td></tr>
+<tr><td colspan="9"><input type="button" value="添加" id="qd"></td></tr>
+</table>
+<br>
+<table border="1" id="t2">
+<tr>
+	<td>执行单号</td>
+	<td>客户名</td>
+	<td>OA中供应商名称</td>
+	<td>发票中供应商名称</td>
+	<td>执行成本</td>
+	<td>剩余未付款合计</td>
+	<td>已经付款合计</td>
+	<td>待分配返点</td>
+	<td>已开票返点</td>
+	<td>无需开票返点</td>
+	<td><font color="red"><del>员工借款合计</del></font></td>
+	<td><font color="red"><del>收付对冲合计</del></font></td>
+	<td>实际付款日期</td>
+	<td>成本<font color="red">（公式）</font></td>
+	<td>进项<font color="red">（公式）</font></td>
+	<td>价税合计<font color="red">（填）</font></td>
+	<td>真实发票合计<font color="red">（累计）</font></td>
+	<td>收发票数合计</td>
+	<!--td>收到发票月份</td>
+	<td>发票类型</td>
+	<td>发票号</td-->
+	<td>税率<font color="red">（先根据已有税率，没有的话手工填写）</font></td>
+	<td>未收发票</td>
+</tr>
+<tr>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td><font color="red"><del>XXX</del></font></td>
+	<td><font color="red"><del>XXX</del></font></td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td><input type="text" value="XXX"></td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<!--td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td-->
+	<td><input type="text" value="XXX"></td>
+	<td>XXX</td>
+</tr>
+<tr>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td><font color="red"><del>XXX</del></font></td>
+	<td><font color="red"><del>XXX</del></font></td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td><input type="text" value="XXX"></td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<!--td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td-->
+	<td><input type="text" value="XXX"></td>
+	<td>XXX</td>
+</tr>
+<tr>
+	<td>小计</td>
+	<td colspan="12">&nbsp;</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td colspan="4">&nbsp;</td>
+</tr>
+</table>
+
+
+<br>
+<table id="buttons">
+<tr><td><input type="button" value="暂存"></td><td><input type="button" value="提交"></td><td><input type="button" value="修改"></td></tr>
+</table>
+<!--Linda  15:19:45<br>
+显示已有记录的<br>
+Linda  15:21:00<br>
+如无已有记录，自己填写，因为要根据税率计算成本和进项的-->
+类似真实发票的情况
+根据付款申请分配虚拟发票
+付款中显示OA中供应商名称及发票中的供应商名称（先到票的情况）<br>
+真实发票显示合计，虚拟发票分成本+进项+价税合计<br>
+员工借款合计+收付对冲合计合并到已付款合计中<br>
+返点抵扣拆成待分配返点，已开票返点，无需开票返点
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#t1").hide();
+	$("#t2").hide();
+	$("#buttons").hide();
+	$("#search").click(function(){
+		$("#t1").show();
+	});
+	$("#qd").click(function(){
+		$("#t2").show();
+		$("#buttons").show();
+	});
+	
+	$("#sub1").click(function(){
+		location.href="fukuan_shoupiao2.html";
+	});
+});
+</script>
+</body>
+</html>

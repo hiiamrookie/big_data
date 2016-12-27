@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+<tr><td>媒体名称</td><td>百度</td><td>应付保证金金额</td><td>11700（不包含返点金额）</td></tr>
+<tr><td>付款时间</td><td>2013-11-11</td><td>最后申请提交时间</td><td>2013-10-20</td></tr>
+</table>
+<br>
+<table border="1" id="ggz1">
+<tr><td><input type="checkbox">全选</td><td>广告主</td><td>媒体合同号</td><td>本次申请保证金金额</td><td>合同付款日期</td><td>框架金额</td><td>框架开始日期</td><td>操作&nbsp;&nbsp;<a href="#" id="b1">分配</a></td></tr>
+<tr><td><input type="checkbox"></td><td>瑞庭网络技术(上海)有限公司_AD_2410</td><td>2132214</td><td>70000000</td><td>2013/12/30</td><td>70000000</td><td>2013/1/1</td><td><a href="#" >PASS</a></td></tr>
+<tr><td><input type="checkbox"></td><td>瑞庭网络技术(上海)有限公司_AD_2410</td><td>2132214</td><td>70000000</td><td>2013/12/30</td><td>70000000</td><td>2013/1/1</td><td><a href="#" >PASS</a></td></tr>
+<tr><td><input type="checkbox"></td><td>瑞庭网络技术(上海)有限公司_AD_2410</td><td>2132214</td><td>70000000</td><td>2013/12/30</td><td>70000000</td><td>2013/1/1</td><td><a href="#" >PASS</a></td></tr>
+</table>
+<br>
+<table border="1" id="t1">
+<tr><td>客户名称</td><td><input type="text"></td><td>合同号</td><td><input type="text"></td><td><input type="button" value="搜索" id="b2"></td></tr>
+</table>
+<br>
+<table border="1" id="t2">
+<tr><td><input type="checkbox">全选</td><td>合同号</td><td>客户名称</td><td>已到保证金</td><td>已付媒体保证金</td></tr>
+<tr><td><input type="checkbox"></td><td>14SH001</td><td>客户1</td><td>10000</td><td>1000</td></tr>
+<tr><td><input type="checkbox"></td><td>14SH002</td><td>客户2</td><td>10000</td><td>1000</td></tr>
+<tr><td><input type="checkbox"></td><td>14SH003</td><td>客户3</td><td>10000</td><td>1000</td></tr>
+<tr><td colspan="5">1 / 20 页 下一页 <input type="button" value="选择" id="b3"></td></tr>
+</table>
+<br>
+<table border="1" id="t3">
+<tr><td>合同号</td><td>客户名</td><td>客户到保证金额</td><td>已付媒体保证金额 </td><td>本次申请金额</td><td>个人借款抵扣</td><td>是否垫付</td><td>实付金额</td></tr>
+<tr><td>14SH001</td><td>客户1</td><td>10000</td><td>1000 </td><td>还款人<input type="text">金额<input type="text"></td><td><input type="radio" name="r1" checked>全付&nbsp;<input type="radio" name="r1">部分支付<input type="text"></td><td><input type="checkbox">是&nbsp;<input type="file">&nbsp;<input type="text"></td><td>XXX</td></tr>
+<tr><td>14SH002</td><td>客户2</td><td>10000</td><td>1000 </td><td>还款人<input type="text">金额<input type="text"></td><td><input type="radio" name="r2" checked>全付&nbsp;<input type="radio" name="r2">部分支付<input type="text"></td><td><input type="checkbox">是&nbsp;<input type="file">&nbsp;<input type="text"></td><td>XXX</td></tr>
+<tr><td>14SH003</td><td>客户3</td><td>10000</td><td>1000 </td><td>还款人<input type="text">金额<input type="text"></td><td><input type="radio" name="r3" checked>全付&nbsp;<input type="radio" name="r3">部分支付<input type="text"></td><td><input type="checkbox">是&nbsp;<input type="file">&nbsp;<input type="text"></td><td>XXX</td></tr>
+</table>
+<br>
+<table>
+<tr><td>备注</td><td><textarea></textarea></td></tr>
+</table>
+<table id="ssu">
+<tr><td><input type="button" value="保存">&nbsp;<input type="button" value="提交" id="sub"></td></tr>
+</table>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#t1").hide();
+	$("#t2").hide();
+	$("#t3").hide();
+	$("#b1").click(function(){
+		$("#t1").show();
+	});
+	$("#b2").click(function(){
+		$("#t2").show();
+	});
+	$("#b3").click(function(){
+		$("#t3").show();
+	});
+	$("#sub").click(function(){
+		location.href= "baozhengjin_fukuan_liebiao.html";
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>执行单号</td><td><input type="text"></td><td><input type="button" value="搜索" id="search"></td></tr>
+</table>
+<br>
+<table id="payment" border="1">
+<tr><td>执行单号<input type="button" value="展开" id="open"></td></tr>
+<tr><td><input type="radio" name="media" checked="checked">13SH001</td></tr>
+<tr><td><input type="radio" name="media">13SH002</td></tr>
+<tr><td><input type="radio" name="media">13SH003</td></tr>
+</table>
+<br>
+<table id="pid" border="1">
+<tr><td>付款日期</td><td>金额</td><td>客户名称</td><td>已支付情况</td><td>发票号码</td></tr>
+<tr><td>2013-11-01</td><td>2000</td><td>客户1</td><td>2000</td><td><input type="text">&nbsp;<input type="button" value="提交"></td></tr>
+<tr><td>2013-11-02</td><td>3000</td><td>客户2</td><td>2000</td><td><input type="text">&nbsp;<input type="button" value="提交"></td></tr>
+<tr><td>2013-11-03</td><td>4000</td><td>客户3</td><td>3000</td><td><input type="text">&nbsp;<input type="button" value="提交"></td></tr>
+<tr><td>2013-11-04</td><td>1000</td><td>客户4</td><td>1000</td><td><input type="text">&nbsp;<input type="button" value="提交"></td></tr>
+</table>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#payment").hide();
+	$("#pid").hide();
+	
+	$("#search").click(function(){
+		$("#payment").show();
+	});
+	
+	$("#open").click(function(){
+		$("#pid").show();
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border="1">
+<tr><td>媒体名称</td><td>凭证号码</td><td>发票内容</td><td>税率（%）</td><td>成本</td><td>进项</td><td>价税合计金额</td><td>发票日期</td><td>所属月份</td></tr>
+<tr><td>百度</td><td>123456</td><td>广告</td><td>6</td><td>10000</td><td>600</td><td>10600</td><td>2014-01-01</td><td>2014-01</td></tr>
+<tr><td>百度</td><td>654321</td><td>服务</td><td>7</td><td>20000</td><td>1400</td><td>21400</td><td>2014-01-02</td><td>2014-01</td></tr>
+</table>
+<br>
+<table>
+<tr><td>媒体名称</td><td><input type="text"></td><td>付款时间</td><td><input type="text"></td><td>应付款金额<input type="text"></td><td>实付款金额</td><td><input type="text">&nbsp;<input type="button" value="搜索" id="st"></td></tr>
+</table>
+<br>
+<table border="1" id="t1">
+<tr><td><input type="checkbox">全选</td><td>媒体名称</td><td>付款时间</td><td>应付款金额</td><td>实付款金额</td></tr>
+<tr><td><input type="checkbox"></td><td>媒体1</td><td>2014-01-01</td><td>10000</td><td>5000</td></tr>
+<tr><td><input type="checkbox"></td><td>媒体2</td><td>2014-02-01</td><td>20000</td><td>10000</td></tr>
+<tr><td><input type="checkbox"></td><td>媒体3</td><td>2014-03-01</td><td>30000</td><td>15000</td></tr>
+<tr><td colspan="5"><input type="button" id="s2" value="选择"></td></tr>
+</table>
+<br>
+<!--table border="1" id="t2">
+<tr>
+	<td>执行单号</td>
+	<td>客户名</td>
+	<td>供应商</td>
+	<td>执行成本</td>
+	<td>剩余未付款合计</td>
+	<td>已经付款合计</td>
+	<td>返点抵扣数合计</td>
+	<td>员工借款合计</td>
+	<td>收付对冲合计</td>
+	<td>实际付款日期</td>
+	<td>发票号码</td>
+	<td>发票金额</td>
+</tr>
+<tr>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td><select><option >SSS</option></select></td>
+	<td><input type="text" value=""></td>
+</tr>
+<tr>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td><select><option >SSS</option></select></td>
+	<td><input type="text" value=""></td>
+</tr>
+</table-->
+<table border="1" id="t2">
+<tr><td></td><td colspan="24">媒体合同号&nbsp;&nbsp;<input type="text">&nbsp;<input type="button" value="搜索"></td></tr>
+<tr><td><input type="checkbox">全选</td><td>广告主</td><td>合同号</td><td>合同付款额</td><td>合同付款日期</td><td>执行单号</td><td>客户名称</td><td>项目名称</td><td>执行成本</td><td>剩余未付款合计</td><td>已经付款合计</td><td>返点抵扣数合计</td><td>员工借款合计</td><td>收付对冲合计</td><td>实际付款日期</td><td>虚拟返点发票合计</td><td>成本<font color="red">（公式，根据价税合计的输入变化而变化）</font></td><td>进项<font color="red">（公式，根据价税合计的输入变化而变化）</font></td><td>	价税合计<font color="red">（填）</font></td><td>收发票数合计</td><td>收到发票月份 </td><td>发票类型</td><td>发票号</td><td>税率</td><td>已付款未到票</td></tr>
+<tr><td><input type="checkbox"></td><td>广州要玩娱乐网络技术有限公司_AD_4704</td><td>8131227</td><td>55000</td><td>2014/2/25</td><td>13SH002</td><td>客户2</td><td>项目名称2</td><td>0</td><td>0</td><td>20000</td><td>0</td><td>0</td><td>0</td><td>2014-01-01</td><td>0</td><td>2000</td><td>0</td><td><input type="text" value="0"></td><td>0</td><td>2014-01</td><td>广告</td><td>123456</td><td>6%</td><td>0</td></tr>
+<tr><td><input type="checkbox"></td><td>广州要玩娱乐网络技术有限公司_AD_4702</td><td>8131327</td><td>12000</td><td>2014/2/25</td><td>13SH001</td><td>客户1</td><td>项目名称1</td><td>0</td><td>0</td><td>10000<font color="red">可展开</font></td><td>0</td><td>0</td><td>0</td><td>2014-01-01</td><td>0</td><td>1000</td><td>0</td><td><input type="text" value="0"></td><td>0</td><td>2014-01</td><td>广告</td><td>123456</td><td>6%</td><td>0</td></tr>
+<tr><td><input type="checkbox"></td><td>广州要玩娱乐网络技术有限公司_AD_4703</td><td>8341224</td><td>56000</td><td>2014/2/25</td><td>13SH003</td><td>客户3</td><td>项目名称3</td><td>0</td><td>0</td><td>30000</td><td>0</td><td>0</td><td>0</td><td>2014-01-01</td><td>0</td><td>3000</td><td>0</td><td><input type="text" value="0"></td><td>0</td><td>2014-01</td><td>广告</td><td>123456</td><td>6%</td><td>0</td></tr>
+<tr><td></td><td colspan="15">小计：</td><td>XXX</td><td>XXX</td><td>XXX</td><td colspan="6"></td></tr>
+</table>
+<br>
+<table id="t3">
+<tr><td><input type="button" value="提交"></td></tr>
+</table>
+<br>
+选择完付款申请，出现具体执行单分配情况后，可以根据媒体合同号搜索具体执行单分配记录<br>
+优先匹配申请付款的金额，可修改<br>
+勾选完自动默认金额，可修改<br>
+成本、进项、价税合计分别小计，原始和分配的都有
+</body>
+
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#t1").hide();
+	$("#t2").hide();
+	$("#t3").hide();
+	$("#st").click(function(){
+		$("#t1").show();
+	});
+	$("#s2").click(function(){
+		$("#t2").show();
+		$("#t3").show();
+	});
+});
+</script>
+</html>

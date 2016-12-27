@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>媒体</td><td>媒体1</td></tr>
+<tr><td>媒体支付方式</td><td>付现</td></tr>
+<tr><td>媒体返点比例</td><td>6%</td></tr>
+<tr><td>关联执行单</td><td></td></tr>
+<tr id="tr1"><td></td><td>执行单号：13SH001&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;媒体已付款金额：1000&nbsp;&nbsp;媒体已到票金额：1000&nbsp;&nbsp;已开返点发票金额：1000&nbsp;&nbsp;本次开返点发票金额：100<br>执行单号：13SH002&nbsp;&nbsp;客户名：客户1&nbsp;&nbsp;项目名称：项目1&nbsp;&nbsp;媒体执行成本：1000&nbsp;&nbsp;媒体已付款金额：1000&nbsp;&nbsp;媒体已到票金额：1000&nbsp;&nbsp;已开返点发票金额：1000&nbsp;&nbsp;本次开返点发票金额：200</td></tr>
+<tr><td>开票总金额</td><td id="vv">300</td></tr>
+<tr><td>开票类型</td><td>普票</td></tr>
+<tr><td>开票抬头</td><td>ddddddd</td></tr>
+<tr><td>开票内容</td><td>fffffff</td></tr>
+<tr><td>备注</td><td>ggggggg</td></tr>
+</table>
+<br>
+
+<table>
+<tr><td>执行单号</td><td><input type="text"></td><td>客户名称</td><td><input type="text"></td><td>媒体名称</td><td><input type="text"></td><td>付款时间</td><td><input type="text"></td><td>应付款金额<input type="text"></td><td>实付款金额</td><td><input type="text">&nbsp;<input type="button" value="搜索" id="st"></td></tr>
+</table>
+<br>
+<table border="1" id="t1">
+<tr><td><input type="checkbox">全选</td><td>媒体名称</td><td>付款时间</td><td>应付款金额</td><td>实付款金额</td><td>返点抵扣金额</td><td></td></tr>
+<tr><td><input type="checkbox"></td><td>媒体1</td><td>2014-01-01</td><td>10000</td><td>5000</td><td>5000</td><td><input type="button" id="s2" value="查看"></td></tr>
+<tr><td><input type="checkbox"></td><td>媒体2</td><td>2014-02-01</td><td>20000</td><td>10000</td><td>5000</td><td><input type="button"  value="查看"></td></tr>
+<tr><td><input type="checkbox"></td><td>媒体3</td><td>2014-03-01</td><td>30000</td><td>15000</td><td>5000</td><td><input type="button" value="查看"></td></tr>
+</table>
+<br>
+<table id="t3">
+<tr><td><input type="button" value="转已开票"></td></tr>
+</table>
+<br>
+<table border="1" id="t2">
+<tr><td>执行单号</td><td>客户名称</td><td>项目名称</td><td>收到真实发票<font color="red">(上面的选的媒体，如果到票，显示到票里的媒体名称)</font></td><td>虚拟发票</td><td>已付款未到票情况<font color="red">(所选媒体)</font></td><td>执行成本<font color="red">(所选媒体)</font></td><td>已支付情况<font color="red">(所选媒体不包括返点支付数)</font></td><td>已执行未付款情况<font color="red">(所选媒体)</font></td><td>返点抵扣</td><td>返点已开票</td><td>返点未开票</td><td>返点无需开票</td><td></td></tr>
+<tr><td>13SH002</td><td>客户2</td><td>项目名称2</td><td>0</td><td>0</td><td>20000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2000</td><td>0</td><td><input type="text"></td></tr>
+<tr><td>13SH001</td><td>客户1</td><td>项目名称1</td><td>0</td><td>0</td><td>10000<font color="red">可展开</font></td><td>0<font color="red">可展开，包含实际到票和虚拟发票</font></td><td>0</td><td>0</td><td>5000<font color="red">可展开,并且是各种支付的方式（保证金、返点等）</font></td><td>0</td><td>1000</td><td>0</td><td><input type="text"></td></tr>
+<tr><td>13SH003</td><td>客户3</td><td>项目名称3</td><td>0</td><td>0</td><td>30000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3000</td><td>0</td><td><input type="text"></td></tr>
+</table>
+
+<br>
+<font color="red">个人只发起，由linda分配占坑，不修改返点，只关联到付款申请<br>搜索关联执行单、关联客户、关联付款申请<br>结果列表显示现付金额、待分配返点、已开票返点、收到真实发票、虚拟发票、已付款未到票金额</font>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#t1").hide();
+		$("#t2").hide();
+		$("#t3").hide();
+		$("#st").click(function(){
+			$("#t1").show();
+			$("#t3").show();
+		});
+		$("#s2").click(function(){
+			$("#t2").show();
+			
+		});
+	});
+</script>
+</body>
+</html>

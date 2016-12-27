@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>起始</td><td><input type="text"></td><td>终止</td><td><input type="text"></td><td>关键字</td><td><input type="text">&nbsp;<input type="button" value="搜索">&nbsp;<input type="button" value="分配执行单" id="sub">&nbsp;<input type="button" value="根据付款申请记录分配发票" id="sub1"></td></tr>
+</table>
+<table border="1">
+<tr><td>&nbsp;</td><td>媒体名称</td><td>凭证号码</td><td>发票内容</td><td>税率（%）</td><td>成本</td><td>进项</td><td>价税合计金额</td><td>发票日期</td><td>所属月份</td><td>操作</td></tr>
+<tr><td><input type="checkbox"></td><td>百度</td><td>123456</td><td>广告</td><td>6</td><td>10000</td><td>600</td><td>10600</td><td>2014-01-01</td><td>2014-01</td><td><a href="shoupiao_source_edit.html">修改</a></td></tr>
+<tr><td><input type="checkbox"></td><td>360</td><td>654321</td><td>服务</td><td>7</td><td>20000</td><td>1400</td><td>21400</td><td>2014-01-02</td><td>2014-01</td><td><a href="shoupiao_source_edit.html">修改</a></td></tr>
+<tr><td><input type="checkbox"></td><td>新浪</td><td>13579</td><td>广告</td><td>8</td><td>30000</td><td>2400</td><td>32400</td><td>2014-01-03</td><td>2014-01</td><td><a href="shoupiao_source_edit.html">修改</a></td></tr>
+</table>
+显示是广告还是服务
+还要根据付款申请分配发票
+<br>
+如果发票号码和价税合计金额一致就不重新导入数据，如果其他字段有不同的话跳出人为判断是否覆盖<br>
+只可以同一个媒体的发票在同一次分配
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#sub").click(function(){
+		location.href="shoupiao.html";
+	});
+	
+	$("#sub1").click(function(){
+		location.href="fukuan_shoupiao.html";
+	});
+});
+</script>
+</body>
+</html>

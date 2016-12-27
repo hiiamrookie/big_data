@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><td>媒体合同号</td><td><input type="text"></td><td>执行单号</td><td><input type="text"></td><td>客户名称</td><td><input type="text"></td><td>媒体名称</td><td><input type="text"></td><td><input type="button" value="搜索" id="search"></td></tr>
+</table>
+<br>
+<table id="t1" border="1">
+<tr><td>&nbsp;</td><td>执行单号</td><td>客户名称</td><td>媒体名称</td><td>执行成本</td><td>收票情况</td><td>付款情况</td><td>已付款未到票</td><td>最后付款时间</td></tr>
+<tr><td><input type="checkbox"></td><td>14SH0001</td><td>客户1</td><td>媒体名称1</td><td>执行成本</td><td>0</td><td>0</td><td>0</td><td><a href="#">2014-01-01</a></td></tr>
+<tr><td><input type="checkbox"></td><td>14SH0002</td><td>客户2</td><td>媒体名称2</td><td>执行成本</td><td>0</td><td>0</td><td>0</td><td><a href="#">2014-01-02</a></td></tr>
+<tr><td><input type="checkbox"></td><td>14SH0003</td><td>客户3</td><td>媒体名称3</td><td>执行成本</td><td>0</td><td>0</td><td>0</td><td><a href="#">2014-01-01</a></td></tr>
+<tr><td colspan="9"><input type="button" value="确定" id="qd"></td></tr>
+</table>
+<br>
+<table border="1" id="t2">
+<tr>
+	<td>执行单号</td>
+	<td>客户名</td>
+	<td>项目名称</td>
+	<td>客户执行收入</td>
+	<td>已收客户款合计金额</td>
+	<td>已开票合计金额</td>
+	<td>已执行未到客户款金额</td>
+	<td>供应商</td>
+	<td>媒体执行成本</td>
+	<td>已执行未付成本金额</td>
+	<td>本次申请金额</td>
+	<td>已付成本合计金额（银行支付+个人借款+收付对冲）</td>
+	<td>返点抵扣</td>
+	<td>待开票返点合计</td>
+	<td>实际付款日期</td>
+	<td>虚拟发票合计金额</td>
+	<td>真实发票到票合计金额</td>
+	<td>已付款未到票金额</td>
+</tr>
+<tr>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	
+		<td><input type="text" value="XXX"></td>
+		<td>XXX</td>
+	<td>XXX</td>
+
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+</tr>
+<tr>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td><input type="text" value="XXX"></td>
+		<td>XXX</td>
+	<td>XXX</td>
+
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+</tr>
+<!--tr>
+	<td>小计</td>
+	<td colspan="10">&nbsp;</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td>XXX</td>
+	<td colspan="6">&nbsp;</td>
+</tr-->
+</table>
+<br>
+<table id="buttons">
+<tr><td><input type="button" value="暂存"></td><td><input type="button" value="提交"></td><td><input type="button" value="修改"></td></tr>
+</table>
+<script src="jquery-1.8.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#t1").hide();
+	$("#t2").hide();
+	$("#re").hide();
+	$("#buttons").hide();
+	$("#search").click(function(){
+		$("#t1").show();
+	});
+	$("#qd").click(function(){
+		$("#t2").show();
+		$("#buttons").show();
+	});
+});
+</script>
+</body>
+</html>
