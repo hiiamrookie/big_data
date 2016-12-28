@@ -820,9 +820,10 @@ class User extends Dao_Impl {
 						case 'own' :
 							$left_str .= '<script>var menu_o = ' . $step . ';</script><h2>个人信息管理</h2>';
 							break;
-/*						case 'setup' :
+						case 'setup' :
 							$left_str .= '<script>var menu_s = ' . $step . ';</script><h2>系统设置</h2>';
 							break;
+						/*
 						case 'booking' :
 							$left_str .= '<script>var menu_b = ' . $step . ';</script><h2>会议室预定</h2>';
 							break;
