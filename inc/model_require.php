@@ -98,3 +98,4 @@ require (dirname ( dirname ( __FILE__ ) ) . '/application/models/executive_close
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/finance_settle_account.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/supplier_short.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/setting_rebate.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/application/models/report_data.php');

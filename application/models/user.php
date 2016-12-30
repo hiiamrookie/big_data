@@ -676,6 +676,10 @@ class User extends Dao_Impl {
 						'统计分析' 
 				) );
 			}
+
+			//数据报表
+			$result ['report'] = $GLOBALS ['user_left_report'];
+				
 			if (! in_array ( $this->username, $GLOBALS ['manager_finance_permission'] ) && intval ( $this->belong_dep ) !== 2) {
 				$finance = Array_Util::my_remove_array_other_value ( $finance, array (
 						'收票管理',
@@ -799,6 +803,7 @@ class User extends Dao_Impl {
 	}
 	public function get_left_html() {
 		$left = $this->_get_left_data ();
+		/*var_dump($left);*/
 		$left_str = '';
 		if (! empty ( $left )) {
 			$step = 0;
@@ -820,11 +825,13 @@ class User extends Dao_Impl {
 						case 'own' :
 							$left_str .= '<script>var menu_o = ' . $step . ';</script><h2>个人信息管理</h2>';
 							break;
+						case 'report' :
+							$left_str .= '<script>var menu_r = ' . $step . ';</script><h2>数据报表</h2>';
+							break;
 						case 'setup' :
 							$left_str .= '<script>var menu_s = ' . $step . ';</script><h2>系统设置</h2>';
 							break;
-						/*
-						case 'booking' :
+						/*case 'booking' :
 							$left_str .= '<script>var menu_b = ' . $step . ';</script><h2>会议室预定</h2>';
 							break;
 						case 'tec' :

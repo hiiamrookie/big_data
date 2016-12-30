@@ -3,10 +3,9 @@
 /**
  * 本机测试
  */
-/*define('BASE_URL', 'http://testall.nimads.com/big_data/');
-*/
+error_reporting(E_ALL ^ E_WARNING ^ E_NOTICE);
+define('BASE_URL', 'http://testall.nimads.com/big_data/');
 
-define('BASE_URL', 'http://localhost/oa_test/');
 /**
  * 测试服务器
  */
@@ -32,7 +31,7 @@ define('DB_HOST', 'localhost');*/
  */
 define ( 'DB_USER', 'root' );
 define ( 'DB_PASSWORD', '' );
-define ( 'DB_NAME', 'oa_test' );
+define ( 'DB_NAME', 'big_data' );
 define ( 'DB_HOST', 'localhost' );
 
 /**
@@ -161,6 +160,9 @@ $user_left_finance = array(//'finance^payment^apply' => '付款申请',
 		'finance^meida_short'=>'媒体简称设置',
 		'finance^setting_rebate'=>'返点比例设置'
 );
+
+//数据报表
+$user_left_report = array('report^data' => '数据报表');
 
 //媒体数据管理
 $user_left_media_data = array('upload^uploadfile' => '排期上传测试',
