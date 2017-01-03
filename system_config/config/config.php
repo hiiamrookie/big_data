@@ -141,7 +141,7 @@ $user_left_finance = array(//'finance^payment^apply' => '付款申请',
 		//'finance^receiveinvoice^receiveinvoicelist' => '收票管理',
 		//'finance^receivables^receivableslist' => '收款管理',
 		'finance^invoice^invoicelist' => '开票管理', //	'finance^admin'=>'财务审核',
-		'finance^tjall' => '统计分析',
+		//'finance^tjall' => '统计分析',
 		//'finance^receivables^receivables_normal_search' => '收款查询',
 		//'finance^payment^media_apply' => '媒体批量付款申请',
 		//'finance^payment^media_manager' => '媒体批量付款管理',
@@ -151,7 +151,7 @@ $user_left_finance = array(//'finance^payment^apply' => '付款申请',
 		'finance^report' => '财务大表',
 		//'finance^custominfosearch'=>'财务信息查询',
 		//'finance^hedge'=>'收付对冲',
-		'finance^nim_bankinfo' => '银行信息管理',
+		//'finance^nim_bankinfo' => '银行信息管理',
 		//'finance^refund^apply'=>'退款申请',
 		//'finance^refund^manager'=>'退款管理',
 		//'finance^rebate^manager'=>'返点管理',
@@ -162,7 +162,7 @@ $user_left_finance = array(//'finance^payment^apply' => '付款申请',
 );
 
 //数据报表
-$user_left_report = array('report^data' => '数据报表');
+$user_left_report = array('report^data' => '数据报表','report^import'=>'数据导入导出');
 
 //媒体数据管理
 $user_left_media_data = array('upload^uploadfile' => '排期上传测试',

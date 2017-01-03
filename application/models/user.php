@@ -669,6 +669,9 @@ class User extends Dao_Impl {
 			}
 			$result ['contact'] = $contact;
 			
+			//数据管理
+			$result ['report'] = $GLOBALS ['user_left_report'];
+			
 			// 财务
 			$finance = $GLOBALS ['user_left_finance'];
 			if (! in_array ( $this->username, $GLOBALS ['manager_finance_tj_permission'] )) {
@@ -676,9 +679,6 @@ class User extends Dao_Impl {
 						'统计分析' 
 				) );
 			}
-
-			//数据报表
-			$result ['report'] = $GLOBALS ['user_left_report'];
 				
 			if (! in_array ( $this->username, $GLOBALS ['manager_finance_permission'] ) && intval ( $this->belong_dep ) !== 2) {
 				$finance = Array_Util::my_remove_array_other_value ( $finance, array (
@@ -749,14 +749,14 @@ class User extends Dao_Impl {
 			$result ['finance'] = $finance;
 			
 			// 媒体数据
-			$media_data = $GLOBALS ['user_left_media_data'];
-			if (! in_array ( $this->username, $GLOBALS ['manager_media_data_permission'] ) && intval ( $this->belong_dep ) !== 4) {
-				$media_data = Array_Util::my_remove_array_other_value ( $media_data, array (
-						'排期上传测试',
-						'媒体库管理' 
-				) );
-			}
-			$result ['media_data'] = $media_data;
+			//$media_data = $GLOBALS ['user_left_media_data'];
+			//if (! in_array ( $this->username, $GLOBALS ['manager_media_data_permission'] ) && intval ( $this->belong_dep ) !== 4) {
+			//	$media_data = Array_Util::my_remove_array_other_value ( $media_data, array (
+			//			'排期上传测试',
+			//			'媒体库管理' 
+			//	) );
+			//}
+			//$result ['media_data'] = $media_data;
 			
 			// 个人信息
 			$result ['own'] = $GLOBALS ['user_left_own'];
@@ -775,17 +775,17 @@ class User extends Dao_Impl {
 			}
 			
 			// 会议室预定
-			$result ['booking'] = $GLOBALS ['user_left_booking'];
+			//$result ['booking'] = $GLOBALS ['user_left_booking'];
 			
 			// 技术部项目记录
-			if (intval ( $this->belong_dep ) === 6) {
-				$result ['tec'] = $GLOBALS ['user_left_tect_project'];
-			}
+			//if (intval ( $this->belong_dep ) === 6) {
+			//	$result ['tec'] = $GLOBALS ['user_left_tect_project'];
+			//}
 			
 			// 外包流程管理
-			if (in_array ( $this->username, $GLOBALS ['manager_outsourcing_process_permission'], TRUE ) || $this->has_outsourcing_audit_tab) {
-				$result ['outsourcing'] = $GLOBALS ['outsourcing_process'];
-			}
+			//if (in_array ( $this->username, $GLOBALS ['manager_outsourcing_process_permission'], TRUE ) || $this->has_outsourcing_audit_tab) {
+			//	$result ['outsourcing'] = $GLOBALS ['outsourcing_process'];
+			//}
 		}
 		
 		return $result;
@@ -817,7 +817,7 @@ class User extends Dao_Impl {
 							$left_str .= '<script>var menu_c = ' . $step . ';</script><h2>合同管理</h2>';
 							break;
 						case 'finance' :
-							$left_str .= '<script>var menu_f = ' . $step . ';</script><h2>财务管理 (测试)</h2>';
+							$left_str .= '<script>var menu_f = ' . $step . ';</script><h2>财务管理</h2>';
 							break;
 /*						case 'media_data' :
 							$left_str .= '<script>var menu_m = ' . $step . ';</script><h2>媒体数据管理 (测试)</h2>';
@@ -826,7 +826,7 @@ class User extends Dao_Impl {
 							$left_str .= '<script>var menu_o = ' . $step . ';</script><h2>个人信息管理</h2>';
 							break;
 						case 'report' :
-							$left_str .= '<script>var menu_r = ' . $step . ';</script><h2>数据报表</h2>';
+							$left_str .= '<script>var menu_r = ' . $step . ';</script><h2>数据管理</h2>';
 							break;
 						case 'setup' :
 							$left_str .= '<script>var menu_s = ' . $step . ';</script><h2>系统设置</h2>';

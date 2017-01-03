@@ -76,10 +76,12 @@ class Nim_BankInfo extends User {
 		$banks = self::getInstance();
 		if ($banks !== NULL) {
 			$banks = $banks['bankname'];
-			foreach ($banks as $bank) {
-				$s .= '<option value="' . $bank . '" '
-						. ($bankname !== NULL && $bankname === $bank ? 'selected'
-								: '') . '>' . $bank . '</option>';
+			if(is_array($banks)){
+				foreach ($banks as $bank) {
+					$s .= '<option value="' . $bank . '" '
+							. ($bankname !== NULL && $bankname === $bank ? 'selected'
+									: '') . '>' . $bank . '</option>';
+				}
 			}
 		}
 		return $s;

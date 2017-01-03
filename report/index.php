@@ -15,6 +15,9 @@ case 'rebate':
 case 'profit':
 	profit();
 	break;
+case 'import':
+	import();
+	break;
 default:
 	User::no_permission();
 }
@@ -43,4 +46,16 @@ function profit() {
 	unset($executive_list);
 }
 
+//数据导入
+function import(){
+	$data_ie = new Data_Import_Export();
+	echo $data_ie->get_data_import_html();
+	unset($data_ie);
+}
+
+function export(){
+	$data_ie = new Data_Import_Export();
+	echo $data_ie->get_data_export_html();
+	unset($data_ie);
+}
 
