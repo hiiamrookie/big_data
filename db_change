@@ -1,0 +1,22 @@
+CREATE TABLE `data_import_own` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `website` varchar(100) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `mobile` varchar(11) DEFAULT NULL,
+  `sex` tinyint(1) DEFAULT '0' COMMENT '0：女；1：男',
+  PRIMARY KEY (`id`),
+  KEY `index1` (`website`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `data_import_third` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `website` varchar(100) NOT NULL,
+  `pv` int(11) DEFAULT NULL,
+  `uv` int(11) DEFAULT NULL,
+  `impressions` int(11) DEFAULT NULL,
+  `click` int(11) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `addtime` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index1` (`website`,`date`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

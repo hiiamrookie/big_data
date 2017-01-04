@@ -61,6 +61,7 @@ function third_data_import() {
 	if($upload_result['status'] === 'error'){
 		return $upload_result;
 	}
+	
 	$message = $upload_result['message'];
 	$data = new Data_Import_Export ();
 	return $data->third_data_import ( UPLOAD_FILE_PATH . $message->file_name );
