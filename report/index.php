@@ -15,8 +15,11 @@ case 'rebate':
 case 'profit':
 	profit();
 	break;
-case 'import':
-	import();
+case 'own_data_import':
+	own_data_import();
+	break;
+case 'third_data_import':
+	third_data_import();
 	break;
 case 'export':
 	export();
@@ -50,9 +53,15 @@ function profit() {
 }
 
 //数据导入
-function import(){
+function own_data_import(){
 	$data_ie = new Data_Import_Export();
-	echo $data_ie->get_data_import_html();
+	echo $data_ie->get_own_data_import_html();
+	unset($data_ie);
+}
+
+function third_data_import(){
+	$data_ie = new Data_Import_Export();
+	echo $data_ie->get_third_data_import_html();
 	unset($data_ie);
 }
 

@@ -18,7 +18,8 @@
 		<div class="crumbs">数据管理系统</div>
 		<div class="tab" id="tab">
 			<ul>
-				<li class="on"><a>数据导入</a></li>
+				<li><a href="[BASE_URL]report/?o=own_data_import">广告主自有数据导入</a></li>
+				<li class="on"><a>第三方数据导入</a></li>
 				<li><a href="[BASE_URL]report/?o=export">数据导出</a></li>
 			</ul>
 		</div>
@@ -29,7 +30,7 @@
                     <td >
                         &nbsp;&nbsp;选择文件：
                         <input type="file" name="upfile" id="upfile" class="validate[required]"/>
-                         &nbsp;&nbsp;<input type="submit" value="上 传" class="btn"/>&nbsp;&nbsp;<input type="button" value="&nbsp;下载模板&nbsp;" id="dt" class="longbtn"/>&nbsp;&nbsp;<font color="red">*只能上传 [VALIDATEFILE] 类型的文件，且单个文件最多 [MAXFILESIZE]M</font><input type="hidden" name="vcode" id="vcode" value="[VCODE]"/><input type="hidden" name="action" value="data_import"/>
+                         &nbsp;&nbsp;<input type="submit" value="上 传" class="btn"/>&nbsp;&nbsp;<input type="button" value="&nbsp;下载模板&nbsp;" id="dt" class="longbtn"/>&nbsp;&nbsp;<font color="red">*只能上传 [VALIDATEFILE] 类型的文件，且单个文件最多 [MAXFILESIZE]M</font><input type="hidden" name="vcode" id="vcode" value="[VCODE]"/><input type="hidden" name="action" value="third_data_import"/>
                     </td>
                 </tr>
             </table>
@@ -59,7 +60,7 @@ $(document).ready(function() {
 	});
 
 	$("#dt").click(function(){
-		location.href= base_url + "download_template.php?type=data_import";
+		location.href= base_url + "download_template.php?type=third_data_import";
 	});
 });
 </script>

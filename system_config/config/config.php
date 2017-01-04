@@ -162,7 +162,7 @@ $user_left_finance = array(//'finance^payment^apply' => '付款申请',
 );
 
 //数据报表
-$user_left_report = array('report^data' => '数据报表','report^import'=>'数据导入导出');
+$user_left_report = array('report^data' => '数据报表','report^own_data_import'=>'数据导入导出');
 
 //媒体数据管理
 $user_left_media_data = array('upload^uploadfile' => '排期上传测试',

@@ -35,8 +35,14 @@ case 'payment_media_statement':
 case 'payment_media_deposit_statement':
 	$filename = TEMPLATE_PATH . 'payment_deposit_media_statement_template.xlsx';
 	break;
-case 'data_import':
+case 'media_schedule':
 	$filename = TEMPLATE_PATH . 'media_schedule_template.xlsx';
+	break;
+case 'own_data_import':
+	$filename = TEMPLATE_PATH . 'own_data_import.xlsx';
+	break;
+case 'third_data_import':
+	$filename = TEMPLATE_PATH . 'third_data_import.xlsx';
 	break;
 }
 
