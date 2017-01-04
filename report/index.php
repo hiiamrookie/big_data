@@ -18,6 +18,9 @@ case 'profit':
 case 'import':
 	import();
 	break;
+case 'export':
+	export();
+	break;
 default:
 	User::no_permission();
 }
