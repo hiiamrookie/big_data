@@ -23,15 +23,24 @@
 				<li class="on"><a>数据导出</a></li>
 			</ul>
 		</div>
-        <div class="listform fix">
+        <!--div class="listform fix"-->
+        <div class="publicform fix">
          <form id="formID" method="post" action="[BASE_URL]report/action.php" target="post_frame">
-        	<table width="100%" class="tabin">
-                <tr>
-                    <td >
-                    	&nbsp;&nbsp;<input type="submit" value="导出" class="btn"/><input type="hidden" name="vcode" id="vcode" value="[VCODE]"/><input type="hidden" name="action" value="data_export"/>
-                    </td>
-                </tr>
-            </table>
+	         <table width="100%" cellpadding="0" cellspacing="0" border="0" class="sbd1">
+	         [TABLE]
+	         	<tr>
+	         		<td style="font-weight:bold;width:150px;">数据项</td>
+	         		<td>
+	         			<input type="checkbox" name="items[]" value="pv" checked="checked">&nbsp;PV&nbsp;&nbsp;
+	         			<input type="checkbox" name="items[]" value="uv" checked="checked">&nbsp;UV&nbsp;&nbsp;
+	         			<input type="checkbox" name="items[]" value="impressions" checked="checked">&nbsp;Impressions&nbsp;&nbsp;
+	         			<input type="checkbox" name="items[]" value="click" checked="checked">&nbsp;Click&nbsp;&nbsp;
+	         			<input type="checkbox" name="items[]" value="ctr" checked="checked">&nbsp;CTR
+	         		</td>
+	         	<tr/>
+	         </table>
+            <div class="btn_div"><input type="hidden" name="vcode" value="[VCODE]"/><input type="hidden" name="action" value="data_export"/><input type="submit" value="导 出" class="btn_sub" id="submit" />
+			</div>
       		</form>
       		<iframe name="post_frame" id="post_frame" style="display: none;"></iframe>
         </div>

@@ -17,8 +17,8 @@ switch (strval ( Security_Util::my_post ( 'action' ) )) {
 	case 'third_data_import' :
 		$result = third_data_import ();
 		break;
-	case 'data_export':
-		$result = data_export();
+	case 'data_export' :
+		$result = data_export ();
 		break;
 }
 
@@ -50,25 +50,28 @@ function _upload() {
 	);
 }
 function own_data_import() {
-	$upload_result = _upload();
-	if($upload_result['status'] === 'error'){
+	$upload_result = _upload ();
+	if ($upload_result ['status'] === 'error') {
 		return $upload_result;
 	}
-	$message = $upload_result['message'];
-		
+	$message = $upload_result ['message'];
+	
 	$data = new Data_Import_Export ();
 	return $data->own_data_import ( UPLOAD_FILE_PATH . $message->file_name );
 }
 function third_data_import() {
-	$upload_result = _upload();
-	if($upload_result['status'] === 'error'){
+	$upload_result = _upload ();
+	if ($upload_result ['status'] === 'error') {
 		return $upload_result;
 	}
 	
-	$message = $upload_result['message'];
+	$message = $upload_result ['message'];
 	$data = new Data_Import_Export ();
 	return $data->third_data_import ( UPLOAD_FILE_PATH . $message->file_name );
 }
-function data_export(){
-	
+function data_export() {
+	$items = Security_Util::my_checkbox_post ( 'items' );
+	$website = Security_Util::my_post ( 'website' );
+	$data = new Data_Import_Export ();
+	return $data->data_export ( $website, $items );
 }
