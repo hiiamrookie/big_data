@@ -17,6 +17,9 @@ switch (strval ( Security_Util::my_post ( 'action' ) )) {
 	case 'third_data_import' :
 		$result = third_data_import ();
 		break;
+	case 'data_export':
+		$result = data_export();
+		break;
 }
 
 if ($result !== FALSE) {
@@ -65,4 +68,7 @@ function third_data_import() {
 	$message = $upload_result['message'];
 	$data = new Data_Import_Export ();
 	return $data->third_data_import ( UPLOAD_FILE_PATH . $message->file_name );
+}
+function data_export(){
+	
 }
