@@ -184,14 +184,14 @@ class Executive_List extends User {
 		if (!empty($datas)) {
 			foreach ($datas as $data) {
 				$result .= '<tr><td>'
-						. self::_get_executive_type(intval($data['isalter']))
+						. self::get_executive_type(intval($data['isalter']))
 						. '</td><td>' . $data['pid'] . '</td><td>'
 						. $data['cusname'] . '</td><td>'
-						. self::_get_executive_name_link(intval($data['id']),
+						. self::get_executive_name_link(intval($data['id']),
 								$data['pid'], $data['name']) . '</td><td>'
-						. self::_get_executive_amount($data['amount'])
+						. self::get_executive_amount($data['amount'])
 						. '</td><td>'
-						. self::_get_executive_cost($data['allcost'],
+						. self::get_executive_cost($data['allcost'],
 								intval($data['isyg'])) . '</td><td>'
 						. $this
 								->_get_executive_status(intval($data['isok']),
@@ -217,7 +217,7 @@ class Executive_List extends User {
 		return $result;
 	}
 
-	private static function _get_executive_type($isalter) {
+	public static function get_executive_type($isalter) {
 		if ($isalter === 0) {
 			return '<font color="#66cc00">【新】</font>';
 		} else {
@@ -225,17 +225,17 @@ class Executive_List extends User {
 		}
 	}
 
-	private static function _get_executive_name_link($id, $pid, $name) {
+	public static function get_executive_name_link($id, $pid, $name) {
 		return '<a href="' . BASE_URL . 'executive/?o=info&id=' . $id . '&pid='
 				. $pid . '" target="_blank"><b>' . $name . '</b></a>';
 	}
 
-	private static function _get_executive_amount($amount) {
+	public static function get_executive_amount($amount) {
 		return '<font color="#ff9933"><b>'
 				. Format_Util::my_money_format('%.2n', $amount) . '</b></font>';
 	}
 
-	private static function _get_executive_cost($cost, $isyg) {
+	public static function get_executive_cost($cost, $isyg) {
 		return '<font color="' . ($isyg > 0 ? '#0000FF' : '#ff9933') . '"><b>'
 				. Format_Util::my_money_format('%.2n', $cost) . '</b></font>';
 	}
@@ -318,7 +318,7 @@ class Executive_List extends User {
 				$param .= '&gd=' . $this->gd;
 			}
 		}
-		return '<a href="' . BASE_URL . 'executive?o='
+		return '<a href="' . BASE_URL . 'executive/?o='
 				. ($this->is_check ? 'alllist'
 						: ($this->is_manager ? 'manage' : 'mylist')) . $param
 				. '">' . ($is_prev ? '上一页' : '下一页') . '</a>';

@@ -20,3 +20,12 @@ CREATE TABLE `data_import_third` (
   PRIMARY KEY (`id`),
   KEY `index1` (`website`,`date`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `executive_media_schedule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pid` char(100) NOT NULL,
+  `media_schedule_filename` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unikey1` (`pid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

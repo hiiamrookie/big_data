@@ -4648,7 +4648,8 @@ ORDER BY a.paycost_id,a.id,a.ym' ); // ORDER BY b.supplier_name,c.category_name,
 		if (! empty ( $newsupport )) {
 			$_tmps = explode ( '|', $newsupport );
 			foreach ( $_tmps as $_tmp ) {
-				$_newsupport [] = intval ( reset ( explode ( '^', $_tmp ) ) );
+				$_tmp = explode ( '^', $_tmp );
+				$_newsupport [] = intval ( reset ( $_tmp ) );
 			}
 		}
 		

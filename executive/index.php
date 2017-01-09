@@ -54,6 +54,12 @@ case 'cy':
 case 'getpidname_bytec':
 	getpidname_bytec();
 	break;
+case 'media_schedule':
+	media_schedule();
+	break;
+case 'upload_media_schedule':
+	upload_media_schedule();
+	break;
 default:
 	User::no_permission();
 }
@@ -81,6 +87,24 @@ function executive_mylist() {
 					'search' => Security_Util::my_get('search')));
 	echo $executive_list->get_executive_mylist_html();
 	unset($executive_list);
+}
+
+function media_schedule(){
+	$executive_list = new Executive_Media_Schedule(
+			array(
+					'page' => intval(Security_Util::my_get('page')) === 0 ? 1
+					: intval(Security_Util::my_get('page')),
+					'starttime' => Security_Util::my_get('starttime'),
+					'endtime' => Security_Util::my_get('endtime'),
+					'search' => Security_Util::my_get('search')));
+					echo $executive_list->get_executive_mylist_media_schedule_html();
+					unset($executive_list);
+}
+
+function upload_media_schedule(){
+	$ems = new Executive_Media_Schedule(array('pid'=>Security_Util::my_get('pid')));
+	echo $ems->get_upload_media_schedule_html();
+	unset($ems);
 }
 
 function executive_info() {
