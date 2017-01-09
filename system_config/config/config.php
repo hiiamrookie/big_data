@@ -3,7 +3,6 @@
 /**
  * 本机测试
  */
-error_reporting(E_ALL ^ E_WARNING ^ E_NOTICE);
 define('BASE_URL', 'http://testall.nimads.com/big_data/');
 
 /**
@@ -121,7 +120,7 @@ $finanace_hedge_permission = array('jesse','linda','alex.hu','yuan.zhou','betty'
 
 //执行单管理菜单
 $user_left_executive = array('executive^add' => '新建执行单',
-		'executive^mylist' => '我的执行单', 'executive^alllist' => '执行单查阅',
+		'executive^mylist' => '我的执行单', 'executive^media_schedule'=>'媒体排期表','executive^alllist' => '执行单查阅',
 		'executive^manage' => '执行单管理');
 
 //合同管理
@@ -178,7 +177,9 @@ $user_left_setup = array('hr^userlist' => '账户编辑', 'hr^companylist' => '�
 		'system^permissionlist' => '模块角色权限编辑',
 		'system^deppermissionlist' => '部门角色权限编辑',
 		'manage^processlist' => '流程编辑', 'manage^depprocesslist' => '部门內部流程编辑',
-		'manage^customerlist' => '系统客户编辑');
+		//'manage^customerlist' => '系统客户编辑'
+		
+);
 
 //外包流程管理
 //$outsourcing_process = array('outsourcing^addtype'=>'新建执行单外包类型','outsourcing^addprocess'=>'新建执行单外包审核流程','outsourcing^auditoutsourcinglists'=>'审核执行单外包列表');
