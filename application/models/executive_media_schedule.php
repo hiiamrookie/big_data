@@ -94,7 +94,7 @@ class Executive_Media_Schedule extends User {
 		return empty ( $pid_schedule ) ? '<font color="#ff6600"><b>未上传</b></font>' : '<font color="#66cc00"><b>已上传</b></font>';
 	}
 	private static function _get_action($pid, $pid_schedule) {
-		return empty ( $pid_schedule ) ? '<a href="' . BASE_URL . 'executive/?o=upload_media_schedule&pid=' . $pid . '">上传</a>' : '查看';
+		return '<a href="' . BASE_URL . 'executive/?o=upload_media_schedule&pid=' . $pid . '">' . (empty ( $pid_schedule ) ? '上传' : '查看') . '</a>';
 	}
 	private function _get_executive_counts() {
 		return $this->page . '	/' . $this->page_count . ' 页 &nbsp;&nbsp;';
@@ -306,12 +306,22 @@ class Executive_Media_Schedule extends User {
 						
 						$budget_sum = 0;
 						$budget_str = array ();
+						$budget_update_str = array ();
 						for($y = 9; $y < 33; $y ++) {
 							$budget_str [] = empty ( $infos [$i] [$y] ) ? 0 : $infos [$i] [$y];
+							$budget_update_str [] = 'budget_' . ($y - 9) . '=' . (empty ( $infos [$i] [$y] ) ? 0 : $infos [$i] [$y]);
 							$budget_sum += $infos [$i] [$y];
 						}
-						$result = $this->db->query ( 'INSERT INTO executive_media_schedule_content(dsp_platform,pid,dsp_order,dsp_adv,dsp_creative,dsp_website,dsp_industry_1,dsp_industry_2,schedule_date,' . implode ( ',', $budget ) . ',budget_sum,addtime,adduser) 
+						$id = $this->db->get_var ( 'SELECT id FROM executive_media_schedule_content WHERE dsp_platform="' . $infos [$i] [0] . '" AND pid="' . $pid . '" AND dsp_order="' . $infos [$i] [2] . '" AND dsp_adv="' . $infos [$i] [3] . '" AND dsp_creative="' . $infos [$i] [4] . '" AND dsp_website="' . $url . '" AND dsp_industry_1="' . $infos [$i] [6] . '" AND dsp_industry_2="' . $infos [$i] [7] . '" AND schedule_date="' . date ( 'Y-m-d', PHPExcel_Shared_Date::ExcelToPHP ( $infos [$i] [8] ) ) . '"' );
+						if ($id > 0) {
+							// 更新
+							$result = $this->db->query ( 'UPDATE executive_media_schedule_content SET ' . implode ( ',', $budget_update_str ) . ',budget_sum=' . $budget_sum . ',addtime="' . date ( 'Y-m-d H:i:s', time () ) . '",adduser=' . $this->getUid () . ' WHERE id=' . $id );
+						} else {
+							// 新增
+							$result = $this->db->query ( 'INSERT INTO executive_media_schedule_content(dsp_platform,pid,dsp_order,dsp_adv,dsp_creative,dsp_website,dsp_industry_1,dsp_industry_2,schedule_date,' . implode ( ',', $budget ) . ',budget_sum,addtime,adduser)
 								VALUE("' . $infos [$i] [0] . '","' . $pid . '","' . $infos [$i] [2] . '","' . $infos [$i] [3] . '","' . $infos [$i] [4] . '","' . $url . '","' . $infos [$i] [6] . '","' . $infos [$i] [7] . '","' . date ( 'Y-m-d', PHPExcel_Shared_Date::ExcelToPHP ( $infos [$i] [8] ) ) . '",' . implode ( ',', $budget_str ) . ',' . $budget_sum . ',"' . date ( 'Y-m-d H:i:s', time () ) . '",' . $this->getUid () . ')' );
+						}
+						
 						if ($result === FALSE) {
 							$db_ok = FALSE;
 						}
