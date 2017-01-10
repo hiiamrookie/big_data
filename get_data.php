@@ -146,6 +146,9 @@ switch ($action) {
 	case 'getOutsourcing':
 		echo getOutsourcing();
 		break;
+	case 'getPidMediaSchedule':
+		echo getPidMediaSchedule();
+		break;
 	default:
 		echo getDefault();
 }
@@ -590,4 +593,10 @@ function getOutsourcing() {
 	$easyui = new Easyui_Datagrid(
 			array('qs' => array('id' => Security_Util::my_get('id'))));
 	return $easyui->getOutsourcingByID();
+}
+
+function getPidMediaSchedule(){
+	$easyui = new Easyui_Datagrid(
+			array('page'=>Security_Util::my_get ( 'page' ), 'rows'=>Security_Util::my_get ( 'rows' ), 'qs' => array('pid' => Security_Util::my_get('pid'))));
+	return $easyui->getPidMediaSchedule();
 }
