@@ -263,9 +263,7 @@ define('INVALIDATION_VISIT', '非正常访问');
 define('DOUBLE_POST_ALERT', '请不要重复提交数据');
 
 //时区
-//if (date_default_timezone_get() !== 'PRC') {
-	date_default_timezone_set('PRC');
-//}
+date_default_timezone_set('PRC');
 
 //718 add
 	
@@ -273,3 +271,6 @@ define('DOUBLE_POST_ALERT', '请不要重复提交数据');
 define('FW_TAX_RATE',0.0683);
 //广告合同税点
 define('GG_TAX_RATE',0.1037);
+
+//dsp平台
+$defined_dsp_platform = array('baidu','tencent');

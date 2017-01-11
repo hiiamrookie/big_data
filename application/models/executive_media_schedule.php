@@ -318,8 +318,9 @@ class Executive_Media_Schedule extends User {
 							$result = $this->db->query ( 'UPDATE executive_media_schedule_content SET ' . implode ( ',', $budget_update_str ) . ',budget_sum=' . $budget_sum . ',addtime="' . date ( 'Y-m-d H:i:s', time () ) . '",adduser=' . $this->getUid () . ' WHERE id=' . $id );
 						} else {
 							// 新增
-							$result = $this->db->query ( 'INSERT INTO executive_media_schedule_content(dsp_platform,pid,dsp_order,dsp_adv,dsp_creative,dsp_website,dsp_industry_1,dsp_industry_2,schedule_date,' . implode ( ',', $budget ) . ',budget_sum,addtime,adduser)
-								VALUE("' . $infos [$i] [0] . '","' . $pid . '","' . $infos [$i] [2] . '","' . $infos [$i] [3] . '","' . $infos [$i] [4] . '","' . $url . '","' . $infos [$i] [6] . '","' . $infos [$i] [7] . '","' . date ( 'Y-m-d', PHPExcel_Shared_Date::ExcelToPHP ( $infos [$i] [8] ) ) . '",' . implode ( ',', $budget_str ) . ',' . $budget_sum . ',"' . date ( 'Y-m-d H:i:s', time () ) . '",' . $this->getUid () . ')' );
+							$md5str = md5($infos [$i] [0] . '|' . $infos [$i] [2]. '|' . $infos [$i] [3]. '|' . $infos [$i] [4]. '|' . $url. '|' . $infos [$i] [6]. '|' . $infos [$i] [7]. '|' . date ( 'Y-m-d', PHPExcel_Shared_Date::ExcelToPHP ( $infos [$i] [8] ) ));
+							$result = $this->db->query ( 'INSERT INTO executive_media_schedule_content(dsp_platform,pid,dsp_order,dsp_adv,dsp_creative,dsp_website,dsp_industry_1,dsp_industry_2,schedule_date,' . implode ( ',', $budget ) . ',budget_sum,addtime,adduser,md5str)
+								VALUE("' . $infos [$i] [0] . '","' . $pid . '","' . $infos [$i] [2] . '","' . $infos [$i] [3] . '","' . $infos [$i] [4] . '","' . $url . '","' . $infos [$i] [6] . '","' . $infos [$i] [7] . '","' . date ( 'Y-m-d', PHPExcel_Shared_Date::ExcelToPHP ( $infos [$i] [8] ) ) . '",' . implode ( ',', $budget_str ) . ',' . $budget_sum . ',"' . date ( 'Y-m-d H:i:s', time () ) . '",' . $this->getUid () . ',"' . $md5str . '")' );
 						}
 						
 						if ($result === FALSE) {
