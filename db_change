@@ -59,9 +59,12 @@ CREATE TABLE `executive_media_schedule_content` (
   `budget_sum` decimal(11,2) DEFAULT '0.00',
   `addtime` datetime DEFAULT NULL,
   `adduser` int(11) DEFAULT NULL,
+  `md5str` char(32) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unikey1` (`dsp_platform`,`pid`,`dsp_order`,`dsp_adv`,`dsp_creative`,`dsp_website`,`dsp_industry_1`,`dsp_industry_2`,`schedule_date`) USING BTREE
+  UNIQUE KEY `unikey1` (`dsp_platform`,`dsp_order`,`dsp_adv`,`dsp_creative`,`dsp_website`,`dsp_industry_1`,`dsp_industry_2`,`schedule_date`) USING BTREE,
+  UNIQUE KEY `unikey2` (`md5str`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 
 
