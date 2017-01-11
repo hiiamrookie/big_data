@@ -65,6 +65,29 @@ CREATE TABLE `executive_media_schedule_content` (
   UNIQUE KEY `unikey2` (`md5str`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `executive_dsp_data` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dsp_platform` varchar(50) NOT NULL,
+  `dsp_order` varchar(100) NOT NULL,
+  `dsp_adv` varchar(100) NOT NULL,
+  `dsp_creative` varchar(100) NOT NULL,
+  `dsp_website` varchar(100) NOT NULL,
+  `dsp_industry_1` varchar(100) NOT NULL,
+  `dsp_industry_2` varchar(100) NOT NULL,
+  `schedule_date` date NOT NULL,
+  `md5str` char(32) NOT NULL,
+  `times` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0~23',
+  `dsp_cost` decimal(11,2) NOT NULL DEFAULT '0.00',
+  `dsp_impressions` int(11) NOT NULL DEFAULT '0',
+  `dsp_cpm` decimal(11,2) NOT NULL DEFAULT '0.00',
+  `dsp_click` int(11) NOT NULL DEFAULT '0',
+  `dsp_ctr` decimal(5,2) NOT NULL,
+  `dsp_cpc` decimal(11,2) NOT NULL DEFAULT '0.00',
+  `addtime` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unikey1` (`dsp_platform`,`dsp_order`,`dsp_adv`,`dsp_creative`,`dsp_website`,`dsp_industry_1`,`dsp_industry_2`,`schedule_date`),
+  UNIQUE KEY `unikey2` (`md5str`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
