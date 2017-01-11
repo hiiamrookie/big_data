@@ -5,7 +5,7 @@ include (dirname ( dirname ( __FILE__ ) ) . '/inc/require_file.php');
 include (dirname ( dirname ( __FILE__ ) ) . '/user_auth.php');
 header ( 'Content-type: text/html; charset=utf-8' );
 
-//校验vcode
+// 校验vcode
 $vcode = $uid . User::SALT_VALUE;
 include (dirname ( dirname ( __FILE__ ) ) . '/validate_vcode.php');
 
@@ -23,6 +23,9 @@ switch (strval ( Security_Util::my_post ( 'action' ) )) {
 	case 'deppermission_update' :
 		$result = deppermission_do ( 'update' );
 		break;
+	case 'add_api_auth' :
+		$result = api_auth ( 'add' );
+		break;
 }
 
 if ($result !== FALSE) {
@@ -34,15 +37,21 @@ if ($result !== FALSE) {
 } else {
 	Js_Util::my_show_error_message ();
 }
-
 function permission_do($action) {
-	$fields = array ('module' => Security_Util::my_post ( 'module' ), 'name' => Security_Util::my_post ( 'name' ), 'des' => Security_Util::my_post ( 'des' ) );
+	$fields = array (
+			'module' => Security_Util::my_post ( 'module' ),
+			'name' => Security_Util::my_post ( 'name' ),
+			'des' => Security_Util::my_post ( 'des' ) 
+	);
 	if ($action === 'update') {
 		$fields ['permission_id'] = Security_Util::my_post ( 'permission_id' );
 	}
 	$permission = new Permission ( NULL, $fields );
 	if (! $permission->getHas_setup_permission ()) {
-		return array ('status' => 'error', 'message' => NO_RIGHT_TO_DO_THIS );
+		return array (
+				'status' => 'error',
+				'message' => NO_RIGHT_TO_DO_THIS 
+		);
 	} else {
 		switch ($action) {
 			case 'add' :
@@ -56,15 +65,21 @@ function permission_do($action) {
 		}
 	}
 }
-
 function deppermission_do($action) {
-	$fields = array ('name' => Security_Util::my_post ( 'name' ), 'des' => Security_Util::my_post ( 'des' ), 'dep' => Security_Util::my_post ( 'dep' ) );
+	$fields = array (
+			'name' => Security_Util::my_post ( 'name' ),
+			'des' => Security_Util::my_post ( 'des' ),
+			'dep' => Security_Util::my_post ( 'dep' ) 
+	);
 	if ($action === 'update') {
 		$fields ['permission_id'] = Security_Util::my_post ( 'permission_id' );
 	}
 	$permission = new Permission_Dep ( NULL, $fields );
 	if (! $permission->getHas_setup_permission ()) {
-		return array ('status' => 'error', 'message' => NO_RIGHT_TO_DO_THIS );
+		return array (
+				'status' => 'error',
+				'message' => NO_RIGHT_TO_DO_THIS 
+		);
 	} else {
 		switch ($action) {
 			case 'add' :
@@ -76,5 +91,18 @@ function deppermission_do($action) {
 			default :
 				return FALSE;
 		}
+	}
+}
+function api_auth($action) {
+	$fields = array (
+			'auth_name' => Security_Util::my_post ( 'auth_name' ),
+			'auth_type' => Security_Util::my_post ( 'auth_type' ) 
+	);
+	$api = new API ( $fields );
+	switch ($action) {
+		case 'add' :
+			return $api->add_api_auth ();
+		default :
+			return FALSE;
 	}
 }

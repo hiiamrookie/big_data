@@ -11,6 +11,7 @@ require (dirname ( dirname ( __FILE__ ) ) . '/application/parameters/city.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/parameters/team.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/parameters/nim_bankinfo.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/parameters/customer_bankinfo.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/application/parameters/api.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/model.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/user_login.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/process_list.php');

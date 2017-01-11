@@ -24,6 +24,12 @@ case 'deppermissionadd':
 case 'deppermissionedit':
 	dep_permission_edit();
 	break;
+case 'api_auth_list':
+	api_auth_list();
+	break;
+case 'api_auth_add':
+	api_auth_add();
+	break;
 default:
 	User::no_permission();
 }
@@ -66,4 +72,15 @@ function dep_permission_edit() {
 							Security_Util::my_get('id')) : 0);
 	echo $dep_permission->get_dep_permission_edit_html();
 	unset($dep_permission);
+}
+
+function api_auth_list(){
+	$api = new API();
+	echo $api->get_auth_list_html();
+	unset($api);
+}
+function api_auth_add(){
+	$api = new API();
+	echo $api->get_auth_add_html();
+	unset($api);
 }

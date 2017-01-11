@@ -176,7 +176,7 @@ $user_left_setup = array('hr^userlist' => '账户编辑', 'hr^companylist' => '�
 		'hr^departmentlist' => '部门编辑', 'hr^teamlist' => '团队编辑',
 		'system^permissionlist' => '模块角色权限编辑',
 		'system^deppermissionlist' => '部门角色权限编辑',
-		'manage^processlist' => '流程编辑', 'manage^depprocesslist' => '部门內部流程编辑',
+		'manage^processlist' => '流程编辑', 'manage^depprocesslist' => '部门內部流程编辑','system^api_auth_list'=>'API编辑'
 		//'manage^customerlist' => '系统客户编辑'
 		
 );

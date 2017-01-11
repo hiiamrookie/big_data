@@ -89,5 +89,18 @@ CREATE TABLE `executive_dsp_data` (
   UNIQUE KEY `unikey2` (`md5str`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `api_auth` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `auth_name` varchar(100) NOT NULL,
+  `auth_code` char(32) NOT NULL,
+  `auth_type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0：dsp平台；1：用户端',
+  `is_live` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 :可用；-1：不可用',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unikey1` (`auth_name`,`auth_code`),
+  KEY `inex1` (`is_live`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 
 

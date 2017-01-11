@@ -17,6 +17,9 @@ switch (strval ( Security_Util::my_post ( 'action' ) )) {
 	case 'del_deppermission' :
 		echo del_deppermission ();
 		break;
+	case 'del_api_auth':
+		echo del_api_auth();
+		break;
 }
 
 function del_permission() {
@@ -37,4 +40,10 @@ function del_deppermission() {
 	} else {
 		return NO_RIGHT_TO_DO_THIS;
 	}
+}
+
+function del_api_auth(){
+	$api = new API(array('id'=>Security_Util::my_post('id')));
+	$result = $api->del_api_auth();
+	return $result ['message'];
 }
