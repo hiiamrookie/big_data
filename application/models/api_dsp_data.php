@@ -1,35 +1,10 @@
 <?php
-class Api_Dsp_Data extends Dao_Impl {
-	private $auth_name;
-	private $auth_code;
-	private $auth_pass = FALSE;
-	private $errors = array ();
+class Api_Dsp_Data extends Api_Auth {
 	public function __construct($auth_name, $auth_code) {
-		parent::__construct ();
-		$this->auth_name = $auth_name;
-		$this->auth_code = $auth_code;
-		$this->_auth ();
-	}
-	private function _auth() {
-		$row = $this->db->get_row ( 'SELECT auth_type,is_live FROM api_auth WHERE auth_name="' . $this->auth_name . '" AND auth_code="' . $this->auth_code . '"' );
-		if ($row === NULL) {
-			$this->errors [] = 'API验证信息不成功，验证用户名或验证代码错误';
-		} else {
-			$auth_type = intval ( $row->auth_type );
-			if ($auth_type !== 0) {
-				$this->errors [] = 'API验证信息不成功，非dsp验证信息';
-			} else {
-				$is_live = intval ( $row->is_live );
-				if ($is_live === - 1) {
-					$this->errors [] = 'API验证信息不成功，该验证信息已不可使用';
-				} else {
-					$this->auth_pass = TRUE;
-				}
-			}
-		}
+		parent::__construct ( $auth_name, $auth_code );
 	}
 	public function getPostDspDataResult($dsp_data) {
-		if ($this->auth_pass) {
+		if ($this->isAuthPass ()) {
 			if (! empty ( $dsp_data )) {
 				$dsp_data = json_decode ( $dsp_data );
 				if ($dsp_data !== NULL && $dsp_data !== FALSE) {
@@ -63,6 +38,10 @@ class Api_Dsp_Data extends Dao_Impl {
 								'message' => $result === FALSE ? '传输数据错误' : '传输数据成功' 
 						), JSON_UNESCAPED_UNICODE );
 					}
+					return json_encode ( array (
+							'status' => 'error',
+							'message' => '无数据'
+					), JSON_UNESCAPED_UNICODE );
 				}
 				return json_encode ( array (
 						'status' => 'error',
@@ -76,7 +55,7 @@ class Api_Dsp_Data extends Dao_Impl {
 		}
 		return json_encode ( array (
 				'status' => 'error',
-				'message' => implode ( '，', $this->errors ) 
+				'message' => implode ( '，', $this->getAuthErrors () ) 
 		), JSON_UNESCAPED_UNICODE );
 	}
 	private static function _cpm($cost, $impressions) {

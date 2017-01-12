@@ -102,4 +102,6 @@ require (dirname ( dirname ( __FILE__ ) ) . '/application/models/setting_rebate.
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/report_data.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/data_import_export.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/executive_media_schedule.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/application/models/api_auth.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/api_dsp_data.php');
+require (dirname ( dirname ( __FILE__ ) ) . '/application/models/api_user_data.php');
