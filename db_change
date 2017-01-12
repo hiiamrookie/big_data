@@ -109,7 +109,7 @@ CREATE TABLE `executive_offline_data` (
   `data_date` date NOT NULL COMMENT '数据时间',
   `reg_cnt` int(11) NOT NULL DEFAULT '0' COMMENT '注册量',
   `order_cnt` int(11) NOT NULL DEFAULT '0' COMMENT '订单量',
-  `ordere_amount` decimal(11,2) NOT NULL DEFAULT '0.00' COMMENT '订单金额',
+  `order_amount` decimal(11,2) NOT NULL DEFAULT '0.00' COMMENT '订单金额',
   `addtime` datetime NOT NULL COMMENT '数据入库时间',
   `auth_name` varchar(100) NOT NULL COMMENT '传输人',
   PRIMARY KEY (`id`),
