@@ -85,9 +85,11 @@ CREATE TABLE `executive_dsp_data` (
   `dsp_cpc` decimal(11,2) NOT NULL DEFAULT '0.00',
   `addtime` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unikey1` (`dsp_platform`,`dsp_order`,`dsp_adv`,`dsp_creative`,`dsp_website`,`dsp_industry_1`,`dsp_industry_2`,`schedule_date`),
-  UNIQUE KEY `unikey2` (`md5str`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE KEY `unikey1` (`dsp_platform`,`dsp_order`,`dsp_adv`,`dsp_creative`,`dsp_website`,`dsp_industry_1`,`dsp_industry_2`,`schedule_date`,`times`) USING BTREE,
+  KEY `index1` (`md5str`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+
 
 CREATE TABLE `api_auth` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
