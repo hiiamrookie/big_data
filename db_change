@@ -87,7 +87,7 @@ CREATE TABLE `executive_dsp_data` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unikey1` (`dsp_platform`,`dsp_order`,`dsp_adv`,`dsp_creative`,`dsp_website`,`dsp_industry_1`,`dsp_industry_2`,`schedule_date`,`times`) USING BTREE,
   KEY `index1` (`md5str`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
@@ -100,6 +100,21 @@ CREATE TABLE `api_auth` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unikey1` (`auth_name`,`auth_code`),
   KEY `inex1` (`is_live`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `executive_offline_data` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `md5str` char(32) NOT NULL,
+  `data_date` date NOT NULL COMMENT '数据时间',
+  `reg_cnt` int(11) NOT NULL DEFAULT '0' COMMENT '注册量',
+  `order_cnt` int(11) NOT NULL DEFAULT '0' COMMENT '订单量',
+  `ordere_amount` decimal(11,2) NOT NULL DEFAULT '0.00' COMMENT '订单金额',
+  `addtime` datetime NOT NULL COMMENT '数据入库时间',
+  `auth_name` varchar(100) NOT NULL COMMENT '传输人',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unikey1` (`md5str`,`data_date`),
+  KEY `index1` (`md5str`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
