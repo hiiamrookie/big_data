@@ -80,7 +80,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="font-weight:bold">网迈联系人</td>
+                    <td style="font-weight:bold">联系人</td>
                     <td colspan="3">
                     	<select id="contactperson" name="contactperson" class="validate[required] select">
                         	<option value="">请选择</option>

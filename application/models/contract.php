@@ -282,9 +282,9 @@ class Contract extends User {
 					$errors[] = '部门选择有误';
 				}
 
-				//网迈联系人
+				//联系人
 				if (intval($this->contactperson) <= 0) {
-					$errors[] = '网迈联系人不能为空';
+					$errors[] = '联系人不能为空';
 				}
 
 				//项目名称
@@ -648,7 +648,7 @@ class Contract extends User {
 			if ($success) {
 				$this->db->query('COMMIT');
 
-				//发邮件给网迈联系人
+				//发邮件给联系人
 				$subject = sprintf('合同号 %s 开号提醒!', $cid);
 				if (!empty($this->fmkcid)) {
 					$body = sprintf(
@@ -679,8 +679,8 @@ class Contract extends User {
 				$mail->Username = 'info@nimdigital.com'; // SMTP服务器用户名
 				//$mail->Password = 'nimdigital.com'; // SMTP服务器密码
 				$mail->Password = '@@nim.com1';
-				$mail->SetFrom('info@nimdigital.com', '网迈 OA');
-				$mail->AddReplyTo('info@nimdigital.com', '网迈 OA');
+				$mail->SetFrom('info@nimdigital.com', '大数据系统');
+				$mail->AddReplyTo('info@nimdigital.com', '大数据系统');
 				$mail->Subject = $subject;
 				$mail->MsgHTML($body);
 				$mail->AddAddress($contact_person_email, $toname);
@@ -690,9 +690,9 @@ class Contract extends User {
 					$msg = '新建合同成功';
 					//return array('status' => 'success', 'message' => '新建合同成功');
 				} else {
-					$msg = '新建合同成功，但给网迈联系人发送邮件失败，请联系系统管理员，错误：' . $mail->ErrorInfo;
+					$msg = '新建合同成功，但给联系人发送邮件失败，请联系系统管理员，错误：' . $mail->ErrorInfo;
 					//return array('status' => 'success',
-					//		'message' => '新建合同成功，但给网迈联系人发送邮件失败，请联系系统管理员，错误：' . $mail->ErrorInfo);
+					//		'message' => '新建合同成功，但给联系人发送邮件失败，请联系系统管理员，错误：' . $mail->ErrorInfo);
 				}
 				$mail->SmtpClose();
 				unset($mail);

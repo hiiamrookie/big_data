@@ -239,7 +239,7 @@ class Nim_BankInfo extends User {
 										'SELECT id FROM finance_nim_bankinfo WHERE is_default=1 FOR UPDATE');
 						if ($row !== NULL) {
 							$success = FALSE;
-							$error = '已有默认的网迈银行信息，不可重复添加默认银行信息';
+							$error = '已有默认的银行信息，不可重复添加默认银行信息';
 						}
 					}
 
@@ -292,7 +292,7 @@ class Nim_BankInfo extends User {
 									'SELECT id FROM finance_nim_bankinfo WHERE is_default=1 FOR UPDATE');
 					if ($row !== NULL) {
 						$success = FALSE;
-						$error = '已有默认的网迈银行信息，不可重复添加默认银行信息';
+						$error = '已有默认的银行信息，不可重复添加默认银行信息';
 					}
 				}
 
@@ -306,7 +306,7 @@ class Nim_BankInfo extends User {
 											. intval($this->status) . ')');
 					if ($insert_result === FALSE) {
 						$success = FALSE;
-						$error = '新建网迈银行信息失败';
+						$error = '新建银行信息失败';
 					}
 				}
 			} else {
@@ -324,7 +324,7 @@ class Nim_BankInfo extends User {
 			}
 
 			return array('status' => $success ? 'success' : 'error',
-					'message' => $success ? '新建网迈银行信息成功' : $error);
+					'message' => $success ? '新建银行信息成功' : $error);
 		}
 		return array('status' => 'error', 'message' => $this->errors);
 	}

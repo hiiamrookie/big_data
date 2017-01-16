@@ -272,8 +272,8 @@ class Tec_Project extends User {
 				$mail->Port = 25; // SMTP服务器的端口号
 				$mail->Username = 'info@nimdigital.com'; // SMTP服务器用户名
 				$mail->Password = '@@nim.com1'; // SMTP服务器密码
-				$mail->SetFrom('info@nimdigital.com', '网迈 OA');
-				$mail->AddReplyTo('info@nimdigital.com', '网迈 OA');
+				$mail->SetFrom('info@nimdigital.com', '大数据系统');
+				$mail->AddReplyTo('info@nimdigital.com', '大数据系统');
 				$mail->Subject = $subject;
 				$mail->MsgHTML($body);
 				$mail->AddAddress('jesse.shen@nimdigital.com', '沈蔚乐');

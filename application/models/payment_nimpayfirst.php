@@ -317,8 +317,8 @@ WHERE a.payment_type=2 AND a.amount_type=2 AND a.status=1';
 				$mail->Port = 25; // SMTP服务器的端口号
 				$mail->Username = 'info@nimdigital.com'; // SMTP服务器用户名
 				$mail->Password = 'nimdigital.com'; // SMTP服务器密码
-				$mail->SetFrom('info@nimdigital.com', '网迈 OA');
-				$mail->AddReplyTo('info@nimdigital.com', '网迈 OA');
+				$mail->SetFrom('info@nimdigital.com', '大数据系统');
+				$mail->AddReplyTo('info@nimdigital.com', '大数据系统');
 				$mail->Subject = '执行单垫款回款提醒';
 				$mail->MsgHTML($body);
 

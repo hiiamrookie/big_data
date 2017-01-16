@@ -59,7 +59,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td style="font-weight: bold">网迈联系人</td>
+		<td style="font-weight: bold">联系人</td>
 		<td colspan="3"><select name="contactperson" id="contactperson" class="validate[required] select">
 			[CONTACTPERSON]
 		</select>
