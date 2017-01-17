@@ -417,7 +417,12 @@ class User_Index extends User {
 		}
 		return '';
 	}
-
+	public function getProjectAuditTab() {
+		if ($this->getHas_project_tab ()) {
+			return '<li><a>待审核立项申请 (<span>' . count ( $this->getProjects () ) . '</span>)</a></li>';
+		}
+		return '';
+	}
 	public function get_supplier_apply_audit_tab() {
 		if ($this->getHas_supplier_apply_audit_tab()) {
 			return '<li><a>待处理供应商申请 (<span>'
@@ -425,7 +430,34 @@ class User_Index extends User {
 		}
 		return '';
 	}
-
+	public function getProjectAuditList() {
+		$s = '';
+		if ($this->getHas_project_tab ()) {
+			$s .= '<div class="undis"><div class="listform fix"><table class="etable" cellpadding="0" cellspacing="0" border="0" id="project_list"><thead><tr>
+			<th>立项名称</th>
+	        <th>立项描述</th>
+	        <th>立项时间</th>
+	        <th>发起人</th>
+	        <th>操作</th>
+			</tr></thead><tbody>';
+				
+			$lists = $this->getProjects ();
+			if (! empty ( $lists )) {
+				foreach ( $lists as $list ) {
+					$s .= '<tr><td>' . $list->project_name . '</td>
+	        <td>' . $list->remark . '</td>
+	        <td>' . $list->addtime . '</td>
+	        <td>' . $list->realname . '（' . $list->username . '）' . '</td>
+	        <td><a href="' .BASE_URL . 'project/?o=audit&id=' .$list->id . '">审核</a></td></tr>';
+				}
+			} else {
+				$s .= '<tr><td colspan="5"><font color="red">当前没有待审核立项申请！</font></td></tr>';
+			}
+				
+			$s .= '</tbody></table></div></div>';
+		}
+		return $s;
+	}
 	public function getOutsourcingAuditList() {
 		$s = '';
 		if ($this->getHasOutsourcingAuditTab()) {

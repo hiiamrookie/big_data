@@ -23,6 +23,7 @@ class User extends Dao_Impl {
 	private $all_pending_item_count = 0;
 	private $has_invoice_tab = FALSE;
 	private $invoices = array ();
+	private $has_project_tab = FALSE;
 	private $has_invoice_search_permission = FALSE;
 	private $invoice_array = array ();
 	private $receivables_array = array ();
@@ -65,6 +66,9 @@ class User extends Dao_Impl {
 	public function getHas_invoice_tab() {
 		return $this->has_invoice_tab;
 	}
+	public function getHas_project_tab() {
+		return $this->has_project_tab;
+	}
 	public function getHas_contract_payment_tab() {
 		return $this->has_payment_person_audit_tab;
 	}
@@ -76,6 +80,9 @@ class User extends Dao_Impl {
 	}
 	public function getOutsourcingAudit() {
 		return $this->outsourcing_audits;
+	}
+	public function getProjects() {
+		return $this->projects;
 	}
 	/**
 	 *
@@ -501,6 +508,21 @@ class User extends Dao_Impl {
 				$this->invoices = $this->db->get_results ( $query );
 				$all += count ( $this->invoices );
 				
+				// 立项
+				$this->has_project_tab = TRUE;
+				$query = array ();
+				foreach ( $deps as $depid ) {
+					$q = 'SELECT a.*,b.realname,b.username FROM bd_project a LEFT JOIN users b ON a.userid=b.uid WHERE a.status=0 AND b.dep=' . intval ( $depid ['id'] );
+					if ($depid ['team'] !== NULL) {
+						$q .= ' AND b.team=' . intval ( $depid ['team'] );
+					}
+					$query [] = $q;
+				}
+				$query = implode ( ' UNION ', $query );
+				$query .= ' ORDER BY addtime DESC';
+				$this->projects = $this->db->get_results ( $query );
+				$all += count ( $this->projects );
+				
 				// 保证金
 				/*
 				 * $this->has_deposit_tab = TRUE;
@@ -646,14 +668,9 @@ class User extends Dao_Impl {
 		$result = array ();
 		if ($this->uid !== NULL) {
 			$permissions = $this->permissions;
-			// 执行单
-			$executive = $GLOBALS ['user_left_executive'];
-			if (! in_array ( $this->username, $GLOBALS ['executive_manager_array'] ) && ( int ) ($this->belong_dep) !== 2) {
-				$executive = Array_Util::my_remove_array_other_value ( $executive, array (
-						'执行单管理' 
-				) );
-			}
-			$result ['executive'] = $executive;
+			// 立项
+			$project = $GLOBALS ['user_left_project'];
+			$result ['project'] = $project;
 			
 			// 合同
 			$contact = $GLOBALS ['user_left_contract'];
@@ -668,6 +685,15 @@ class User extends Dao_Impl {
 				) );
 			}
 			$result ['contact'] = $contact;
+			
+			// 执行单
+			$executive = $GLOBALS ['user_left_executive'];
+			if (! in_array ( $this->username, $GLOBALS ['executive_manager_array'] ) && ( int ) ($this->belong_dep) !== 2) {
+				$executive = Array_Util::my_remove_array_other_value ( $executive, array (
+						'执行单管理'
+				) );
+			}
+			$result ['executive'] = $executive;
 			
 			//数据管理
 			$result ['report'] = $GLOBALS ['user_left_report'];
@@ -810,6 +836,9 @@ class User extends Dao_Impl {
 			foreach ( $left as $key => $value ) {
 				if (! empty ( $value )) {
 					switch ($key) {
+						case 'project' :
+							$left_str .= '<script>var menu_p = ' . $step . ';</script><h2>立项管理</h2>';
+							break;
 						case 'executive' :
 							$left_str .= '<script>var menu_e = ' . $step . ';</script><h2>执行单管理</h2>';
 							break;

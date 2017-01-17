@@ -27,6 +27,7 @@
 				[SUPPLIERAPPYAUDITTAB]
 				[CONTRACTPAYMENTPERSONTAB]
 				[OUTSOURCINGAUDITTAB]
+				[PROJECTTAB]
 			</ul>
 		</div>
         <div class="undis">
@@ -77,6 +78,7 @@
         [SUPPLIERAPPYAUDITLIST]
         [CONTRACTPAYMENTPERSONLIST]
         [OUTSOURCINGAUDITLIST]
+        [PROJECTAUDITLIST]
 	</div>
 </div>
 <script type="text/javascript" src="[BASE_URL]script/jquery.min.js" language="javascript"></script>
@@ -134,7 +136,7 @@ $(document).ready(function() {
 			$(this).next("ul").addClass("pane");
 			$(this).next("ul").slideDown(0);
 		}
-	}).eq(menu_e).click();
+	}).eq(menu_p).click();
 	
 	$("#tab li").click(function(){
 		$(this).addClass("on").siblings("li").removeClass();

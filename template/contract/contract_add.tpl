@@ -26,6 +26,14 @@
         <div class="publicform fix">
         	<form id="formID" method="post" action="[BASE_URL]contract_cus/action.php" target="post_frame">
             <table width="100%" cellpadding="0" cellspacing="0" border="0" class="sbd1">
+            	<tr>
+            		<td style="width:190px; font-weight:bold">立项</td>
+            		<td colspan="3">
+            			<select id="project_id" name="project_id" class="validate[required] select">
+                        	[PROJECTSELECT]
+                        </select>
+            		</td>
+            	</tr>
                 <tr>
                     <td style="width:190px; font-weight:bold">客户合同类型</td>
                     <td colspan="3">

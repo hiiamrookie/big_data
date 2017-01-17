@@ -51,6 +51,9 @@ function contract_do($action) {
 			$fields ['fmkcid'] = Security_Util::my_post ( 'fmkcid' );
 		}
 		
+		//立项
+		$fields ['project_id'] = Security_Util::my_post ( 'project_id' );
+		
 		//直客 / 代理商
 		$type1 = Security_Util::my_post ( 'type1' );
 		$fields ['type1'] = $type1;

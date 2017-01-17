@@ -193,6 +193,9 @@ $user_left_booking = array('booking' => '会议室预定（上海）');
 //技术部项目管理
 $user_left_tect_project = array('tec^projectadd' => '新建项目需求');
 
+//立项
+$user_left_project = array('project^add'=>'立项');
+
 //上传文件文件夹
 define('UPLOAD_FILE_FOLDER', 'pp');
 
