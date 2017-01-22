@@ -774,6 +774,9 @@ class User extends Dao_Impl {
 				$result ['setup'] = $setup;
 			}
 			
+			//数据管理
+			$result ['analyze'] = $GLOBALS ['user_left_analyze'];
+			
 			// 会议室预定
 			//$result ['booking'] = $GLOBALS ['user_left_booking'];
 			
@@ -803,7 +806,8 @@ class User extends Dao_Impl {
 	}
 	public function get_left_html() {
 		$left = $this->_get_left_data ();
-		/*var_dump($left);*/
+/*		echo "<pre>";
+		print_r($left);*/
 		$left_str = '';
 		if (! empty ( $left )) {
 			$step = 0;
@@ -830,6 +834,9 @@ class User extends Dao_Impl {
 							break;
 						case 'setup' :
 							$left_str .= '<script>var menu_s = ' . $step . ';</script><h2>系统设置</h2>';
+							break;
+						case 'analyze':
+							$left_str .= '<script>var menu_s = ' . $step . ';</script><h2>媒体分析</h2>';
 							break;
 						/*case 'booking' :
 							$left_str .= '<script>var menu_b = ' . $step . ';</script><h2>会议室预定</h2>';

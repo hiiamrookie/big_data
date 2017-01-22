@@ -12,10 +12,10 @@ $auth_code = Security_Util::my_post ( 'auth_code' );
 $user_data = Security_Util::my_post ( 'user_data' );
 
 
-//$auth_name = 'test2';
-//$auth_code = '6b8ae6c537b02247ec2840f9445bce15';
+$auth_name = 'test2';
+$auth_code = '6b8ae6c537b02247ec2840f9445bce15';
 
-/*
+
 $a = array(
 		array(
 				'md5str'=>'dc7ec6d750ec265931329f879811992b',
@@ -34,7 +34,7 @@ $a = array(
 );
 	
 $user_data = json_encode($a,JSON_UNESCAPED_UNICODE);
-*/
+
 
 
 /*

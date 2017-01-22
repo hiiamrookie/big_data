@@ -4,7 +4,8 @@
  * 本机测试
  */
 define('BASE_URL', 'http://testall.nimads.com/big_data/');
-
+/*define('BASE_URL', 'http://localhost/big_data/');*/
+error_reporting(E_ALL^E_NOTICE^E_WARNING);
 /**
  * 测试服务器
  */
@@ -32,6 +33,11 @@ define ( 'DB_USER', 'root' );
 define ( 'DB_PASSWORD', '' );
 define ( 'DB_NAME', 'big_data' );
 define ( 'DB_HOST', 'localhost' );
+
+/*define ( 'DB_USER', 'root' );
+define ( 'DB_PASSWORD', '' );
+define ( 'DB_NAME', 'oa_test' );
+define ( 'DB_HOST', 'localhost' );*/
 
 /**
  *	正式服务器
@@ -180,6 +186,9 @@ $user_left_setup = array('hr^userlist' => '账户编辑', 'hr^companylist' => '�
 		//'manage^customerlist' => '系统客户编辑'
 		
 );
+
+//媒体分析
+$user_left_analyze = array('analyze^profit' => '分析报表');
 
 //外包流程管理
 //$outsourcing_process = array('outsourcing^addtype'=>'新建执行单外包类型','outsourcing^addprocess'=>'新建执行单外包审核流程','outsourcing^auditoutsourcinglists'=>'审核执行单外包列表');

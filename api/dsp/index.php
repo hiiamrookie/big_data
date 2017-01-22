@@ -8,7 +8,7 @@ $auth_name = Security_Util::my_post ( 'auth_name' );
 $auth_code = Security_Util::my_post ( 'auth_code' );
 $dsp_data = Security_Util::my_post ( 'dsp_data' );
 
-/*
+
 $auth_name = 'test3';
 $auth_code = 'dc051845019258a2e9b9187661313405';
 
@@ -92,7 +92,7 @@ $a = array (
 );
 	
 $dsp_data = json_encode ( $a, JSON_UNESCAPED_UNICODE );
-*/
+
 
 $api = new Api_Dsp_Data ( $auth_name, $auth_code );
 echo $api->getPostDspDataResult ( $dsp_data );
