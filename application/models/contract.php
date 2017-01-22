@@ -55,6 +55,8 @@ class Contract extends User {
 	private $has_contract_permission = FALSE;
 
 	private $has_cancel_contract_permission = FALSE;
+	
+	private $project_id;
 
 	/**
 	 * @return the $has_contract_permission
@@ -212,6 +214,11 @@ class Contract extends User {
 					$errors[] = '驳回信息必须输入';
 				}
 			} else {
+				//立项
+				if(!self::validate_id($this->project_id)){
+					$errors[] = '立项选择有误';
+				}
+				
 				//客户合同类型
 				if (!in_array(intval($this->type), array(1, 2), TRUE)) {
 					$errors[] = '客户合同类型选择有误';
@@ -282,9 +289,9 @@ class Contract extends User {
 					$errors[] = '部门选择有误';
 				}
 
-				//网迈联系人
+				//联系人
 				if (intval($this->contactperson) <= 0) {
-					$errors[] = '网迈联系人不能为空';
+					$errors[] = '联系人不能为空';
 				}
 
 				//项目名称
@@ -506,6 +513,19 @@ class Contract extends User {
 					}
 				}
 			}
+			
+			if($success){
+				$row = $this->db->get_row('SELECT status FROM bd_project WHERE id=' . intval($this->project_id));
+				if($row === NULL){
+					$success = FALSE;
+					$error = '没有该立项';
+				}else{
+					if(intval($row->status) !== 1){
+						$success = FALSE;
+						$error = '所选的立项非审核通过状态';
+					}
+				}
+			}
 
 			if ($success) {
 				$citycode = '';
@@ -621,24 +641,31 @@ class Contract extends User {
 						$success = FALSE;
 						$error = '新建合同失败';
 					} else {
-						//LOG日志
-						$insert = Sql_Util::get_insert('contract_cus_log',
-								array('cid' => $cid, 'content' => '',
-										'time' => time(),
-										'uid' => $this->getUid(),
-										'auditname' => '客户合同录入',
-										'type' => '<font color="#66cc00">新建客户合同</font>'));
-						if ($insert['status'] === 'success') {
-							$insert_result = $this->db->query($insert['sql']);
-							if ($insert_result === FALSE) {
-								$success = FALSE;
-								$error = '新建合同记录日志失败';
-							}
-						} else {
+						//立项-合同
+						$result = $this->db->query('INSERT INTO bd_project_contract(project_id,cid) VALUES(' . intval($this->project_id) . ',"' . $cid . '")');
+						if($result === FALSE){
 							$success = FALSE;
-							$error = '新建合同记录日志失败，内部错误2，请联系管理员';
+							$error = '新建合同的立项信息失败';
+						}else{
+						//LOG日志
+								$insert = Sql_Util::get_insert('contract_cus_log',
+										array('cid' => $cid, 'content' => '',
+												'time' => time(),
+												'uid' => $this->getUid(),
+												'auditname' => '客户合同录入',
+												'type' => '<font color="#66cc00">新建客户合同</font>'));
+								if ($insert['status'] === 'success') {
+									$insert_result = $this->db->query($insert['sql']);
+									if ($insert_result === FALSE) {
+										$success = FALSE;
+										$error = '新建合同记录日志失败';
+									}
+								} else {
+									$success = FALSE;
+									$error = '新建合同记录日志失败，内部错误2，请联系管理员';
+								}
+							}
 						}
-					}
 				} else {
 					$success = FALSE;
 					$error = '新建合同失败，内部错误1，请联系管理员';
@@ -648,7 +675,7 @@ class Contract extends User {
 			if ($success) {
 				$this->db->query('COMMIT');
 
-				//发邮件给网迈联系人
+				//发邮件给联系人
 				$subject = sprintf('合同号 %s 开号提醒!', $cid);
 				if (!empty($this->fmkcid)) {
 					$body = sprintf(
@@ -679,8 +706,8 @@ class Contract extends User {
 				$mail->Username = 'info@nimdigital.com'; // SMTP服务器用户名
 				//$mail->Password = 'nimdigital.com'; // SMTP服务器密码
 				$mail->Password = '@@nim.com1';
-				$mail->SetFrom('info@nimdigital.com', '网迈 OA');
-				$mail->AddReplyTo('info@nimdigital.com', '网迈 OA');
+				$mail->SetFrom('info@nimdigital.com', '大数据系统');
+				$mail->AddReplyTo('info@nimdigital.com', '大数据系统');
 				$mail->Subject = $subject;
 				$mail->MsgHTML($body);
 				$mail->AddAddress($contact_person_email, $toname);
@@ -690,9 +717,9 @@ class Contract extends User {
 					$msg = '新建合同成功';
 					//return array('status' => 'success', 'message' => '新建合同成功');
 				} else {
-					$msg = '新建合同成功，但给网迈联系人发送邮件失败，请联系系统管理员，错误：' . $mail->ErrorInfo;
+					$msg = '新建合同成功，但给联系人发送邮件失败，请联系系统管理员，错误：' . $mail->ErrorInfo;
 					//return array('status' => 'success',
-					//		'message' => '新建合同成功，但给网迈联系人发送邮件失败，请联系系统管理员，错误：' . $mail->ErrorInfo);
+					//		'message' => '新建合同成功，但给联系人发送邮件失败，请联系系统管理员，错误：' . $mail->ErrorInfo);
 				}
 				$mail->SmtpClose();
 				unset($mail);
@@ -728,6 +755,9 @@ class Contract extends User {
 						->get_results(
 								'SELECT FROM_UNIXTIME(a.time) AS time,b.realname,a.type,a.content FROM contract_cus_log a LEFT JOIN users b ON b.uid = a.uid WHERE a.cid="'
 										. $this->cid . '" ORDER BY a.time DESC');
+						$p = new Project();
+						$s = $p->getProjectSelect($this->db->get_var('SELECT project_id FROM bd_project_contract WHERE cid="' . $this->cid . '"'),FALSE);
+						unset($p);
 				return str_replace(
 						array('[TYPE]', '[TYPE1]', '[CONTRACTNAME]',
 								'[CUSNAME]', '[CUSCONTACT]', '[EXECUTION]',
@@ -739,7 +769,7 @@ class Contract extends User {
 								'[CONTRACTAMOUNTPAYMENT]', '[SPECIALCALUSE]',
 								'[REMARK]', '[UPLOADFILES]', '[MTINFO]',
 								'[FWINFO]', '[BZJINFO]', '[CONTRACTSTATUS]',
-								'[CUSTOMERTYPE]', '[CUSTOMERNAME]'),
+								'[CUSTOMERTYPE]', '[CUSTOMERNAME]','[PROJECTNAME]'),
 						array($this->_get_contract_type($row),
 								self::_get_contract_type1($row),
 								$row->contractname, $row->cusname,
@@ -766,7 +796,7 @@ class Contract extends User {
 								self::_get_contract_bzj_info($row),
 								self::_get_contract_status($row),
 								'',
-								$row->customer_name), $buf);
+								$row->customer_name,$s), $buf);
 			}
 		}
 		return NULL;
@@ -1058,6 +1088,9 @@ class Contract extends User {
 									'SELECT FROM_UNIXTIME(a.time) AS time,b.realname,a.type,a.content FROM contract_cus_log a LEFT JOIN users b ON b.uid = a.uid WHERE a.cid="'
 											. $this->cid
 											. '" ORDER BY a.time DESC');
+							$p = new Project();
+							$s = $p->getProjectSelect($this->db->get_var('SELECT project_id FROM bd_project_contract WHERE cid="' . $this->cid . '"'));
+							unset($p);
 					return str_replace(
 							array('[TYPE1_1]', '[TYPE1_2]', '[SHOWFMKCID]',
 									'[SHWOTYPE2]', '[ISFMKCID]', '[FMKCID]',
@@ -1082,7 +1115,7 @@ class Contract extends User {
 									'[VARSERVICECOUNT]', '[FWAMOUNTOPTIONS]',
 									'[BAOZHENGJINCOUNT]',
 									'[VARBAOZHENGJINCOUNT]', '[DIDS]',
-									'[CUSTOMERTYPE]', '[CUSTOMERSELECT]'),
+									'[CUSTOMERTYPE]', '[CUSTOMERSELECT]','[PROJECTSELECT]'),
 							array(
 									intval($row->type) === 1 ? 'checked="checked"'
 											: '',
@@ -1156,7 +1189,7 @@ class Contract extends User {
 									'',
 									$this
 											->_get_customer_select(
-													$row->customer_id)), $buf);
+													$row->customer_id),$s), $buf);
 				}
 			}
 		}
@@ -1194,6 +1227,20 @@ class Contract extends User {
 				}
 			}
 
+			//立项
+			if($success){
+				$row = $this->db->get_row('SELECT status FROM bd_project WHERE id=' . intval($this->project_id));
+				if($row === NULL){
+					$success = FALSE;
+					$error = '没有该立项';
+				}else{
+					if(intval($row->status) !== 1){
+						$success = FALSE;
+						$error = '所选的立项非审核通过状态';
+					}
+				}
+			}
+			
 			if ($success) {
 				//代理商
 				$dailis = $this->daili_array;
@@ -1279,22 +1326,29 @@ class Contract extends User {
 						$success = FALSE;
 						$error = '更新合同失败';
 					} else {
-						//LOG日志
-						$insert = Sql_Util::get_insert('contract_cus_log',
-								array('cid' => $this->cid, 'content' => '',
-										'time' => time(),
-										'uid' => $this->getUid(),
-										'auditname' => '客户合同录入',
-										'type' => '<font color="#66cc00">修改客户合同</font>'));
-						if ($insert['status'] === 'success') {
-							$insert_result = $this->db->query($insert['sql']);
-							if ($insert_result === FALSE) {
-								$success = FALSE;
-								$error = '更新合同记录日志失败';
-							}
-						} else {
+						//立项
+						$result = $this->db->query('UPDATE bd_project_contract SET project_id=' . intval($this->project_id) . ' WHERE cid="' . $this->cid . '"');
+						if($result === FALSE){
 							$success = FALSE;
-							$error = '更新合同记录日志失败，内部错误2，请联系管理员';
+							$error = '更新合同的立项信息失败';
+						}else{
+							//LOG日志
+							$insert = Sql_Util::get_insert('contract_cus_log',
+									array('cid' => $this->cid, 'content' => '',
+											'time' => time(),
+											'uid' => $this->getUid(),
+											'auditname' => '客户合同录入',
+											'type' => '<font color="#66cc00">修改客户合同</font>'));
+							if ($insert['status'] === 'success') {
+								$insert_result = $this->db->query($insert['sql']);
+								if ($insert_result === FALSE) {
+									$success = FALSE;
+									$error = '更新合同记录日志失败';
+								}
+							} else {
+								$success = FALSE;
+								$error = '更新合同记录日志失败，内部错误2，请联系管理员';
+							}
 						}
 					}
 				} else {
@@ -1485,6 +1539,8 @@ class Contract extends User {
 
 	public function get_contract_add_html() {
 		$permission = $this->getPermissions();
+		$p = new Project();
+		$s = $p->getProjectSelect();
 		if (Array_Util::my_remove_array_other_value($permission,
 				$GLOBALS['add_contract_permission']) !== $permission) {
 			$buf = file_get_contents(
@@ -1494,7 +1550,7 @@ class Contract extends User {
 							'[PROCESSLIST]', '[FMKCIDLIST]',
 							'[FWAMOUNTOPTIONS]', '[VALIDATE_TYPE]',
 							'[VALIDATE_SIZE]', '[CUSTOMERSELECT]',
-							'[CUSTOMERTYPE]', '[BASE_URL]'),
+							'[CUSTOMERTYPE]', '[BASE_URL]','[PROJECTSELECT]'),
 					array($this->get_left_html(), $this->get_top_html(),
 							$this->get_vcode(),
 							City::get_city_select_html(FALSE),
@@ -1505,7 +1561,7 @@ class Contract extends User {
 									$GLOBALS['defined_upload_validate_type']),
 							UPLOAD_FILE_MAX_SIZE / (1024 * 1024),
 							$this->_get_customer_select(),
-							'', BASE_URL),
+							'', BASE_URL,$s),
 					$buf);
 		} else {
 			return User::no_permission();

@@ -117,6 +117,28 @@ CREATE TABLE `executive_offline_data` (
   KEY `index1` (`md5str`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `bd_project` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_name` varchar(200) NOT NULL,
+  `remark` varchar(1000) DEFAULT NULL,
+  `userid` int(11) NOT NULL,
+  `addtime` datetime NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0：等待审核；1：审核通过；-1：审核驳回；-2：已取消',
+  `audit_reason` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unikey1` (`project_name`),
+  KEY `index1` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='立项记录表';
+
+
+CREATE TABLE `bd_project_contract` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_id` int(11) NOT NULL,
+  `cid` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unikey1` (`cid`),
+  KEY `index1` (`project_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 

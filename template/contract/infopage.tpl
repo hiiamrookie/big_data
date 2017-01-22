@@ -1,5 +1,9 @@
 <table cellpadding="0" cellspacing="0" border="0" class="sbd1" style=" width:100%; min-width:950">
   <tr>
+    <td style="width:190px;font-weight:bold">立项</td>
+    <td style="font-size:14px" colspan="3"><b>[PROJECTNAME]</b></td>
+  </tr>
+  <tr>
     <td style="width:190px;font-weight:bold">合同单号</td>
     <td style="font-size:14px" colspan="3"><b>[CID]</b></td>
   </tr>
@@ -34,7 +38,7 @@
     <td colspan="3">[DEPINFO]</td>
   </tr>
   <tr>
-    <td style="font-weight:bold">网迈联系人</td>
+    <td style="font-weight:bold">联系人</td>
     <td colspan="3">[CONTACTPERSON]</td>
   </tr>
   <tr>
