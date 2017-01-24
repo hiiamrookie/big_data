@@ -865,7 +865,7 @@ class User extends Dao_Impl {
 							$left_str .= '<script>var menu_s = ' . $step . ';</script><h2>系统设置</h2>';
 							break;
 						case 'analyze':
-							$left_str .= '<script>var menu_s = ' . $step . ';</script><h2>媒体分析</h2>';
+							$left_str .= '<script>var menu_a = ' . $step . ';</script><h2>媒体分析</h2>';
 							break;
 						/*case 'booking' :
 							$left_str .= '<script>var menu_b = ' . $step . ';</script><h2>会议室预定</h2>';
