@@ -105,9 +105,7 @@ require (dirname ( dirname ( __FILE__ ) ) . '/application/models/executive_media
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/api_auth.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/api_dsp_data.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/api_user_data.php');
-<<<<<<< HEAD
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/analyze_data.php');
-=======
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/project.php');
 require (dirname ( dirname ( __FILE__ ) ) . '/application/models/project_list.php');
->>>>>>> e80a006d9640df48a14d49853b19bf03214cde44
+

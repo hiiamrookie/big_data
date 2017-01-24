@@ -64,9 +64,9 @@
 <script type="text/javascript" src="[BASE_URL]js/nimads.js" language="javascript"></script>
 <script type="text/javascript" src="[BASE_URL]script/jquery.sprintf.js" language="javascript"></script>
 <script type="text/javascript" src="[BASE_URL]script/My97DatePicker/WdatePicker.js" language="javascript"></script>
-<script type="text/javascript" src="[BASE_URL]report/report.js" language="javascript"></script>
-<script type="text/javascript" src="[BASE_URL]report/amcharts/amcharts.js" language="javascript"></script>
-<script type="text/javascript" src="[BASE_URL]report/amcharts/serial.js" language="javascript"></script>
+<script type="text/javascript" src="[BASE_URL]analyze/analyze.js" language="javascript"></script>
+<script type="text/javascript" src="[BASE_URL]analyze/amcharts/amcharts.js" language="javascript"></script>
+<script type="text/javascript" src="[BASE_URL]analyze/amcharts/serial.js" language="javascript"></script>
 <script type="text/javascript">
 var base_url = "[BASE_URL]";
 $(document).ready(function() {

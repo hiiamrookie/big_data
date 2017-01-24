@@ -9,7 +9,7 @@ $(document).ready(function() {
 			$(this).next("ul").addClass("pane");
 			$(this).next("ul").slideDown(0);
 		}
-	}).eq(menu_r).click();
+	}).eq(menu_a).click();
 });
 
 var Digit = {};
