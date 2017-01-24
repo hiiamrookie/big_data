@@ -93,18 +93,18 @@ function dosearch(){
   //location.href=$.sprintf(base_url + "executive/?o=mylist&starttime=%s&endtime=%s&search=%s",starttime,endtime,searchcontent);
 }
 
-chart([order_cnt_data_json],'chartdiv1',"订单数  /  (单位/个)","order_cnt",get_max([order_cnt_data_json],'order_cnt'));
-chart([reg_cnt_data_json],'chartdiv2',"注册量   /   (单位/个)","reg_cnt",get_max([reg_cnt_data_json],'reg_cnt'));
-chart([order_amount_data_json],'chartdiv3',"订单金额   /   (单位/元)","order_amount",get_max([order_amount_data_json],'order_amount'));
+chart([order_cnt_data_json],'chartdiv1',"订单数  /  (单位：个)","order_cnt",get_max([order_cnt_data_json],'order_cnt'));
+chart([reg_cnt_data_json],'chartdiv2',"注册量   /   (单位：个)","reg_cnt",get_max([reg_cnt_data_json],'reg_cnt'));
+chart([order_amount_data_json],'chartdiv3',"订单金额   /   (单位：元)","order_amount",get_max([order_amount_data_json],'order_amount'));
 
-chart([budget_data_json],'chartdiv4',"预算   /   (单位/元)","budget",get_max([budget_data_json],'budget'));
-chart([dsp_impressions_data_json],'chartdiv5',"展示次数     /   (单位/次)","dsp_impressions",get_max([dsp_impressions_data_json],'dsp_impressions'));
+chart([budget_data_json],'chartdiv4',"预算   /   (单位：元)","budget",get_max([budget_data_json],'budget'));
+chart([dsp_impressions_data_json],'chartdiv5',"展示次数     /   (单位：次)","dsp_impressions",get_max([dsp_impressions_data_json],'dsp_impressions'));
 
 //alert(get_max([dsp_cpc_data_json],'dsp_cpc'));
-chart([dsp_cpc_data_json],'chartdiv6',"CPC   /   (单位/元)","dsp_cpc",get_max([dsp_cpc_data_json],'dsp_cpc'));
-chart([dsp_cpm_data_json],'chartdiv7',"CPM   /   (单位/元)","dsp_cpm",get_max([dsp_cpm_data_json],'dsp_cpm'));
+chart([dsp_cpc_data_json],'chartdiv6',"CPC   /   (单位：元)","dsp_cpc",get_max([dsp_cpc_data_json],'dsp_cpc'));
+chart([dsp_cpm_data_json],'chartdiv7',"CPM   /   (单位：元)","dsp_cpm",get_max([dsp_cpm_data_json],'dsp_cpm'));
 
-chart([dsp_ctr_data_json],'chartdiv8',"CTR   /   (单位/百分比)","dsp_ctr",100);
+chart([dsp_ctr_data_json],'chartdiv8',"CTR   /   (单位：%)","dsp_ctr",100);
 
 
 
