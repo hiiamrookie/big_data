@@ -69,6 +69,7 @@
 <script type="text/javascript" src="[BASE_URL]script/jquery.sprintf.js" language="javascript"></script>
 <script type="text/javascript" src="[BASE_URL]script/My97DatePicker/WdatePicker.js" language="javascript"></script>
 <script type="text/javascript" src="[BASE_URL]executive/executive.js" language="javascript"></script>
+<script type="text/javascript" src="[BASE_URL]js/common.js" language="javascript"></script>
 <script type="text/javascript">
 var base_url = "[BASE_URL]";
 var vcode = "[VCODE]";

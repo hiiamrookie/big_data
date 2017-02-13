@@ -23,3 +23,9 @@ function check_actor(field, rules, i, options){
 function set_token(id,token){
 	$("#" + id).val(token);	
 }
+
+$(document).ready(function() {
+	$("#btn_open").click(function(){
+		$("html").toggleClass("open");
+	});
+});

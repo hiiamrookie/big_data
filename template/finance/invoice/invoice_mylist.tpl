@@ -53,6 +53,7 @@
 <script type="text/javascript" src="[BASE_URL]js/js.js" language="javascript"></script>
 <script type="text/javascript" src="[BASE_URL]js/nimads.js" language="javascript"></script>
 <script type="text/javascript" src="[BASE_URL]finance/finance.js" language="javascript"></script>
+<script type="text/javascript" src="[BASE_URL]js/common.js" language="javascript"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$.tablesorter.addParser({

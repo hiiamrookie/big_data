@@ -60,5 +60,6 @@
 </div>
 <script type="text/javascript" src="[BASE_URL]script/jquery.min.js" language="javascript"></script>
 <script type="text/javascript" src="[BASE_URL]finance/finance.js" language="javascript"></script>
+<script type="text/javascript" src="[BASE_URL]js/common.js" language="javascript"></script>
 </body>
 </html>

@@ -67,6 +67,7 @@
 <script type="text/javascript" src="[BASE_URL]analyze/analyze.js" language="javascript"></script>
 <script type="text/javascript" src="[BASE_URL]analyze/amcharts/amcharts.js" language="javascript"></script>
 <script type="text/javascript" src="[BASE_URL]analyze/amcharts/serial.js" language="javascript"></script>
+<script type="text/javascript" src="[BASE_URL]js/common.js" language="javascript"></script>
 <script type="text/javascript">
 var base_url = "[BASE_URL]";
 $(document).ready(function() {

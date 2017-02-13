@@ -69,6 +69,7 @@
 <script type="text/javascript" src="[BASE_URL]js/nimads.js" language="javascript"></script>
 <script type="text/javascript" src="[BASE_URL]script/My97DatePicker/WdatePicker.js" language="javascript"></script>
 <script type="text/javascript" src="[BASE_URL]contract_cus/contract_cus.js" language="javascript"></script>
+<script type="text/javascript" src="[BASE_URL]js/common.js" language="javascript"></script>
 <script type="text/javascript">
 var vcode = "[VCODE]";
 var base_url = '[BASE_URL]';

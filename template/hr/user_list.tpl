@@ -66,6 +66,7 @@
 <script src="[BASE_URL]js/js.js"></script>
 <script src="[BASE_URL]script/jquery.sprintf.js"></script>
 <script src="[BASE_URL]hr/hr.js"></script>
+<script type="text/javascript" src="[BASE_URL]js/common.js" language="javascript"></script>
 <script type="text/javascript">
 var PAGE="[PAGE]";
 var vcode = "[VCODE]";

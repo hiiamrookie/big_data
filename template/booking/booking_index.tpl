@@ -60,6 +60,7 @@
 <script type='text/javascript' src='[BASE_URL]booking/jquery-ui.min.js'></script>
 <script type='text/javascript' src='[BASE_URL]booking/jquery.weekcalendar.js'></script>
 <script type='text/javascript' src='[BASE_URL]booking/demo.js?v=1'></script>
+<script type="text/javascript" src="[BASE_URL]js/common.js" language="javascript"></script>
 <script type="text/javascript">
 var vcode = '[VCODE]';
 $(document).ready(function() {

@@ -1,15 +1,13 @@
 table.etable .header {
-	background-image: url(../images/bg.png);
+	background-image: url('../images/bg_th.png');
 	background-repeat: no-repeat;
-	padding-left: 10px;
-	/*padding-top: 8px;*/
 	height: auto;
 }
 table.etable .headerSortUp {
-	background-image: url(../images/asc.png);
+	background-image: url('../images/bg_th_asc.png');
 	background-repeat: no-repeat;
 }
 table.etable .headerSortDown {
-	background-image: url(../images/desc.png);
+	background-image: url('../images/bg_th_desc.png');
 	background-repeat: no-repeat;
 }

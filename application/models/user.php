@@ -832,8 +832,25 @@ class User extends Dao_Impl {
 	}
 	public function get_left_html() {
 		$left = $this->_get_left_data ();
-/*		echo "<pre>";
-		print_r($left);*/
+		$top = $this->_get_top_data ();
+
+		$dep = Dep::getInstance ();
+		$team = Team::getInstance ();
+		$my_dep = $dep [$this->belong_dep];
+		$my_team = $team ['team'] [$this->belong_team];
+		if ($my_dep === NULL) {
+			$my_dep = '';
+		} else {
+			$my_dep = $this->get_depname ( $my_dep [1], $my_dep [0] );
+		}
+			
+		if ($my_team !== NULL) {
+			$my_team = $my_team ['teamname'];
+		}
+		
+		$userinfo1 = sprintf ( '%s %s', $this->username, $this->realname);
+		$userinfo2 = sprintf ( '%s %s', $my_dep, $my_team );
+		
 		$left_str = '';
 		if (! empty ( $left )) {
 			$step = 0;
@@ -844,28 +861,28 @@ class User extends Dao_Impl {
 							$left_str .= '<script>var menu_p = ' . $step . ';</script><h2>立项管理</h2>';
 							break;
 						case 'executive' :
-							$left_str .= '<script>var menu_e = ' . $step . ';</script><h2>执行单管理</h2>';
+							$left_str .= '<script>var menu_e = ' . $step . ';</script><h2 class="hn2">执行单管理</h2>';
 							break;
 						case 'contact' :
-							$left_str .= '<script>var menu_c = ' . $step . ';</script><h2>合同管理</h2>';
+							$left_str .= '<script>var menu_c = ' . $step . ';</script><h2 class="hn1">合同管理</h2>';
 							break;
 						case 'finance' :
-							$left_str .= '<script>var menu_f = ' . $step . ';</script><h2>财务管理</h2>';
+							$left_str .= '<script>var menu_f = ' . $step . ';</script><h2 class="hn4">财务管理</h2>';
 							break;
 /*						case 'media_data' :
 							$left_str .= '<script>var menu_m = ' . $step . ';</script><h2>媒体数据管理 (测试)</h2>';
 							break;*/
 						case 'own' :
-							$left_str .= '<script>var menu_o = ' . $step . ';</script><h2>个人信息管理</h2>';
+							$left_str .= '<script>var menu_o = ' . $step . ';</script><h2 class="hn5">个人信息管理</h2>';
 							break;
 						case 'report' :
-							$left_str .= '<script>var menu_r = ' . $step . ';</script><h2>数据管理</h2>';
+							$left_str .= '<script>var menu_r = ' . $step . ';</script><h2 class="hn3">数据管理</h2>';
 							break;
 						case 'setup' :
-							$left_str .= '<script>var menu_s = ' . $step . ';</script><h2>系统设置</h2>';
+							$left_str .= '<script>var menu_s = ' . $step . ';</script><h2 class="hn6">系统设置</h2>';
 							break;
 						case 'analyze':
-							$left_str .= '<script>var menu_a = ' . $step . ';</script><h2>媒体分析</h2>';
+							$left_str .= '<script>var menu_a = ' . $step . ';</script><h2 class="hn7">媒体分析</h2>';
 							break;
 						/*case 'booking' :
 							$left_str .= '<script>var menu_b = ' . $step . ';</script><h2>会议室预定</h2>';
@@ -894,20 +911,27 @@ class User extends Dao_Impl {
 				$step ++;
 			}
 		}
-		/*			    
 
-		<div class="logo"><img src="[BASE_URL]images/logo.png" /></div>
-		<div id="copyright">
-							<h6>上海网迈广告有限公司 Copyright &copy; 2004-2011 nimads.All Rights Reserved </h6>
-						</div>*/
 		return <<<EOF
 			<div id="side">
-				
-				<div class="SYS_Wdate" id="SYS_Wdate"></div>
+				<!--<div class="SYS_Wdate" id="SYS_Wdate"></div>-->
+				<div class="my">
+					<img src="[BASE_URL]images/my_pic.png" class="pic" /><span id="sys_userinfo"><b>$userinfo1</b><br>$userinfo2</span></a>
+				</div>
+				<div class="diary">
+					<a href="[BASE_URL]"><img src="[BASE_URL]images/ico_msg.png" />待处理事项 <sup id="sys_pending">$this->all_pending_item_count</sup></a>
+					<a href="[BASE_URL]?exit=1" target="_top" class="close"><img src="[BASE_URL]images/ico_out.png" />退出登录</a>
+				</div>
 				<div id="side_nav">
 					$left_str
 				</div>
+				<div id="copyright">
+					<img src="[BASE_URL]images/img_tit.png" /><br>
+					<h6>传媒业务大数据管理系统</h6>
+				</div>
 			</div>
+			<div id="btn_open"><img src="[BASE_URL]images/btn_open.png" /></div>
+			
 EOF;
 	}
 	public function get_depname($local, $depart) {
@@ -933,6 +957,7 @@ EOF;
 		return '';
 	}
 	public function get_top_html() {
+		/*
 		$top = $this->_get_top_data ();
 		$buf = file_get_contents ( TEMPLATE_PATH . 'top.tpl' );
 		$search = array (
@@ -944,6 +969,8 @@ EOF;
 				$this->all_pending_item_count 
 		);
 		return str_replace ( $search, $replace, $buf );
+		*/
+		return '';
 	}
 	private function validate_form_value($action) {
 		$errors = array ();
