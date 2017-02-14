@@ -25,7 +25,7 @@ class Analyze_Data extends User {
 	public function getSearch() {
 		return $this->search;
 		//return "15GZ100037-001";
-		return "15SH010001-085";
+		//return "15SH010001-085";
 	}
 
 	//获取执行单
