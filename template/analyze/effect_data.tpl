@@ -9,6 +9,11 @@
 <link href="[BASE_URL]css/style.css" rel="stylesheet" media="screen" type="text/css" />
 <link href="[BASE_URL]css/tablesorter.css" rel="stylesheet" media="screen" type="text/css" />
 <link rel="shortcut icon" href="[BASE_URL]favicon.ico" type="image/x-icon"/>
+<style type="text/css">
+    #chartdiv1, .amcharts-main-div {
+    padding: 0px;
+}
+</style>
 </head>
 <body>
 [LEFT]

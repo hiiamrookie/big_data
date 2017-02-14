@@ -296,7 +296,8 @@ class Analyze_Data extends User {
    	$get_profit_month_cost_data = $this->get_profit_month_cost_data();
    	$amount = array();
    	$month = array();
-
+/*   	print_r($get_profit_month_money_data);
+   	print_r($get_profit_month_cost_data);*/
    	$profit_total = array();
 /*   	$get_profit_month_money_data_arr = array();
     $get_profit_month_cost_data_arr = array();*/
@@ -333,8 +334,8 @@ class Analyze_Data extends User {
    	print_r($profit_cost_data);
    	print_r($profit_total_data);
    	die;*/
-/*
-   	echo "<pre>";
+
+/*   	echo "<pre>";
    	print_r($data);
    	//print_r($profit_cost_results_2);
    	die;*/
@@ -342,9 +343,20 @@ class Analyze_Data extends User {
    		if(substr($key,-4,4) == 'json' && empty($value)){
    			$value = "''";
    		}
+   		if(substr($key,-4,4) == 'json' && $value=='[]' && $key !== 'profit_gain_key_json'){
+   			$value = "[{'year':''}]";
+   		}
+
+   		if($key == 'profit_gain_key_json' && $value=='[]'){
+   			$value = '[""]';
+   		}
+
    	}
-/*   	var_dump($data);
-   	die;*/
+     
+/*     echo "<pre>";
+     print_r($data);
+     //print_r($profit_cost_results_2);
+     die;*/
    	$buf = file_get_contents(
    			TEMPLATE_PATH . 'analyze/profit_data.tpl');
    	return str_replace(
