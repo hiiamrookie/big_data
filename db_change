@@ -140,6 +140,6 @@ CREATE TABLE `bd_project_contract` (
   KEY `index1` (`project_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+ALTER TABLE `executive_dsp_data` ADD COLUMN `landing_page` varchar(1024) DEFAULT '' COMMENT '落点页面' AFTER `addtime`;
 
 

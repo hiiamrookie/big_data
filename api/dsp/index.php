@@ -8,7 +8,7 @@ $auth_name = Security_Util::my_post ( 'auth_name' );
 $auth_code = Security_Util::my_post ( 'auth_code' );
 $dsp_data = Security_Util::my_post ( 'dsp_data' );
 
-
+/*
 $auth_name = 'test3';
 $auth_code = 'dc051845019258a2e9b9187661313405';
 
@@ -23,6 +23,7 @@ $a = array (
 						'dsp_industry_1' => '一级行业1',
 						'dsp_industry_2' => '二级行业1',
 						'schedule_date' => '2017-01-10',
+						'landing_page'=>'www.test.com',
 						'times_data' => array (
 								'0' => array (
 										'dsp_cost' => 100,
@@ -44,6 +45,7 @@ $a = array (
 						'dsp_industry_1' => '一级行业1',
 						'dsp_industry_2' => '二级行业1',
 						'schedule_date' => '2017-01-10',
+						'landing_page'=>'www.test.com',
 						'times_data' => array (
 								'6' => array (
 										'dsp_cost' => 100,
@@ -70,6 +72,7 @@ $a = array (
 						'dsp_industry_1' => '一级行业1',
 						'dsp_industry_2' => '二级行业1',
 						'schedule_date' => '2017-01-10',
+						'landing_page'=>'www.test1.com',
 						'times_data' => array (
 								'11' => array (
 										'dsp_cost' => 800,
@@ -90,9 +93,10 @@ $a = array (
 				)
 		)
 );
-	
-$dsp_data = json_encode ( $a, JSON_UNESCAPED_UNICODE );
 
+
+$dsp_data = json_encode ( $a, JSON_UNESCAPED_UNICODE );
+*/
 
 $api = new Api_Dsp_Data ( $auth_name, $auth_code );
 echo $api->getPostDspDataResult ( $dsp_data );
