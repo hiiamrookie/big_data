@@ -233,13 +233,29 @@ class Analyze_Data extends User {
 			$profit_cost_amount_arr[] = (float)$cost_amount_value;
 			$profit_cost_key_arr[] = $str;
 		}
-
+/*		   	echo "<pre>";
+		   	print_r($profit_cost_key_arr);*/
+		array_push($profit_cost_key_arr,"当月执行总金额");
 		$profit_cost_results = array();
+
+		$get_profit_month_money_data = $this->get_profit_month_money_data();
+
+		foreach ($get_profit_month_money_data as $value) {
+			array_push($profit_cost_amount_arr,$value);
+		}
+
+		foreach ($profit_cost_results_2 as $key => &$value) {
+			$value['当月执行总金额'] = $get_profit_month_money_data[$key];
+		}
 		foreach ($profit_cost_results_2 as $key=>$value) {
 		    $value['year'] = $key;
 		    $profit_cost_results[] = $value;
 		}
-
+		
+/*		echo "<pre>";
+		print_r($profit_cost_results);
+		//print_r($profit_cost_results_2);
+		die;*/
 		//获取执行金额的极值
 		$this->limit_arr = $profit_cost_amount_arr;
 		$profit_cost_limit_value = $this->limit_value();
@@ -251,10 +267,77 @@ class Analyze_Data extends User {
 		return $profit_cost_data;
    }
 
-   public function get_profit_html() {
+   //当月执行成本
+   public function get_profit_month_cost_data(){
+   		$pid = $this->getSearch();
+   		$sql = "SELECT ym,SUM(finance_cost_amount) as money from executive_cy  WHERE pid='".$pid."'  GROUP BY ym";
+   		$month_cost_data = $this->db->get_results($sql);
+   		$month_cost_data_arr = array();
+   		foreach ($month_cost_data as $key => $value) {
+   			$month_cost_data_arr[$value->ym] = $value->money;
+   		}
+   		return $month_cost_data_arr;
+   }
+   //当月执行金额
+   public function get_profit_month_money_data(){
+   		$pid = $this->getSearch();
+   		$sql = "SELECT ym,SUM(quote_amount) as money from executive_amount_cy  WHERE pid='".$pid."'  GROUP BY ym";
+   		$month_money_data = $this->db->get_results($sql);
+   		$month_money_data_arr = array();
+   		foreach ($month_money_data as $key => $value) {
+   			$month_money_data_arr[$value->ym] = $value->money;
+   		}
+   		return $month_money_data_arr;
+   }
+
+   public function get_profit_html() { 
+
+   	$get_profit_month_money_data = $this->get_profit_month_money_data();
+   	$get_profit_month_cost_data = $this->get_profit_month_cost_data();
+   	$amount = array();
+   	$month = array();
+
+   	$profit_total = array();
+/*   	$get_profit_month_money_data_arr = array();
+    $get_profit_month_cost_data_arr = array();*/
+   	foreach ($get_profit_month_money_data as $key => $value) {
+   		$month[]  = $key;
+   		$amount[] = $value;
+   	}
+   	foreach ($get_profit_month_cost_data as $key => $value) {
+   		$month[]  = $key;
+   		$amount[] = $value;
+   	}
+
+   	$month = array_unique($month);
+   	foreach ($month as $value) {
+   		$profit_total[] = array(
+   			'当月执行总金额' => $get_profit_month_money_data[$value],
+   			'当月执行总成本' => $get_profit_month_cost_data[$value],
+   			'year'	=> $value
+   		);
+   	}
+
+   	$this->limit_arr = $amount;
+   	$profit_total_limit_value = $this->limit_value();
+   	$profit_total_data = array('profit_total_json'=>json_encode($profit_total,JSON_UNESCAPED_UNICODE),
+   							   'profit_total_key_json'=>json_encode(array('当月执行总金额','当月执行总成本'),JSON_UNESCAPED_UNICODE),
+   							   'profit_total_limit_value'=>$profit_total_limit_value
+   						 );
+
    	$profit_gain_data = $this->get_profit_gain_data();
    	$profit_cost_data = $this->get_profit_cost_data();
-   	$data =  array_merge($profit_gain_data,$profit_cost_data);
+   	$data =  array_merge($profit_gain_data,$profit_cost_data,$profit_total_data);
+
+/*   	echo "<pre>";
+   	print_r($profit_cost_data);
+   	print_r($profit_total_data);
+   	die;*/
+/*
+   	echo "<pre>";
+   	print_r($data);
+   	//print_r($profit_cost_results_2);
+   	die;*/
    	foreach ($data as $key => &$value) {
    		if(substr($key,-4,4) == 'json' && empty($value)){
    			$value = "''";
@@ -278,7 +361,11 @@ class Analyze_Data extends User {
    				'[profit_cost_json]',
    				'[profit_cost_key_json]',
    				'[profit_cost_max]',
-   				'[profit_cost_min]'
+   				'[profit_cost_min]',
+   				'[profit_total_json]',
+   				'[profit_total_key_json]',
+   				'[profit_total_max]',
+   				'[profit_total_min]'
    			),
    			array(
    				$this->get_left_html(),
@@ -293,7 +380,11 @@ class Analyze_Data extends User {
    				$data['profit_cost_json'],
    				$data['profit_cost_key_json'],
    				$data['profit_cost_limit_value']['max'],
-   				$data['profit_cost_limit_value']['min']
+   				$data['profit_cost_limit_value']['min'],
+   				$data['profit_total_json'],
+   				$data['profit_total_key_json'],
+   				$data['profit_total_limit_value']['max'],
+   				$data['profit_total_limit_value']['min']
    			), 
    			$buf);
    }
@@ -521,7 +612,7 @@ class Analyze_Data extends User {
 						   	    	SUM(a.dsp_click) / SUM(a.dsp_impressions)
 						   	    ) AS dsp_ctr
 	   						FROM
-	   							executive_dsp_data AS a
+	   							executive_dsp_data AS a 
 	   						LEFT JOIN executive_media_schedule_content AS b ON a.md5str = b.md5str
 	   						WHERE
 	   							date_format(a.schedule_date, '%Y-%m') >= '".date('Y-m',strtotime($format_time['starttime']))."' AND date_format(a.schedule_date, '%Y-%m') <= '".date('Y-m',strtotime($format_time['endtime']))."' AND b.pid = '".$pid."' 
@@ -611,15 +702,6 @@ class Analyze_Data extends User {
 	   		}
    		}
 
-/*		print_r($order_cnt_data);
-		print_r($reg_cnt_data);
-		print_r($order_amount_data);
-		print_r($budget_data);
-
-		print_r($dsp_impressions_data);
-		print_r($dsp_cpc_data);
-		print_r($dsp_cpm_data);
-		print_r($dsp_ctr_data);*/
 		$get_effect_data = array(
 			'order_cnt_data_json'	   =>json_encode($order_cnt_data),
 			'reg_cnt_data_json'	 	   =>json_encode($reg_cnt_data),
@@ -630,57 +712,434 @@ class Analyze_Data extends User {
 			'dsp_cpm_data_json'		   =>json_encode($dsp_cpm_data),
 			'dsp_ctr_data_json'		   =>json_encode($dsp_ctr_data)
 		);
+
 		return $get_effect_data;
     }
 
-      public function get_effect_html(){
 
-      	$effect_data = $this->get_effect_data();
-/*      	echo "<pre>";
-      	var_dump($this->range);
-      	die;
-*/
-      	$buf = file_get_contents(
-      			TEMPLATE_PATH . 'analyze/effect_data.tpl');
-      	return str_replace(
-      			array(
-      				'[LEFT]',
-      				'[TOP]', 
-      				'[VCODE]',
-      				'[SEARCH]',
-      				'[RANGE]',
-      				'[BASE_URL]',
-      				'[STARTTIME]',
-      				'[ENDTIME]',
-      				'[order_cnt_data_json]',
-      				'[reg_cnt_data_json]',
-      				'[order_amount_data_json]',
-      				'[budget_data_json]',
-      				'[dsp_impressions_data_json]',
-      				'[dsp_cpc_data_json]',
-      				'[dsp_cpm_data_json]',
-      				'[dsp_ctr_data_json]'
-      			),
-      			array(
-      				$this->get_left_html(),
-      				$this->get_top_html(),
-      				$this->get_vcode(),
-      				$this->search,
-      				$this->range,
-      				BASE_URL,
-      				$this->starttime,
-      				$this->endtime,
-      				$effect_data['order_cnt_data_json'],
-      				$effect_data['reg_cnt_data_json'],
-      				$effect_data['order_amount_data_json'],
-      				$effect_data['budget_data_json'],
-      				$effect_data['dsp_impressions_data_json'],
-      				$effect_data['dsp_cpc_data_json'],
-      				$effect_data['dsp_cpm_data_json'],
-      				$effect_data['dsp_ctr_data_json']
-      			), 
-      			$buf);
-      }
+   	public function get_only_effect_data(){
+   		$starttime = $this->starttime;
+   		$endtime   = $this->endtime;
+   		$pid = $this->getSearch();
+   		$format_time = $this->format_time();
+
+   		//预算
+   		$budget_data = array();
+
+   		//订单数
+   		$order_cnt_data	= array();
+
+   		//注册量 
+   		$reg_cnt_data = array();
+
+   		//订单金额
+   		$order_amount_data = array();
+
+   		//展现次数
+   		$dsp_impressions_data = array();
+
+   		//点击次数
+   		$dsp_click_data = array();
+
+   		//cpc
+   		$dsp_cpc_data = array();
+
+   		//cpm
+   		$dsp_cpm_data = array();
+
+   		//ctr
+   		$dsp_ctr_data = array();
+
+		/*print_r($format_time);*/
+   		if($format_time['type'] == 'hour'){
+
+   			$this->endtime = $this->starttime;
+
+			$media_sql 	 =	"SELECT
+							SUM(budget_0) as time_0,
+							SUM(budget_1) as time_1,
+							SUM(budget_2) as time_2,
+							SUM(budget_3) as time_3,
+							SUM(budget_4) as time_4,
+							SUM(budget_5) as time_5,
+							SUM(budget_6) as time_6,
+							SUM(budget_7) as time_7,
+							SUM(budget_8) as time_8,
+							SUM(budget_9) as time_9,
+							SUM(budget_10) as time_10,
+							SUM(budget_11) as time_11,
+							SUM(budget_12) as time_12,
+							SUM(budget_13) as time_13,
+							SUM(budget_14) as time_14,
+							SUM(budget_15) as time_15,
+							SUM(budget_16) as time_16,
+							SUM(budget_17) as time_17,
+							SUM(budget_18) as time_18,
+							SUM(budget_19) as time_19,
+							SUM(budget_20) as time_20,
+							SUM(budget_21) as time_21,
+							SUM(budget_22) as time_22,
+							SUM(budget_23) as time_23
+						FROM
+							oa_test.executive_media_schedule_content
+					    WHERE
+							schedule_date = '".$format_time['starttime']."' AND pid='".$pid."'";
+			$dsp_sql   	 = "SELECT a.times,a.dsp_cost,a.dsp_impressions,a.dsp_cpm,a.dsp_click,a.dsp_ctr,a.dsp_cpc FROM executive_dsp_data AS a LEFT JOIN executive_media_schedule_content AS b ON a.md5str=b.md5str WHERE a.schedule_date='".$format_time['starttime']."' AND b.pid='".$pid."'";
+			$offline_sql = "SELECT SUM(a.reg_cnt) AS reg_cnt,SUM(a.order_cnt) AS order_cnt,SUM(a.order_amount) AS order_amount,b.schedule_date FROM executive_offline_data as a LEFT JOIN executive_media_schedule_content as b on a.md5str=b.md5str WHERE b.schedule_date = '".$format_time['starttime']."' AND b.pid='".$pid."' GROUP BY b.schedule_date";
+			$media_result 	= $this->db->get_row ($media_sql);
+			$dsp_result 	= $this->db->get_results ($dsp_sql);
+			$offline_result = $this->db->get_row ($offline_sql);
+
+   		}elseif($format_time['type'] == 'day'){
+   			$media_sql = "SELECT
+						   	(SUM(budget_sum)) AS total,
+						   	schedule_date
+						   FROM
+						   	oa_test.executive_media_schedule_content
+						   WHERE
+						   	date_format(schedule_date, '%Y-%m-%d') >= '".date('Y-m-d',strtotime($format_time['starttime']))."' AND date_format(schedule_date, '%Y-%m-%d') <= '".date('Y-m-d',strtotime($format_time['endtime']))."' AND pid = '".$pid."' 
+						   	GROUP BY
+						   	schedule_date";
+
+		    $dsp_sql    =  "SELECT
+								b.schedule_date,
+								SUM(a.dsp_cost) AS dsp_cost,
+								SUM(a.dsp_impressions) AS dsp_impressions,
+								SUM(a.dsp_click) AS dsp_click,
+								(
+									SUM(a.dsp_cost) / SUM(a.dsp_click)
+								) AS dsp_cpc,
+								(
+									SUM(a.dsp_cost) / SUM(a.dsp_impressions) * 1000
+								) AS dsp_cpm,
+								(
+									SUM(a.dsp_click) / SUM(a.dsp_impressions)
+								) AS dsp_ctr
+							FROM
+								executive_dsp_data AS a
+							LEFT JOIN executive_media_schedule_content AS b ON a.md5str = b.md5str
+							WHERE
+								date_format(a.schedule_date, '%Y-%m-%d') >= '".date('Y-m-d',strtotime($format_time['starttime']))."' AND  date_format(a.schedule_date, '%Y-%m-%d') <= '".date('Y-m-d',strtotime($format_time['endtime']))."' AND b.pid = '".$pid."' 
+							GROUP BY
+								a.schedule_date";
+			$offline_sql = "SELECT SUM(a.reg_cnt) AS reg_cnt,SUM(a.order_cnt) AS order_cnt,SUM(a.order_amount) AS order_amount,b.schedule_date FROM executive_offline_data as a LEFT JOIN executive_media_schedule_content as b on a.md5str=b.md5str WHERE date_format(schedule_date, '%Y-%m-%d') >= '".date('Y-m-d',strtotime($format_time['starttime']))."' AND  date_format(schedule_date, '%Y-%m-%d') <= '".date('Y-m-d',strtotime($format_time['endtime']))."' AND b.pid = '".$pid."' GROUP BY b.schedule_date";
+			$media_result 	= $this->db->get_results ($media_sql);
+			$dsp_result 	= $this->db->get_results ($dsp_sql);
+			$offline_result = $this->db->get_results ($offline_sql);
+   		}elseif ($format_time['type'] == 'month') {
+			$media_sql = 	"SELECT
+								(SUM(budget_sum)) AS total,
+								date_format(schedule_date, '%Y-%m') AS months
+							FROM
+								oa_test.executive_media_schedule_content
+							WHERE
+								date_format(schedule_date, '%Y-%m') >= '".date('Y-m',strtotime($format_time['starttime']))."' AND date_format(schedule_date, '%Y-%m') <= '".date('Y-m',strtotime($format_time['endtime']))."' AND pid = '".$pid."' 
+							GROUP BY 
+								months";
+
+	   	    $dsp_sql    =  "SELECT
+						   	    date_format(b.schedule_date, '%Y-%m') AS months,
+						   	    SUM(a.dsp_cost) AS dsp_cost,
+						   	    SUM(a.dsp_impressions) AS dsp_impressions,
+						   	    SUM(a.dsp_click) AS dsp_click,
+						   	    (
+						   	    	SUM(a.dsp_cost) / SUM(a.dsp_click)
+						   	    ) AS dsp_cpc,
+						   	    (
+						   	    	SUM(a.dsp_cost) / SUM(a.dsp_impressions) * 1000
+						   	    ) AS dsp_cpm,
+						   	    (
+						   	    	SUM(a.dsp_click) / SUM(a.dsp_impressions)
+						   	    ) AS dsp_ctr
+	   						FROM
+	   							executive_dsp_data AS a 
+	   						LEFT JOIN executive_media_schedule_content AS b ON a.md5str = b.md5str
+	   						WHERE
+	   							date_format(a.schedule_date, '%Y-%m') >= '".date('Y-m',strtotime($format_time['starttime']))."' AND date_format(a.schedule_date, '%Y-%m') <= '".date('Y-m',strtotime($format_time['endtime']))."' AND b.pid = '".$pid."' 
+	   						GROUP BY
+	   							months";
+	   		$offline_sql = "SELECT date_format(b.schedule_date, '%Y-%m') AS months,SUM(a.reg_cnt) AS reg_cnt,SUM(a.order_cnt) AS 
+	   		order_cnt,SUM(a.order_amount) AS order_amount,b.schedule_date FROM executive_offline_data as a LEFT JOIN executive_media_schedule_content as b on a.md5str=b.md5str WHERE date_format(schedule_date, '%Y-%m') >= '".date('Y-m',strtotime($format_time['starttime']))."' AND  date_format(schedule_date, '%Y-%m') <= '".date('Y-m',strtotime($format_time['endtime']))."' AND b.pid = '".$pid."' GROUP BY months";
+	   		$media_result 	= $this->db->get_results ($media_sql);
+	   		$dsp_result 	= $this->db->get_results ($dsp_sql);
+	   		$offline_result = $this->db->get_results ($offline_sql);
+   		}else{
+
+			$media_sql =  "SELECT
+								(SUM(budget_sum)) AS total,
+								YEAR (schedule_date) AS years
+							FROM
+								oa_test.executive_media_schedule_content
+							WHERE
+								YEAR (schedule_date) >= ".date('Y',strtotime($format_time['starttime']))."
+								AND YEAR (schedule_date) <= ".date('Y',strtotime($format_time['endtime']))."
+							GROUP BY
+								years";
+
+			$dsp_sql =  "SELECT
+							YEAR (b.schedule_date) AS years,
+							SUM(a.dsp_cost) AS dsp_cost,
+							SUM(a.dsp_impressions) AS dsp_impressions,
+							SUM(a.dsp_click) AS dsp_click,
+							(
+								SUM(a.dsp_cost) / SUM(a.dsp_click)
+							) AS dsp_cpc,
+							(
+								SUM(a.dsp_cost) / SUM(a.dsp_impressions) * 1000
+							) AS dsp_cpm,
+							(
+								SUM(a.dsp_click) / SUM(a.dsp_impressions)
+							) AS dsp_ctr
+						FROM
+							executive_dsp_data AS a
+						LEFT JOIN executive_media_schedule_content AS b ON a.md5str = b.md5str
+						WHERE
+							YEAR (b.schedule_date) >= ".date('Y',strtotime($format_time['starttime']))."
+							AND YEAR (b.schedule_date) <= ".date('Y',strtotime($format_time['endtime']))."
+						GROUP BY
+							years";
+			$offline_sql = "SELECT YEAR (b.schedule_date) AS years,SUM(a.reg_cnt) AS reg_cnt,SUM(a.order_cnt) AS order_cnt,SUM(a.order_amount) AS order_amount,b.schedule_date FROM executive_offline_data as a LEFT JOIN executive_media_schedule_content as b on a.md5str=b.md5str WHERE 	YEAR (b.schedule_date) >= ".date('Y',strtotime($format_time['starttime']))." AND YEAR (b.schedule_date) <= ".date('Y',strtotime($format_time['endtime']))." GROUP BY years";
+   			$media_result 	= $this->db->get_results ($media_sql);
+   			$dsp_result 	= $this->db->get_results ($dsp_sql);
+   			$offline_result = $this->db->get_results ($offline_sql);
+   		}
+
+		$only_effect_data = array(
+			'media_result'	   =>$media_result,
+			'dsp_result'	   =>$dsp_result,
+			'offline_result'   =>$offline_result,
+			'type'			   =>$format_time['type']
+		);
+		return $only_effect_data;
+    }
+
+
+    //折线图
+    public function get_format_effect_data(){
+    	$data = $this->get_only_effect_data();
+    	//预算
+    	$budget_data = array();
+
+    	//订单数
+    	$order_cnt_data	= array();
+
+    	//注册量 
+    	$reg_cnt_data = array();
+
+    	//订单金额
+    	$order_amount_data = array();
+
+    	//展现次数
+    	$dsp_impressions_data = array();
+
+    	//点击次数
+    	$dsp_click_data = array();
+
+    	//cpc
+    	$dsp_cpc_data = array();
+
+    	//cpm
+    	$dsp_cpm_data = array();
+
+    	//ctr
+    	$dsp_ctr_data = array();
+
+    	$dsp_total_data = array();
+
+    	if($data['type'] == 'hour'){
+    		$dsp_result_1 = array();
+    		foreach ($data['dsp_result'] as $key => $value) {
+    			if(isset($value->times)){
+    				$keys = 'time_'.$value->times;
+    				$dsp_result_1[$keys]['dsp_cost'] 		= $value->dsp_cost;
+    				$dsp_result_1[$keys]['dsp_impressions'] = $value->dsp_impressions;
+    				$dsp_result_1[$keys]['dsp_click'] 		= $value->dsp_click;
+    				$dsp_result_1[$keys]['dsp_cpc'] 		= $value->dsp_cpc;
+    				$dsp_result_1[$keys]['dsp_cpm']			= $value->dsp_cpm;
+    				$dsp_result_1[$keys]['dsp_ctr'] 		= $value->dsp_ctr;
+    			}
+    		}
+
+    		for ($i=0; $i <24 ; $i++) { 
+    			$key = 'time_'.$i;
+    			$budget_data[$i] = array('year'=>$i,'budget'=>$data['media_result']->$key);
+    			if(empty($dsp_result_1[$key])){
+    				$dsp_total_data[$i] = array('year'=>$i."h",'dsp_impressions'=>0,'dsp_click'=>0,'dsp_cpc'=>0,'dsp_cpm'=>0,'dsp_ctr'=>0);
+    			}else{
+    				$dsp_total_data[$i] = array(
+												'year'=>$i."h",
+												'dsp_impressions'=>$dsp_result_1[$key]['dsp_impressions'],
+												'dsp_click'=>$dsp_result_1[$key]['dsp_click'],
+												'dsp_cpc'=>$dsp_result_1[$key]['dsp_cpc'],
+												'dsp_cpm'=>$dsp_result_1[$key]['dsp_cpm'],
+												'dsp_ctr'=>$dsp_result_1[$key]['dsp_ctr']*100
+    									  );
+    			}
+
+    		}
+
+    		$order_cnt_data[]	= array('year'=>$data['offline_result']->schedule_date,'order_cnt'=>$data['offline_result']->order_cnt); 
+    		$reg_cnt_data[] = array('year'=>$data['offline_result']->schedule_date,'reg_cnt'=>$data['offline_result']->reg_cnt);
+    		$order_amount_data[] = array('year'=>$data['offline_result']->schedule_date,'order_amount'=>$data['offline_result']->order_amount);
+    	}elseif ($data['type'] == 'day') {
+    		foreach ($data['media_result'] as $key => $value) {
+    			$budget_data[$key] = array('year'=>$value->schedule_date,'budget'=>$value->total);
+    		}
+
+    		foreach ($data['dsp_result'] as $key => $value) {
+    			$dsp_total_data[$i]	 = array(
+										  'year'			=> $value->schedule_date,
+										  'dsp_impressions' => $value->dsp_impressions,
+										  'dsp_click'		=> $value->dsp_click,
+										  'dsp_cpc'			=> $value->dsp_cpc,
+										  'dsp_cpm'			=> $value->dsp_cpm,
+										  'dsp_ctr'			=> $value->dsp_ctr*100
+									   );
+    		}
+
+    		foreach ($data['offline_result'] as $key => $value) {
+    			$order_cnt_data[$key]	 = array('year'=>$value->schedule_date,'order_cnt'=>$value->order_cnt); 
+    			$reg_cnt_data[$key] 	 = array('year'=>$value->schedule_date,'reg_cnt'=>$value->reg_cnt);
+    			$order_amount_data[$key] = array('year'=>$value->schedule_date,'order_amount'=>$value->order_amount);
+    		}
+    	}elseif ($data['type'] == 'month') {
+    		foreach ($data['media_result'] as $key => $value) {
+    			$budget_data[$key] = array('year'=>$value->months,'budget'=>$value->total);
+    		}
+
+    		foreach ($data['dsp_result'] as $key => $value) {
+    			$dsp_total_data[$i]	= array(
+										  'year'			=> $value->months,
+										  'dsp_impressions' => $value->dsp_impressions,
+										  'dsp_click'		=> $value->dsp_click,
+										  'dsp_cpc'			=> $value->dsp_cpc,
+										  'dsp_cpm'			=> $value->dsp_cpm,
+										  'dsp_ctr'			=> $value->dsp_ctr*100
+									  );
+    		}
+
+    		foreach ($data['offline_result'] as $key => $value) {
+    			$order_cnt_data[$key]	 = array('year'=>$value->months,'order_cnt'=>$value->order_cnt); 
+    			$reg_cnt_data[$key] 	 = array('year'=>$value->months,'reg_cnt'=>$value->reg_cnt);
+    			$order_amount_data[$key] = array('year'=>$value->months,'order_amount'=>$value->order_amount);
+    		}
+    	}else{
+    		foreach ($data['media_result'] as $key => $value) {
+    			$budget_data[$key] = array('year'=>$value->years,'budget'=>$value->total);
+    		}
+
+    		foreach ($data['dsp_result'] as $key => $value) {
+    			$dsp_total_data[$i]	= array(
+										  'year'			=> $value->years,
+										  'dsp_impressions' => $value->dsp_impressions,
+										  'dsp_click'		=> $value->dsp_click,
+										  'dsp_cpc'			=> $value->dsp_cpc,
+										  'dsp_cpm'			=> $value->dsp_cpm,
+										  'dsp_ctr'			=> $value->dsp_ctr*100
+									  );
+    		}
+
+    		foreach ($data['offline_result'] as $key => $value) {
+    			$order_cnt_data[$key]	 = array('year'=>$value->years,'order_cnt'=>$value->order_cnt); 
+    			$reg_cnt_data[$key] 	 = array('year'=>$value->years,'reg_cnt'=>$value->reg_cnt);
+    			$order_amount_data[$key] = array('year'=>$value->years,'order_amount'=>$value->order_amount);
+    		}
+    	}
+
+    	$get_effect_data = array(
+    		'order_cnt_data_json'	   =>json_encode($order_cnt_data),
+    		'reg_cnt_data_json'	 	   =>json_encode($reg_cnt_data),
+    		'order_amount_data_json'   =>json_encode($order_amount_data),
+    		'budget_data_json'		   =>json_encode($budget_data),
+    		'dsp_total_data_json'	   =>json_encode($dsp_total_data)
+    	);
+    	return $get_effect_data;
+    }
+
+/*	public function get_effect_html(){
+		$this->get_format_effect_data();
+		$effect_data = $this->get_effect_data();
+		$buf = file_get_contents(
+				TEMPLATE_PATH . 'analyze/effect_data.tpl');
+		return str_replace(
+				array(
+					'[LEFT]',
+					'[TOP]', 
+					'[VCODE]',
+					'[SEARCH]',
+					'[RANGE]',
+					'[BASE_URL]',
+					'[STARTTIME]',
+					'[ENDTIME]',
+					'[order_cnt_data_json]',
+					'[reg_cnt_data_json]',
+					'[order_amount_data_json]',
+					'[budget_data_json]',
+					'[dsp_impressions_data_json]',
+					'[dsp_cpc_data_json]',
+					'[dsp_cpm_data_json]',
+					'[dsp_ctr_data_json]'
+				),
+				array(
+					$this->get_left_html(),
+					$this->get_top_html(),
+					$this->get_vcode(),
+					$this->search,
+					$this->range,
+					BASE_URL,
+					$this->starttime,
+					$this->endtime,
+					$effect_data['order_cnt_data_json'],
+					$effect_data['reg_cnt_data_json'],
+					$effect_data['order_amount_data_json'],
+					$effect_data['budget_data_json'],
+					$effect_data['dsp_impressions_data_json'],
+					$effect_data['dsp_cpc_data_json'],
+					$effect_data['dsp_cpm_data_json'],
+					$effect_data['dsp_ctr_data_json']
+				), 
+				$buf);
+	}*/
+
+	public function get_effect_html(){
+		
+		$effect_data = $this->get_format_effect_data();
+
+		$buf = file_get_contents(
+				TEMPLATE_PATH . 'analyze/effect_data.tpl');
+		return str_replace(
+				array(
+					'[LEFT]',
+					'[TOP]', 
+					'[VCODE]',
+					'[SEARCH]',
+					'[RANGE]',
+					'[BASE_URL]',
+					'[STARTTIME]',
+					'[ENDTIME]',
+					'[order_cnt_data_json]',
+					'[reg_cnt_data_json]',
+					'[order_amount_data_json]',
+					'[budget_data_json]',
+					'[dsp_total_data_json]'
+				),
+				array(
+					$this->get_left_html(),
+					$this->get_top_html(),
+					$this->get_vcode(),
+					$this->search,
+					$this->range,
+					BASE_URL,
+					$this->starttime,
+					$this->endtime,
+					$effect_data['order_cnt_data_json'],
+					$effect_data['reg_cnt_data_json'],
+					$effect_data['order_amount_data_json'],
+					$effect_data['budget_data_json'],
+					$effect_data['dsp_total_data_json']
+				), 
+				$buf);
+	}
 
     public function format_time(){
      	$starttime = $this->starttime;

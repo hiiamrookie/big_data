@@ -13,31 +13,32 @@
 <body>
 [LEFT]
 <div id="main">
-	<div class="nav_top">[TOP]</div>
-	<div id="content" class="fix">
-		<div class="crumbs">数据报表 - 执行成本明细</div>
-		<div class="tab" id="tab" style="height:30px">
-        	<ul>
-				<li class="on"><a>项目盈利分析</a></li>
-				<li><a href="?o=effect&search=[SEARCH]">投放效果分析</a></li>
-				<!-- <li><a href="?o=trend&search=[SEARCH]">投放趋势分析</a></li> -->
-			</ul>
-		</div>       
+    <div class="nav_top">[TOP]</div>
+    <div id="content" class="fix">
+        <div class="crumbs">数据报表 - 执行成本明细</div>
+        <div class="tab" id="tab" style="height:30px">
+            <ul>
+                <li class="on"><a>项目盈利分析</a></li>
+                <li><a href="?o=effect&search=[SEARCH]">投放效果分析</a></li>
+                <!-- <li><a href="?o=trend&search=[SEARCH]">投放趋势分析</a></li> -->
+            </ul>
+        </div>       
         <div class="listform fix">
-        	<table width="100%" class="tabin">
+            <table width="100%" class="tabin">
               <tr>
-				<td>
-                	&nbsp; 关键字: <input id="search" style=" width:150px;height:20px;" value="[SEARCH]"  /> 
+                <td>
+                    &nbsp; 关键字: <input id="search" style=" width:150px;height:20px;" value="[SEARCH]"  /> 
                     &nbsp; <input type="button" id="dosearch" value="搜 索" class="btn"/>
                 </td>
               </tr>
             </table>
             </div>
                 <div id="profit_gain_chartdiv" style="width: 100%; height: 600px; margin-bottom: 50px"></div>
-                <div id="profit_cost_chartdiv" style="width: 100%; height: 600px;"></div>
+                <div id="profit_cost_chartdiv" style="width: 100%; height: 600px; margin-bottom: 50px"></div>
+                <div id="profit_total_chartdiv" style="width: 100%; height: 600px;"></div>
             </div> 
         </div>
-	</div>
+    </div>
 </div>
 <script type="text/javascript" src="[BASE_URL]script/jquery.min.js" language="javascript"></script>
 <script type="text/javascript" src="[BASE_URL]js/jquery.tablesorter.js" language="javascript"></script>
@@ -51,7 +52,7 @@
 <script type="text/javascript">
 var base_url = "[BASE_URL]";
 $(document).ready(function() {
-	$("#dosearch").live("click",function () { dosearch(); });
+    $("#dosearch").live("click",function () { dosearch(); });
 });
 
 function dosearch(){
@@ -144,7 +145,7 @@ function dosearch(){
 
             // value
             var valueAxis = new AmCharts.ValueAxis();
-            valueAxis.title = "当月执行金额";
+            valueAxis.title = "当月执行成本";
             valueAxis.dashLength = 5;
             valueAxis.axisAlpha = 0;
             valueAxis.minimum = [profit_cost_min];
@@ -179,6 +180,66 @@ function dosearch(){
             // WRITE
             profit_cost_chart.write("profit_cost_chartdiv");
         });
+
+
+//  当月执行总成本 当月执行总金额
+    var profit_total_chart;
+    var profit_total_key_json = [profit_total_key_json];
+    var profit_total_json = [profit_total_json];
+    AmCharts.ready(function () {
+        // SERIAL CHART
+        profit_total_chart = new AmCharts.AmSerialChart();
+        profit_total_chart.dataProvider = profit_total_json;
+        profit_total_chart.categoryField = "year";
+        profit_total_chart.startDuration = 0.5;
+        profit_total_chart.balloon.color = "#000000";
+        // AXES
+        // category
+        var categoryAxis = profit_total_chart.categoryAxis;
+        categoryAxis.fillAlpha = 1;
+        categoryAxis.fillColor = "#FAFAFA";
+        categoryAxis.gridAlpha = 0;
+        categoryAxis.axisAlpha = 0;
+        categoryAxis.gridPosition = "start";
+        categoryAxis.position = "top";
+
+        // value
+        var valueAxis = new AmCharts.ValueAxis();
+        valueAxis.title = "当月执行总成本/当月执行总金额";
+        valueAxis.dashLength = 5;
+        valueAxis.axisAlpha = 0;
+        valueAxis.minimum = [profit_total_min];
+        valueAxis.maximum = [profit_total_max];
+        valueAxis.integersOnly = false;
+        valueAxis.gridCount = 10;
+        valueAxis.reversed = false; // this line makes the value axis reversed
+        profit_total_chart.addValueAxis(valueAxis);
+
+        for(var i in profit_total_key_json){
+            var graph = new AmCharts.AmGraph();
+            graph.title = profit_total_key_json[i];
+            graph.valueField = profit_total_key_json[i];
+            graph.hidden = false; // this line makes the graph initially hidden
+            graph.balloonText = profit_total_key_json[i]+": [[category]]: [[value]]";
+            graph.lineAlpha = 1;
+            graph.bullet = "round";
+            profit_total_chart.addGraph(graph);
+        }
+        // CURSOR
+        var chartCursor = new AmCharts.ChartCursor();
+        chartCursor.cursorPosition = "mouse";
+        chartCursor.zoomable = false;
+        chartCursor.cursorAlpha = 0;
+        profit_total_chart.addChartCursor(chartCursor);
+
+        // LEGEND
+        var legend = new AmCharts.AmLegend();
+        legend.useGraphSettings = true;
+        profit_total_chart.addLegend(legend);
+
+        // WRITE
+        profit_total_chart.write("profit_total_chartdiv");
+    });
 </script>
 </body>
 </html>
