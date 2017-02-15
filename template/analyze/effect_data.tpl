@@ -292,7 +292,7 @@ AmCharts.ready(function () {
     // first graph
     var graph1 = new AmCharts.AmGraph();
     graph1.valueAxis = valueAxis1; // we have to indicate which value axis should be used
-    graph1.title = "impressions";
+    graph1.title = "impressions(单位/次)";
     graph1.valueField = "dsp_impressions";
     graph1.bullet = "round";
     graph1.hideBulletsCount = 50;
@@ -302,7 +302,7 @@ AmCharts.ready(function () {
     // second graph
     var graph2 = new AmCharts.AmGraph();
     graph2.valueAxis = valueAxis2; // we have to indicate which value axis should be used
-    graph2.title = "click";
+    graph2.title = "click(单位/次)";
     graph2.valueField = "dsp_click";
     graph2.bullet = "square";
     graph2.hideBulletsCount = 30;
@@ -313,7 +313,7 @@ AmCharts.ready(function () {
     var graph3 = new AmCharts.AmGraph();
     graph3.valueAxis = valueAxis3; // we have to indicate which value axis should be used
     graph3.valueField = "dsp_cpc";
-    graph3.title = "cpc";
+    graph3.title = "cpc(单位/元)";
     graph3.bullet = "triangleUp";
     graph3.hideBulletsCount = 30;
     graph3.bulletBorderThickness = 1;
@@ -323,7 +323,7 @@ AmCharts.ready(function () {
     var graph4 = new AmCharts.AmGraph();
     graph4.valueAxis = valueAxis4; // we have to indicate which value axis should be used
     graph4.valueField = "dsp_cpm";
-    graph4.title = "cpm";
+    graph4.title = "cpm(单位/元)";
     graph4.bullet = "triangleUp";
     graph4.hideBulletsCount = 30;
     graph4.bulletBorderThickness = 1;
@@ -333,7 +333,7 @@ AmCharts.ready(function () {
     var graph5 = new AmCharts.AmGraph();
     graph5.valueAxis = valueAxis5; // we have to indicate which value axis should be used
     graph5.valueField = "dsp_ctr";
-    graph5.title = "ctr";
+    graph5.title = "ctr(单位/百分比)";
     graph5.bullet = "triangleUp";
     graph5.hideBulletsCount = 30;
     graph5.bulletBorderThickness = 1;

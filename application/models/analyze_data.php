@@ -793,7 +793,7 @@ class Analyze_Data extends User {
 							SUM(budget_22) as time_22,
 							SUM(budget_23) as time_23
 						FROM
-							oa_test.executive_media_schedule_content
+							executive_media_schedule_content
 					    WHERE
 							schedule_date = '".$format_time['starttime']."' AND pid='".$pid."'";
 			$dsp_sql   	 = "SELECT a.times,a.dsp_cost,a.dsp_impressions,a.dsp_cpm,a.dsp_click,a.dsp_ctr,a.dsp_cpc FROM executive_dsp_data AS a LEFT JOIN executive_media_schedule_content AS b ON a.md5str=b.md5str WHERE a.schedule_date='".$format_time['starttime']."' AND b.pid='".$pid."'";
@@ -807,7 +807,7 @@ class Analyze_Data extends User {
 						   	(SUM(budget_sum)) AS total,
 						   	schedule_date
 						   FROM
-						   	oa_test.executive_media_schedule_content
+						   	executive_media_schedule_content
 						   WHERE
 						   	date_format(schedule_date, '%Y-%m-%d') >= '".date('Y-m-d',strtotime($format_time['starttime']))."' AND date_format(schedule_date, '%Y-%m-%d') <= '".date('Y-m-d',strtotime($format_time['endtime']))."' AND pid = '".$pid."' 
 						   	GROUP BY
@@ -843,7 +843,7 @@ class Analyze_Data extends User {
 								(SUM(budget_sum)) AS total,
 								date_format(schedule_date, '%Y-%m') AS months
 							FROM
-								oa_test.executive_media_schedule_content
+								executive_media_schedule_content
 							WHERE
 								date_format(schedule_date, '%Y-%m') >= '".date('Y-m',strtotime($format_time['starttime']))."' AND date_format(schedule_date, '%Y-%m') <= '".date('Y-m',strtotime($format_time['endtime']))."' AND pid = '".$pid."' 
 							GROUP BY 
@@ -881,7 +881,7 @@ class Analyze_Data extends User {
 								(SUM(budget_sum)) AS total,
 								YEAR (schedule_date) AS years
 							FROM
-								oa_test.executive_media_schedule_content
+								executive_media_schedule_content
 							WHERE
 								YEAR (schedule_date) >= ".date('Y',strtotime($format_time['starttime']))."
 								AND YEAR (schedule_date) <= ".date('Y',strtotime($format_time['endtime']))."
@@ -911,6 +911,7 @@ class Analyze_Data extends User {
 						GROUP BY
 							years";
 			$offline_sql = "SELECT YEAR (b.schedule_date) AS years,SUM(a.reg_cnt) AS reg_cnt,SUM(a.order_cnt) AS order_cnt,SUM(a.order_amount) AS order_amount,b.schedule_date FROM executive_offline_data as a LEFT JOIN executive_media_schedule_content as b on a.md5str=b.md5str WHERE 	YEAR (b.schedule_date) >= ".date('Y',strtotime($format_time['starttime']))." AND YEAR (b.schedule_date) <= ".date('Y',strtotime($format_time['endtime']))." GROUP BY years";
+  			//echo $dsp_sql;
    			$media_result 	= $this->db->get_results ($media_sql);
    			$dsp_result 	= $this->db->get_results ($dsp_sql);
    			$offline_result = $this->db->get_results ($offline_sql);
@@ -930,6 +931,9 @@ class Analyze_Data extends User {
     public function get_format_effect_data(){
     	$data = $this->get_only_effect_data();
     	//预算
+/*    	echo "<pre>";
+    	print_r($data);*/
+
     	$budget_data = array();
 
     	//订单数
@@ -999,7 +1003,7 @@ class Analyze_Data extends User {
     		}
 
     		foreach ($data['dsp_result'] as $key => $value) {
-    			$dsp_total_data[$i]	 = array(
+    			$dsp_total_data[$key]	 = array(
 										  'year'			=> $value->schedule_date,
 										  'dsp_impressions' => $value->dsp_impressions,
 										  'dsp_click'		=> $value->dsp_click,
@@ -1020,7 +1024,7 @@ class Analyze_Data extends User {
     		}
 
     		foreach ($data['dsp_result'] as $key => $value) {
-    			$dsp_total_data[$i]	= array(
+    			$dsp_total_data[$key]	= array(
 										  'year'			=> $value->months,
 										  'dsp_impressions' => $value->dsp_impressions,
 										  'dsp_click'		=> $value->dsp_click,
@@ -1036,12 +1040,15 @@ class Analyze_Data extends User {
     			$order_amount_data[$key] = array('year'=>$value->months,'order_amount'=>$value->order_amount);
     		}
     	}else{
+/*    		echo "<pre>";
+    		print_r($data['dsp_result']);
+    		die;*/
     		foreach ($data['media_result'] as $key => $value) {
     			$budget_data[$key] = array('year'=>$value->years,'budget'=>$value->total);
     		}
 
     		foreach ($data['dsp_result'] as $key => $value) {
-    			$dsp_total_data[$i]	= array(
+    			$dsp_total_data[$key]	= array(
 										  'year'			=> $value->years,
 										  'dsp_impressions' => $value->dsp_impressions,
 										  'dsp_click'		=> $value->dsp_click,
@@ -1065,6 +1072,9 @@ class Analyze_Data extends User {
     		'budget_data_json'		   =>json_encode($budget_data),
     		'dsp_total_data_json'	   =>json_encode($dsp_total_data)
     	);
+/*    	echo "<pre>";
+    	print_r($get_effect_data);
+    	die;*/
     	return $get_effect_data;
     }
 
