@@ -35,6 +35,7 @@ a:hover {
 	color:#000;
 }
 img {
+	display: block;
 	border:0
 }
 ul {
@@ -96,37 +97,31 @@ object {
 }
 /* Clear styles end */
 html {
-	min-width:1000px;
+	height: 100%;
 }
 body {
-	background:#fff;
-	min-width:1000px;
-	min-height:500px;
+	height: 100%;
+	background:#3fa3ed url('../images/bg_login.jpg') 50% 50%;
+	min-width:600px;
+	min-height:560px;
 	overflow:auto;
 }
 #main {
-	width:1000px;
-	height:500px;
+	width:420px;
+	height:560px;
 	position:absolute;
 	left:50%;
 	top:48%;
-	margin-top:-250px;
-	margin-left:-500px;
-	background:url(../images/bg_login.png) no-repeat 50% 0;
+	margin-top:-280px;
+	margin-left:-210px;
+	background:url('../images/bg_login.png') no-repeat 50% 0;
 }
 #main .title {
-	height:93px;
-	width:533px;
-	margin:auto;
-	overflow:hidden;
-	padding:102px 0 0;
-	text-align:center;
-}
-.title h2 {
-	float:right;
-	padding:66px 15px 0 0;
-	color:#000;
-	font-family:Arial, Helvetica, sans-serif;
+	height:261px;
+	width:236px;
+	position: fixed;
+	right: 50px;
+	bottom: 40px;
 }
 .logo {
 	float:left;
@@ -146,57 +141,53 @@ body {
 	text-align:center;
 }
 .login {
-	height:70px;
-	width:448px;
 	margin:auto;
-	padding:30px 0 0 85px;
+	padding:340px 50px 0;
 }
-.login table {
-	float:left;
-	width:275px;
-	border-collapse: 0px;
-	border-spacing: 0px;
-	border: 0px;
-}
-.login table td {
-	line-height:23px;
-	padding:4px;
-	text-align:center;
-}
-.login table td label {
+.login label {
 	display:block;
-	color:#fff;
+	border: 1px solid #d7d7d7;
+	border-radius: 6px;
+	padding: 9px;
+	margin-bottom: 17px;
 }
-.login .submit_button {
-	float:left;
-	width:90px;
-	padding:5px 0 0 9px;
+.login label span {
+	vertical-align: top;
+	display: inline-block;
+	width: 40px;
+	height: 29px;
+	margin-right: 18px;
+	background-repeat: no-repeat;
+	background-position: 100% 0;
+	background: url('../images/ico_user.png') no-repeat 100% 0;
+}
+.login label span em {
+	display: none;
+}
+.login label span.user {
+	background-image: url('../images/ico_user.png');
+}
+.login label span.pas {
+	background-image: url('../images/ico_pas.png');
 }
 .login .text {
-	border-color:#000 #000 #000 #000;
-	border-style:solid;
-	border-width:1px;
+	vertical-align: top;
+	border-width:0;
 	padding:2px;
-	font-size:12px;
-	height:16px;
-	width:195px;
+	font-size:14px;
+	height:25px;
+	width:230px;
 	color:#000;
-	line-height:16px;
-	background:url(../images/bg_logintext.png) repeat-x;
+	line-height:25px;
 }
-.login .text:focus {
-	border-color:#fff;
-}
-.login .text:active {
-	border-color:#fff;
-}
+.login .submit_button { text-align: center;}
 .login .btn {
 	border:0;
 	cursor:pointer;
 	padding:0;
-	height:52px;
-	width:70px;
-	background:url(../images/bg_loginbtn.png) no-repeat;
+	height:36px;
+	width:85px;
+	background:url('../images/bg_loginbtn.png') no-repeat;
 }
 .login .btn:focus {
 	color:#003300;

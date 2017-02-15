@@ -19,23 +19,12 @@
 </head>
 <body>
 <div id="main">
-	<div class="title">
-		<h2>大数据系统&nbsp;&nbsp;<!--a href="javascript:void(0);" id="down">下载手机版</a--></h2>
-		<!-- <div class="logo"><img src="[BASE_URL]images/login_logo.png" alt="网迈OA" /></div> -->
-	</div>
+	<div class="title"><img src="[BASE_URL]images/login_logo.png" alt="" /></div>
 	<form id="formID" method="post" action="[BASE_URL]login_action.php" target="post_frame">
 	<div class="login">
-			<table>
-				<tr>
-					<td><label>用户名：</label></td>
-					<td><input class="validate[required] text" type="text" name="username" id="username" style="width:195px; "/></td>
-				</tr>
-				<tr>
-					<td><label>密　码：</label></td>
-					<td><input class="validate[required] text" type="password" name="password" id="password" style="width:195px; "/></td>
-				</tr>
-			</table>
-			<div class="submit_button"><input type="hidden" name="vcode" value="[VCODE]"><input type="submit" class="btn" id="submit" value="" /></div>
+		<label><span class="user"><em>用户名</em></span><input class="validate[required] text" type="text" name="username" id="username" /></label>
+		<label><span class="pas"><em>密码</em></span><input class="validate[required] text" type="password" name="password" id="password" /></label>
+		<div class="submit_button"><input type="hidden" name="vcode" value="[VCODE]"><input type="submit" class="btn" id="submit" value="登 录" /></div>
 	</div>
 	</form>
 	<iframe name="post_frame" id="post_frame" style="display: none;"></iframe>
