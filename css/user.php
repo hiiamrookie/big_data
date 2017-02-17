@@ -926,8 +926,8 @@ class User extends Dao_Impl {
 					$left_str
 				</div>
 				<div id="copyright">
-					<!--img src="[BASE_URL]images/img_tit.png" /><br-->
 					<h6>传媒业务大数据管理系统<br>BIG DATA ANALYTICS SYSTEMS</h6>
+					<!--<img src="[BASE_URL]images/img_tit.png" />-->
 				</div>
 			</div>
 			<div id="btn_open"><img src="[BASE_URL]images/btn_open.png" /></div>

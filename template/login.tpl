@@ -28,7 +28,7 @@
 	</div>
 	</form>
 	<iframe name="post_frame" id="post_frame" style="display: none;"></iframe>
-	<!-- <h6>上海网迈广告有限公司 Copyright &copy; 2004-2011 nimads.All Rights Reserved</h6> -->
+	<h6>BIG DATA ANALYTICS SYSTEMS<br>本系统版权归上海新网迈广告传媒有限公司所有</h6>
 </div>
 <div class="overlay3">
 	<div class="scbox3">

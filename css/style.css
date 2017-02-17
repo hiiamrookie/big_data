@@ -204,6 +204,7 @@ body {
 }
 #copyright h6 {
     color:#3f3f3f;
+    line-height: 22px;
     font-family: "Microsoft YaHei", "微软雅黑", helvetica, verdana, tahoma, sans-serif;
 }
 #btn_open {

@@ -9,7 +9,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
 body {
 	font-size:12px;
 	line-height:1.66;
-	font-family:Arial, "\5B8B\4F53", Tahoma, sans-serif;
+	font-family:"Microsoft YaHei", "微软雅黑",Arial, Tahoma, sans-serif;
 }
 th, td {
 	text-align:left;
@@ -35,7 +35,7 @@ a:hover {
 	color:#000;
 }
 img {
-	display: block;
+	vertical-align: top;
 	border:0
 }
 ul {
@@ -53,7 +53,7 @@ dl, dt, dd {
 input, label, select, option, textarea, button, fieldset, legend {
 	font-size:1em;
 	color:#333;
-	font-family:Verdana, Geneva, sans-serif, "\5B8B\4F53", Tahoma, sans-serif
+	font-family:Verdana, Arial, sans-serif, Tahoma, sans-serif
 }
 input.radio, input.checkbox {
 	margin-right:2px;
@@ -108,20 +108,15 @@ body {
 }
 #main {
 	width:420px;
-	height:560px;
+	height:620px;
 	position:absolute;
 	left:50%;
-	top:48%;
-	margin-top:-280px;
+	top:46%;
+	margin-top:-310px;
 	margin-left:-210px;
-	background:url('../images/bg_login.png') no-repeat 50% 0;
 }
 #main .title {
-	height:261px;
-	width:236px;
-	position: fixed;
-	right: 50px;
-	bottom: 40px;
+	margin: 0 auto;
 }
 .logo {
 	float:left;
@@ -134,15 +129,16 @@ body {
 	vertical-align:top;
 }
 #main h6 {
-	height:60px;
-	line-height:60px;
-	width:533px;
+	line-height:22px;
+	color: #fff;
 	margin:auto;
 	text-align:center;
 }
 .login {
 	margin:auto;
-	padding:340px 50px 0;
+	height: 214px;
+	padding:246px 50px 0;
+	background:url('../images/bg_login.png') no-repeat 50% 0;
 }
 .login label {
 	display:block;
