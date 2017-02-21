@@ -83,7 +83,7 @@ function dosearch(){
 
         // value
         var valueAxis = new AmCharts.ValueAxis();
-        valueAxis.title = "当月执行金额";
+        valueAxis.title = "当月执行成本";
         valueAxis.dashLength = 5;
         valueAxis.axisAlpha = 0;
         valueAxis.minimum = [min];
