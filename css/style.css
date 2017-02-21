@@ -266,6 +266,9 @@ div.SYS_Wdate {
     background-repeat: no-repeat;
     background:url('../images/nva_01.png') no-repeat 0 50%;
 }
+#side_nav h2.hn0 {
+    background-image:url('../images/nva_00.png');
+}
 #side_nav h2.hn1 {
     background-image:url('../images/nva_01.png');
 }

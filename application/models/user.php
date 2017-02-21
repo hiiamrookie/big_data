@@ -858,31 +858,31 @@ class User extends Dao_Impl {
 				if (! empty ( $value )) {
 					switch ($key) {
 						case 'project' :
-							$left_str .= '<script>var menu_p = ' . $step . ';</script><h2>立项管理</h2>';
+							$left_str .= '<script>var menu_p = ' . $step . ';</script><h2 class="hn' . $step . '">立项管理</h2>';
 							break;
 						case 'executive' :
-							$left_str .= '<script>var menu_e = ' . $step . ';</script><h2 class="hn2">执行单管理</h2>';
+							$left_str .= '<script>var menu_e = ' . $step . ';</script><h2 class="hn' . $step . '">执行单管理</h2>';
 							break;
 						case 'contact' :
-							$left_str .= '<script>var menu_c = ' . $step . ';</script><h2 class="hn1">合同管理</h2>';
+							$left_str .= '<script>var menu_c = ' . $step . ';</script><h2 class="hn' . $step . '">合同管理</h2>';
 							break;
 						case 'finance' :
-							$left_str .= '<script>var menu_f = ' . $step . ';</script><h2 class="hn4">财务管理</h2>';
+							$left_str .= '<script>var menu_f = ' . $step . ';</script><h2 class="hn' . $step . '">财务管理</h2>';
 							break;
 /*						case 'media_data' :
 							$left_str .= '<script>var menu_m = ' . $step . ';</script><h2>媒体数据管理 (测试)</h2>';
 							break;*/
 						case 'own' :
-							$left_str .= '<script>var menu_o = ' . $step . ';</script><h2 class="hn5">个人信息管理</h2>';
+							$left_str .= '<script>var menu_o = ' . $step . ';</script><h2 class="hn' . $step . '">个人信息管理</h2>';
 							break;
 						case 'report' :
-							$left_str .= '<script>var menu_r = ' . $step . ';</script><h2 class="hn3">数据管理</h2>';
+							$left_str .= '<script>var menu_r = ' . $step . ';</script><h2 class="hn' . $step . '">数据管理</h2>';
 							break;
 						case 'setup' :
-							$left_str .= '<script>var menu_s = ' . $step . ';</script><h2 class="hn6">系统设置</h2>';
+							$left_str .= '<script>var menu_s = ' . $step . ';</script><h2 class="hn' . $step . '">系统设置</h2>';
 							break;
 						case 'analyze':
-							$left_str .= '<script>var menu_a = ' . $step . ';</script><h2 class="hn7">媒体分析</h2>';
+							$left_str .= '<script>var menu_a = ' . $step . ';</script><h2 class="hn' . $step . '">媒体分析</h2>';
 							break;
 						/*case 'booking' :
 							$left_str .= '<script>var menu_b = ' . $step . ';</script><h2>会议室预定</h2>';
@@ -926,8 +926,8 @@ class User extends Dao_Impl {
 					$left_str
 				</div>
 				<div id="copyright">
-					<!--img src="[BASE_URL]images/img_tit.png" /><br-->
 					<h6>传媒业务大数据管理系统<br>BIG DATA ANALYTICS SYSTEMS</h6>
+					<!--<img src="[BASE_URL]images/img_tit.png" />-->
 				</div>
 			</div>
 			<div id="btn_open"><img src="[BASE_URL]images/btn_open.png" /></div>
