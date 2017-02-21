@@ -424,10 +424,10 @@ div.SYS_Wdate {
     color:#e24d0a;
 }
 .box {
-    min-height:40px;
+    /*min-height:40px;*/
     margin:auto;
-    background:#fff;
-    padding:10px 0;
+    /*background:#fff;*/
+    /*padding:10px 0;*/
     position:relative;
 }
 .box h3 {
@@ -584,7 +584,7 @@ div.SYS_Wdate {
     text-decoration:underline;
 }
 .box .listform {
-    padding:10px 40px;
+    padding:10px 40px !important;
 }
 .box .listform tbody {
     margin-bottom:10px;
